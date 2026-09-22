@@ -1,0 +1,10 @@
+# Training outputs and model checkpoints
+outputs/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Local environment/editor files
+.env
+.vscode/

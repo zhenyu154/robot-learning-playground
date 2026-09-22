@@ -8,9 +8,15 @@ Train and evaluate an imitation-learning policy for simulated robotic manipulati
 
 ## Progress
 
-- [ ] Set up LeRobot
-- [ ] Run Panda manipulation environment
-- [ ] Collect demonstrations
-- [ ] Train ACT policy
-- [ ] Evaluate policy
-- [ ] Run first controlled experiment
+- [x] Set up LeRobot
+- [x] Run Panda manipulation environment
+- [x] Collect demonstrations
+- [x] Train ACT policy
+- [x] Evaluate policy
+- [x] Run first controlled experiment
+
+Current baseline:
+- ACT learns the main XYZ trajectory.
+- Gripper closure is not yet learned reliably.
+- Policy-only success: 0/5.
+- Assisted gripper success: 5/5.
