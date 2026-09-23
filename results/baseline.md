@@ -79,3 +79,18 @@ XYZ action pipeline.
 - The policy-only sample size is 10 episodes.
 - These results do not establish visual generalization.
 - The assisted result is not an end-to-end ACT success rate.
+
+## Offline gripper audit
+
+The checkpoint was evaluated on all 680 expert observations.
+
+- Target hold frames: 629
+- Target close frames: 51
+- Predicted gripper range over all frames: 0.9926 to 1.0100
+- Mean prediction on target close frames: 1.0061
+- Close hit rate: 0.0%
+- False close rate on target hold frames: 0.0%
+
+The policy predicts the hold command for essentially every
+expert observation, including frames where the demonstrator
+issued a close command.

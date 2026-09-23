@@ -17,6 +17,7 @@ Train and evaluate an imitation-learning policy for simulated robotic manipulati
 
 Current baseline:
 - ACT learns the main XYZ trajectory.
-- Gripper closure is not yet learned reliably.
-- Policy-only success: 0/5.
+- Gripper closure is not learned reliably.
+- Policy-only success: 0/10 on the 500-step checkpoint.
 - Assisted gripper success: 5/5.
+- Offline gripper close hit rate: 0/51.
