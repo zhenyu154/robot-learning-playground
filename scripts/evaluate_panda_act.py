@@ -39,6 +39,39 @@ def parse_args():
         default=10,
     )
 
+    parser.add_argument(
+        "--gripper-mode",
+        choices=("policy", "close-at-step", "close-on-upward-motion"),
+        default="policy",
+        help=(
+            "How to execute the gripper channel. 'policy' uses the ACT output. "
+            "'close-at-step' injects a fixed diagnostic close command. "
+            "'close-on-upward-motion' injects a close when learned Z motion "
+            "changes from descending to ascending."
+        ),
+    )
+
+    parser.add_argument(
+        "--close-step",
+        type=int,
+        default=60,
+        help="1-indexed step for --gripper-mode=close-at-step.",
+    )
+
+    parser.add_argument(
+        "--close-duration",
+        type=int,
+        default=6,
+        help="Number of consecutive steps to inject gripper=2.",
+    )
+
+    parser.add_argument(
+        "--lift-threshold",
+        type=float,
+        default=0.0,
+        help="Z threshold for --gripper-mode=close-on-upward-motion.",
+    )
+
     return parser.parse_args()
 
 
@@ -70,6 +103,10 @@ def main():
     print("Device:", device)
     print("Chunk size:", policy.config.chunk_size)
     print("n_action_steps:", policy.config.n_action_steps)
+    print("Gripper mode:", args.gripper_mode)
+    if args.gripper_mode == "close-at-step":
+        print("Close step:", args.close_step)
+        print("Close duration:", args.close_duration)
 
     # Same simulator/task used for demonstration collection.
     env_cfg = HILSerlRobotEnvConfig(
@@ -118,6 +155,12 @@ def main():
             episode_reward = 0.0
             step = 0
             episode_start = time.perf_counter()
+            previous_z_action = None
+            close_steps_remaining = 0
+            diagnostic_close_started = False
+            max_gripper_action = float("-inf")
+            min_z_action = float("inf")
+            max_z_action = float("-inf")
 
             while True:
                 step_start = time.perf_counter()
@@ -145,6 +188,55 @@ def main():
 
                 # Undo action normalization.
                 action = postprocessor.process_action(action)
+
+                # Optional diagnostic overrides. These do not change the
+                # learned policy; they test whether the learned XYZ motion
+                # can succeed when a gripper close event is supplied.
+                z_action = float(action.reshape(-1)[2].item())
+                if previous_z_action is not None:
+                    upward_transition = (
+                        previous_z_action < args.lift_threshold
+                        <= z_action
+                    )
+                else:
+                    upward_transition = False
+
+                if (
+                    args.gripper_mode == "close-at-step"
+                    and step + 1 == args.close_step
+                    and not diagnostic_close_started
+                ):
+                    close_steps_remaining = max(args.close_duration, 1)
+                    diagnostic_close_started = True
+                    print(
+                        f"diagnostic gripper close at step={step + 1} "
+                        f"(fixed-step mode)"
+                    )
+
+                if (
+                    args.gripper_mode == "close-on-upward-motion"
+                    and upward_transition
+                    and not diagnostic_close_started
+                ):
+                    close_steps_remaining = max(args.close_duration, 1)
+                    diagnostic_close_started = True
+                    print(
+                        f"diagnostic gripper close at step={step + 1} "
+                        f"(z_action={z_action:.3f})"
+                    )
+
+                if close_steps_remaining > 0:
+                    action = action.clone()
+                    action.reshape(-1)[3] = 2.0
+                    close_steps_remaining -= 1
+
+                previous_z_action = z_action
+
+                action_flat = action.detach().cpu().float().reshape(-1)
+                gripper_action = float(action_flat[3].item())
+                max_gripper_action = max(max_gripper_action, gripper_action)
+                min_z_action = min(min_z_action, z_action)
+                max_z_action = max(max_z_action, z_action)
 
                 # Step simulator using exactly LeRobot's environment
                 # action-processing pipeline.
@@ -202,7 +294,9 @@ def main():
                         f"success={success}, "
                         f"steps={step}, "
                         f"reward={episode_reward:.1f}, "
-                        f"time={elapsed:.2f}s"
+                        f"time={elapsed:.2f}s, "
+                        f"max_gripper={max_gripper_action:.3f}, "
+                        f"z_range=[{min_z_action:.3f}, {max_z_action:.3f}]"
                     )
 
                     break
