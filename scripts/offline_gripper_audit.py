@@ -16,6 +16,16 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--device",
+        choices=("auto", "cpu", "xpu"),
+        default="auto",
+        help=(
+            "Inference device. 'auto' follows the checkpoint device when available; "
+            "explicitly choose cpu or xpu to override it."
+        ),
+    )
+
+    parser.add_argument(
         "--checkpoint",
         type=str,
         required=True,
@@ -73,7 +83,7 @@ def main():
     if not checkpoint.exists():
         raise FileNotFoundError(f"Checkpoint does not exist: {checkpoint}")
 
-    device = torch.device("cpu")
+    requested_device = args.device
 
     print("=" * 70)
     print("Offline ACT gripper prediction audit")
@@ -100,12 +110,29 @@ def main():
 
     # Load the trained ACT policy and its saved preprocessing pipelines.
     policy = ACTPolicy.from_pretrained(checkpoint)
+
+    if requested_device == "auto":
+        # Prefer the checkpoint's configured device, but safely fall back to CPU
+        # if an XPU checkpoint is opened outside an XPU-enabled environment.
+        selected_device = policy.config.device or "cpu"
+        if selected_device.startswith("xpu") and not torch.xpu.is_available():
+            selected_device = "cpu"
+    else:
+        selected_device = requested_device
+        if selected_device == "xpu" and not torch.xpu.is_available():
+            raise RuntimeError("--device=xpu was requested, but torch.xpu.is_available() is False")
+
+    device = torch.device(selected_device)
+    print("Inference device:", device)
+    # The saved preprocessing pipeline also reads policy.config.device.
+    policy.config.device = device.type
     policy.to(device)
     policy.eval()
 
     preprocessor, postprocessor = make_pre_post_processors(
         policy_cfg=policy.config,
         pretrained_path=str(checkpoint),
+        preprocessor_overrides={"device_processor": {"device": str(device)}},
     )
 
     print("\nPolicy:")

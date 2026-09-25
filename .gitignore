@@ -8,3 +8,6 @@ __pycache__/
 # Local environment/editor files
 .env
 .vscode/
+
+# Temporary audit outputs
+results/*_smoke.csv
