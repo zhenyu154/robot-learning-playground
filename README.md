@@ -15,12 +15,11 @@ Train and evaluate an imitation-learning policy for simulated robotic manipulati
 - [x] Evaluate policy
 - [x] Run first controlled experiment
 
-Current baseline:
-- ACT learns the main XYZ trajectory.
-- Gripper closure is not learned reliably.
-- Policy-only success: 0/10 on the 500-step checkpoint.
-- Assisted gripper success: 5/5.
-- Offline gripper close hit rate: 0/51.
+Current baselines:
+- Day1/Day4 fixed-position baseline: policy-only success `0/10`; assisted gripper success `5/5`.
+- Day5 fixed-position improved policy: policy-only success `5/5` on the 2000-step XPU checkpoint.
+- Day5 offline close audit: `56.1%` close-frame hit rate and `0%` hold-frame false-close rate.
+- Day5 still does not establish spatial generalization because the cube position is fixed.
 
 ## Intel XPU training (Core Ultra X9 388H)
 
@@ -54,6 +53,7 @@ full pass is about 85 updates. Measured timing and migration caveats are recorde
 - XPU assisted rollout succeeded after injecting the fixed-step gripper close command.
 - The XPU training, offline inference, and MuJoCo online inference pipeline is validated.
 
-The remaining research problem is the same on CPU and XPU: learning a sufficiently strong autonomous
-gripper-close event from the current demonstrations. The next experiment is Day 5 data/objective work,
-not another hardware-debugging round.
+The XPU hardware pipeline is validated. Day5 showed that longer close supervision plus 2,000
+optimization steps enables stable fixed-position policy-only success (`5/5`). The next experiment is
+Day6 spatial generalization: train and evaluate on varied cube positions while keeping the improved
+gripper supervision.

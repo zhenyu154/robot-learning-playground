@@ -1,0 +1,19 @@
+{
+  "env": {
+    "name": "gym_hil",
+    "task": "PandaPickCubeKeyboard-v0",
+    "fps": 10,
+    "robot": null,
+    "teleop": null
+  },
+  "dataset": {
+    "repo_id": "wusanggg/panda_pick_cube_day5_gripper_v1",
+    "root": "/home/wusanggg/robotics/data/panda_pick_cube_day5_gripper_v1",
+    "task": "pick_cube",
+    "num_episodes_to_record": 10,
+    "replay_episode": null,
+    "push_to_hub": false
+  },
+  "mode": "record",
+  "device": "cpu"
+}
