@@ -1,7 +1,10 @@
 import argparse
+import json
 import time
 from pathlib import Path
 
+import gymnasium as gym
+import mujoco
 import torch
 
 from lerobot.envs.configs import HILSerlProcessorConfig, HILSerlRobotEnvConfig
@@ -15,6 +18,44 @@ from lerobot.rl.gym_manipulator import (
     step_env_and_process_transition,
 )
 from lerobot.utils.robot_utils import precise_sleep
+
+
+class ScheduledBlockPositionWrapper(gym.Wrapper):
+    """Set the cube position from a JSON schedule at every reset."""
+
+    def __init__(self, env: gym.Env, positions: list[dict[str, float]]):
+        super().__init__(env)
+        self.positions = positions
+        self.reset_count = 0
+        self.current_position = None
+
+    def reset(self, **kwargs):
+        if self.reset_count >= len(self.positions):
+            raise RuntimeError("Position schedule exhausted")
+        observation, info = self.env.reset(**kwargs)
+        position = self.positions[self.reset_count]
+        base = self.unwrapped
+        base.data.jnt("block").qpos[:3] = (position["x"], position["y"], base._block_z)
+        mujoco.mj_forward(base.model, base.data)
+        base._z_init = float(base.data.sensor("block_pos").data[2])
+        base._z_success = base._z_init + 0.1
+        observation = base._compute_observation()
+        self.current_position = {
+            "episode_index": self.reset_count,
+            "x": float(position["x"]),
+            "y": float(position["y"]),
+            "z": float(base._block_z),
+        }
+        self.reset_count += 1
+        return observation, info
+
+
+def load_position_schedule(path: Path):
+    data = json.loads(path.read_text())
+    positions = data["positions"]
+    if not positions:
+        raise ValueError(f"Empty position schedule: {path}")
+    return positions
 
 
 def parse_args():
@@ -44,9 +85,49 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--max-steps",
+        type=int,
+        default=100,
+        help="Hard per-episode safety limit, even if the environment omits TimeLimit.",
+    )
+
+    parser.add_argument(
+        "--n-action-steps",
+        type=int,
+        default=None,
+        help=(
+            "Optional evaluation-only override for ACT's action queue length. "
+            "Use 1 or 5 to test tighter closed-loop feedback without retraining."
+        ),
+    )
+
+    parser.add_argument(
+        "--debug-geometry",
+        action="store_true",
+        help="Print cube, TCP, and gripper state at logged rollout steps.",
+    )
+
+    parser.add_argument(
+        "--task",
+        type=str,
+        default="PandaPickCubeKeyboard-v0",
+        help=(
+            "Gym-HIL task name. Use PandaPickCubeKeyboardRandomLong-v0 for Day6 "
+            "random-position evaluation with a 150-step horizon."
+        ),
+    )
+
+    parser.add_argument(
         "--fps",
         type=int,
         default=10,
+    )
+
+    parser.add_argument(
+        "--position-schedule",
+        type=Path,
+        default=None,
+        help="Optional JSON schedule with a positions list for Day6 evaluation.",
     )
 
     parser.add_argument(
@@ -87,6 +168,8 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.max_steps <= 0:
+        raise ValueError("--max-steps must be a positive integer")
 
     checkpoint = Path(args.checkpoint)
 
@@ -101,6 +184,12 @@ def main():
     print("Checkpoint:", checkpoint)
 
     policy = ACTPolicy.from_pretrained(checkpoint)
+
+    if args.n_action_steps is not None:
+        if args.n_action_steps <= 0:
+            raise ValueError("--n-action-steps must be positive")
+        policy.config.n_action_steps = args.n_action_steps
+        print("Evaluation-only n_action_steps override:", args.n_action_steps)
 
     if requested_device == "auto":
         # Prefer the checkpoint's configured device, but safely fall back to CPU
@@ -138,7 +227,7 @@ def main():
     # Same simulator/task used for demonstration collection.
     env_cfg = HILSerlRobotEnvConfig(
         name="gym_hil",
-        task="PandaPickCubeKeyboard-v0",
+        task=args.task,
         fps=args.fps,
         robot=None,
         teleop=None,
@@ -146,6 +235,17 @@ def main():
     )
 
     env, teleop_device = make_robot_env(env_cfg)
+
+    scheduled_env = None
+    if args.position_schedule is not None:
+        positions = load_position_schedule(args.position_schedule)
+        if args.episodes > len(positions):
+            raise ValueError(
+                f"Requested {args.episodes} episodes but schedule has only {len(positions)} positions"
+            )
+        scheduled_env = ScheduledBlockPositionWrapper(env, positions)
+        env = scheduled_env
+        print("Position schedule:", args.position_schedule)
 
     env_processor, action_processor = make_processors(
         env=env,
@@ -178,6 +278,8 @@ def main():
                 env_processor,
                 action_processor,
             )
+            if scheduled_env is not None:
+                print("Scheduled cube position:", scheduled_env.current_position)
 
             episode_reward = 0.0
             step = 0
@@ -295,6 +397,10 @@ def main():
 
                 episode_reward += reward
                 step += 1
+                # A second guard protects evaluation if a custom environment
+                # was constructed without Gymnasium's TimeLimit wrapper.
+                if step >= args.max_steps and not terminated:
+                    truncated = True
 
                 action_np = action.detach().cpu().numpy()
 
@@ -307,6 +413,16 @@ def main():
                         f"terminated={terminated} | "
                         f"truncated={truncated}"
                     )
+                    if args.debug_geometry:
+                        base_env = env.unwrapped
+                        cube_xyz = base_env.data.sensor("block_pos").data.copy()
+                        tcp_xyz = base_env.data.sensor("2f85/pinch_pos").data.copy()
+                        gripper_pos = float(base_env.get_gripper_pose()[0])
+                        print(
+                            f"  geometry: cube={cube_xyz.round(4)}, "
+                            f"tcp={tcp_xyz.round(4)}, "
+                            f"gripper_pos={gripper_pos:.1f}"
+                        )
 
                 if terminated or truncated:
                     elapsed = time.perf_counter() - episode_start

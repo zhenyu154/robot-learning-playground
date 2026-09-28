@@ -1,0 +1,92 @@
+diff --git a/src/lerobot/rl/gym_manipulator.py b/src/lerobot/rl/gym_manipulator.py
+index 03f7b4ee..81688c0d 100644
+--- a/src/lerobot/rl/gym_manipulator.py
++++ b/src/lerobot/rl/gym_manipulator.py
+@@ -320,13 +320,66 @@ def make_robot_env(cfg: HILSerlRobotEnvConfig) -> tuple[gym.Env, Any]:
+         use_gripper = cfg.processor.gripper.use_gripper if cfg.processor.gripper is not None else True
+         gripper_penalty = cfg.processor.gripper.gripper_penalty if cfg.processor.gripper is not None else 0.0
+ 
+-        env = gym.make(
+-            f"gym_hil/{cfg.task}",
+-            image_obs=True,
+-            render_mode="human",
+-            use_gripper=use_gripper,
+-            gripper_penalty=gripper_penalty,
+-        )
++        # The registered keyboard task historically uses the fixed cube position
++        # and launches a passive GLFW viewer. Day6 uses a project-local task
++        # alias. Build that variant directly so it can randomize the block and
++        # use rgb_array rendering without starting the passive viewer. This
++        # avoids a known GLFW TLS assertion during interpreter shutdown.
++        if cfg.task in {
++            "PandaPickCubeKeyboardRandom-v0",
++            "PandaPickCubeKeyboardRandomViewer-v0",
++            "PandaPickCubeKeyboardRandomLong-v0",
++            "PandaPickCubeKeyboardRandomViewerLong-v0",
++        }:
++            from gym_hil.wrappers.factory import make_env as make_gym_hil_env
++
++            show_viewer = "Viewer" in cfg.task
++            long_horizon = "Long" in cfg.task
++            env = make_gym_hil_env(
++                env_id="gym_hil/PandaPickCubeBase-v0",
++                image_obs=True,
++                render_mode="human" if show_viewer else "rgb_array",
++                random_block_position=True,
++                use_gripper=use_gripper,
++                gripper_penalty=gripper_penalty,
++                use_inputs_control=True,
++                use_viewer=show_viewer,
++            )
++            # make_env constructs PandaPickCubeGymEnv directly, bypassing the
++            # registered Gym spec's max_episode_steps=100. Restore the same
++            # episode horizon explicitly for both recording and evaluation.
++            env = gym.wrappers.TimeLimit(
++                env, max_episode_steps=150 if long_horizon else 100
++            )
++            if show_viewer:
++                import mujoco
++
++                # Configure only the human passive viewer. The recorded front
++                # and wrist camera observations remain unchanged.
++                current = env
++                while current is not None:
++                    viewer = getattr(current, "_viewer", None)
++                    if viewer is not None and hasattr(viewer, "cam"):
++                        viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FREE
++                        viewer.cam.lookat[:] = [0.45, 0.0, 0.0]
++                        # Use an oblique top-down view: a strict 90-degree
++                        # top view lets the arm occlude the cube too easily.
++                        viewer.cam.distance = 1.25
++                        # Rotate the human viewer 90 degrees counter-clockwise
++                        # relative to the previous Day6 alignment view.
++                        viewer.cam.azimuth = 0.0
++                        viewer.cam.elevation = -55.0
++                        viewer.sync()
++                        break
++                    current = getattr(current, "env", None)
++        else:
++            env = gym.make(
++                f"gym_hil/{cfg.task}",
++                image_obs=True,
++                render_mode="human",
++                use_gripper=use_gripper,
++                gripper_penalty=gripper_penalty,
++            )
+ 
+         return env, None
+ 
+@@ -758,8 +811,11 @@ def control_loop(
+                         logging.info(f"Saving episode {episode_idx}")
+                         dataset.save_episode()
+ 
+-                # Reset for new episode
+-                transition = reset_and_build_transition(env, env_processor, action_processor)
++                # Reset only if another episode remains. Resetting after the
++                # final scheduled episode can consume a finite position schedule
++                # and create a spurious error after the dataset was already saved.
++                if episode_idx < cfg.dataset.num_episodes_to_record:
++                    transition = reset_and_build_transition(env, env_processor, action_processor)
+ 
+             # Maintain fps timing
+             precise_sleep(max(dt - (time.perf_counter() - step_start_time), 0.0))

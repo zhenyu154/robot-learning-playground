@@ -12,3 +12,5 @@ __pycache__/
 # Temporary audit outputs
 results/*_smoke.csv
 results/offline_gripper_audit_day5_xpu_*.csv
+results/day6_visual_check/
+results/offline_gripper_audit_day6_*.csv

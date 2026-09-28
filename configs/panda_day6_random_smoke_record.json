@@ -1,0 +1,19 @@
+{
+  "env": {
+    "name": "gym_hil",
+    "task": "PandaPickCubeKeyboardRandom-v0",
+    "fps": 10,
+    "robot": null,
+    "teleop": null
+  },
+  "dataset": {
+    "repo_id": "wusanggg/panda_pick_cube_day6_random_smoke",
+    "root": "/home/wusanggg/robotics/data/panda_pick_cube_day6_random_smoke",
+    "task": "pick_cube_random_position_smoke",
+    "num_episodes_to_record": 1,
+    "replay_episode": null,
+    "push_to_hub": false
+  },
+  "mode": "record",
+  "device": "cpu"
+}
