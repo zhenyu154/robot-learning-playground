@@ -233,8 +233,19 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.episodes <= 0:
+        raise ValueError("--episodes must be a positive integer")
+    if args.fps <= 0:
+        raise ValueError("--fps must be a positive integer")
     if args.max_steps <= 0:
         raise ValueError("--max-steps must be a positive integer")
+    if args.gripper_mode == "close-at-step":
+        if args.close_step <= 0:
+            raise ValueError("--close-step must be a positive integer")
+        if args.close_duration <= 0:
+            raise ValueError("--close-duration must be a positive integer")
+    elif args.gripper_mode == "close-on-upward-motion" and args.close_duration <= 0:
+        raise ValueError("--close-duration must be a positive integer")
 
     checkpoint = Path(args.checkpoint)
 
@@ -413,7 +424,7 @@ def main():
                     and step + 1 == args.close_step
                     and not diagnostic_close_started
                 ):
-                    close_steps_remaining = max(args.close_duration, 1)
+                    close_steps_remaining = args.close_duration
                     diagnostic_close_started = True
                     print(
                         f"diagnostic gripper close at step={step + 1} "
@@ -425,7 +436,7 @@ def main():
                     and upward_transition
                     and not diagnostic_close_started
                 ):
-                    close_steps_remaining = max(args.close_duration, 1)
+                    close_steps_remaining = args.close_duration
                     diagnostic_close_started = True
                     print(
                         f"diagnostic gripper close at step={step + 1} "

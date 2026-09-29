@@ -206,7 +206,7 @@ The previous draft of this note incorrectly described an unsuccessful episode
 episodes, so no episode should be excluded from the next training run.
 
 Status: Dense-XY dataset QA passed; ready for a new 2,000-step XPU training
-un.
+run.
 
 ## Dense-XY training and offline audit (2026-09-28)
 
@@ -238,9 +238,8 @@ online evaluation on seen and unseen position schedules.
 A new precision-alignment dataset was collected successfully using the
 150-step horizon, oblique/top-down human viewer, hidden Panda arm visuals with
 the gripper preserved, and separate keyboard step sizes (`XY=0.25`, `Z=0.50`).
-The user completed the dataset QA successfully. Its next step is a fresh
-2,000-step XPU ACT training run; the raw Dense-XY dataset remains the prior
-baseline.
+Dataset quality assurance passed. The next step was a fresh 2,000-step XPU
+ACT training run; the raw Dense-XY dataset remains the prior baseline.
 
 ## Precision-XY 2,000-step result (2026-09-28)
 

@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+
+# Override DATASET_REPO_ID, DATASET_ROOT, or OUTPUT_DIR when running elsewhere.
+
 
 lerobot-train \
-  --dataset.repo_id=wusanggg/panda_pick_cube_day1 \
-  --dataset.root=/home/wusanggg/robotics/data/panda_pick_cube_day1 \
+  --dataset.repo_id="${DATASET_REPO_ID:-wusanggg/panda_pick_cube_day1}" \
+  --dataset.root="${DATASET_ROOT:-${HOME}/robotics/data/panda_pick_cube_day1}" \
   --policy.type=act \
   --policy.device=cpu \
   --policy.push_to_hub=false \
@@ -17,5 +23,5 @@ lerobot-train \
   --save_freq=0 \
   --env_eval_freq=0 \
   --wandb.enable=false \
-  --output_dir=/home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_smoke_v1 \
+  --output_dir="${OUTPUT_DIR:-${PROJECT_ROOT}/outputs/act_panda_smoke_v1}" \
   --job_name=act_panda_smoke_v1

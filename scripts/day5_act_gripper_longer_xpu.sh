@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+
+# Override DATASET_REPO_ID, DATASET_ROOT, or OUTPUT_DIR when running elsewhere.
+
 # Day 5 control experiment 2:
 # Keep the new longer-close dataset fixed and increase training from 500 to 2000 steps.
 
@@ -11,15 +16,15 @@ assert torch.xpu.is_available(), "Intel XPU is unavailable in this Python enviro
 print(f"Using {torch.__version__} on {torch.xpu.get_device_name(0)}")
 PY_CHECK
 
-OUTPUT_DIR=/home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day5_gripper_longer_xpu_v1
+OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/outputs/act_panda_day5_gripper_longer_xpu_v1}"
 if [[ -e "$OUTPUT_DIR" ]]; then
   echo "Refusing to overwrite existing output: $OUTPUT_DIR" >&2
   exit 2
 fi
 
 lerobot-train \
-  --dataset.repo_id=wusanggg/panda_pick_cube_day5_gripper_v1 \
-  --dataset.root=/home/wusanggg/robotics/data/panda_pick_cube_day5_gripper_v1 \
+  --dataset.repo_id="${DATASET_REPO_ID:-wusanggg/panda_pick_cube_day5_gripper_v1}" \
+  --dataset.root="${DATASET_ROOT:-${HOME}/robotics/data/panda_pick_cube_day5_gripper_v1}" \
   --policy.type=act \
   --policy.device=xpu \
   --policy.push_to_hub=false \

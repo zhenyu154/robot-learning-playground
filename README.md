@@ -44,9 +44,9 @@ action      = [delta_x, delta_y, delta_z, gripper]
 
 The main experiments use `chunk_size=50` and `n_action_steps=10`. The Day5 fixed-position policy learned a usable sequence of partial gripper-closing actions followed by a lift. Day6 increased cube-position diversity and XY supervision, but successful fixed-position grasping did not transfer reliably to off-center positions.
 
-## Reproduce the fixed-position result
+## Run the fixed-position experiment locally
 
-Training datasets and model checkpoints are **not included** in this repository. The scripts expect the local LeRobot environments and datasets described in the experiment notes.
+Training datasets and model checkpoints are **not included** in this repository. The scripts expect local LeRobot environments and datasets; tested versions and source-revision details are in [`ENVIRONMENT.md`](ENVIRONMENT.md).
 
 ### Verify the XPU environment
 
@@ -61,7 +61,22 @@ python -c "import torch; print(torch.__version__, torch.xpu.is_available(), torc
 bash scripts/day5_act_gripper_longer_xpu.sh
 ```
 
-This expects the local dataset `panda_pick_cube_day5_gripper_v1`. The script refuses to overwrite an existing output directory.
+This expects a local LeRobot dataset. The training scripts derive `PROJECT_ROOT` from their own location and support these overrides:
+
+- `DATASET_ROOT`: local dataset directory
+- `DATASET_REPO_ID`: LeRobot dataset identifier
+- `OUTPUT_DIR`: checkpoint/log output directory
+
+For example:
+
+```bash
+DATASET_ROOT=/data/my-panda-data \
+DATASET_REPO_ID=my-user/my-panda-data \
+OUTPUT_DIR="$PWD/outputs/experiment-01" \
+bash scripts/day5_act_gripper_longer_xpu.sh
+```
+
+Scripts refuse to overwrite existing output directories. The default dataset paths still assume a local `$HOME/robotics/data` layout.
 
 ### Evaluate one policy-only episode and optionally save a GIF
 
@@ -79,17 +94,7 @@ GIF capture requires one episode. It records the actual front/wrist observations
 
 ## Day6 spatial experiments
 
-Day6 datasets and checkpoints are local; schedules, scripts, and summary results are included. The local LeRobot checkout needs the compatibility patch at [`patches/day6_gym_manipulator.patch`](patches/day6_gym_manipulator.patch). If the Day6 task aliases and horizon support are not already present in `~/robotics/lerobot/src/lerobot/rl/gym_manipulator.py`, apply the patch from the LeRobot repository root:
-
-```bash
-git -C ~/robotics/lerobot apply --check \
-  ~/robotics/robot-learning-playground/patches/day6_gym_manipulator.patch
-# Only if the check succeeds:
-git -C ~/robotics/lerobot apply \
-  ~/robotics/robot-learning-playground/patches/day6_gym_manipulator.patch
-```
-
-Day6 recording and evaluation details are documented in [`notes/day6.md`](notes/day6.md).
+Day6 datasets and checkpoints are local; schedules, scripts, and summary results are included. The Day6 Gym-HIL aliases require a small patch to the LeRobot source checkout. Tested package versions, source revision, and patch notes are recorded in [`ENVIRONMENT.md`](ENVIRONMENT.md). Day6 recording and evaluation details are documented in [`notes/day6.md`](notes/day6.md).
 
 ## Project layout
 
@@ -98,6 +103,7 @@ assets/     Policy rollout GIF used in this README
 configs/    Training, recording, and seen/unseen position schedules
 notes/      Day-by-day experiment logs and XPU migration record
 patches/    Local LeRobot source patch required by the Day6 Gym-HIL integration
+ENVIRONMENT.md  Tested CPU/XPU package versions and patch provenance
 results/    Baselines and offline audit summaries/CSVs
 scripts/    Training, recording, evaluation, and dataset-inspection tools
 ```
