@@ -6,6 +6,7 @@ from pathlib import Path
 import gymnasium as gym
 import mujoco
 import torch
+from PIL import Image, ImageDraw
 
 from lerobot.envs.configs import HILSerlProcessorConfig, HILSerlRobotEnvConfig
 from lerobot.policies.act import ACTPolicy
@@ -58,6 +59,53 @@ def load_position_schedule(path: Path):
     return positions
 
 
+def observation_to_pil(observation: dict, camera: str) -> Image.Image:
+    """Convert one processed observation camera to a PIL image."""
+    key = f"observation.images.{camera}"
+    image = observation[key].detach().cpu().float()
+    if image.ndim == 4:
+        image = image[0]
+    image = image.clamp(0, 1).mul(255).byte().permute(1, 2, 0).numpy()
+    return Image.fromarray(image, mode="RGB")
+
+
+def make_gif_frame(observation: dict, camera: str, step: int) -> Image.Image:
+    front = observation_to_pil(observation, "front")
+    wrist = observation_to_pil(observation, "wrist")
+    if camera == "front":
+        frame = front
+    elif camera == "wrist":
+        frame = wrist
+    else:
+        frame = Image.new("RGB", (front.width + wrist.width, front.height + 20), "white")
+        frame.paste(front, (0, 20))
+        frame.paste(wrist, (front.width, 20))
+        draw = ImageDraw.Draw(frame)
+        draw.text((4, 3), "front", fill="black")
+        draw.text((front.width + 4, 3), "wrist", fill="black")
+
+    # A small step label makes the GIF interpretable without obscuring the scene.
+    draw = ImageDraw.Draw(frame)
+    draw.rectangle((0, 0, 72, 16), fill=(255, 255, 255))
+    draw.text((4, 2), f"step {step}", fill="black")
+    return frame.convert("P", palette=Image.Palette.ADAPTIVE)
+
+
+def save_gif(frames: list[Image.Image], output: Path, fps: int) -> None:
+    if not frames:
+        raise ValueError("Cannot save an empty GIF")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    frames[0].save(
+        output,
+        save_all=True,
+        append_images=frames[1:],
+        duration=max(1, round(1000 / fps)),
+        loop=0,
+        optimize=False,
+    )
+    print("GIF saved to:", output)
+
+
 def parse_args():
     parser = argparse.ArgumentParser()
 
@@ -105,6 +153,23 @@ def parse_args():
         "--debug-geometry",
         action="store_true",
         help="Print cube, TCP, and gripper state at logged rollout steps.",
+    )
+
+    parser.add_argument(
+        "--gif-output",
+        type=Path,
+        default=None,
+        help=(
+            "Optional GIF path. Records the first episode from the front and "
+            "wrist observation cameras; use --episodes 1."
+        ),
+    )
+
+    parser.add_argument(
+        "--gif-camera",
+        choices=("front", "wrist", "side-by-side"),
+        default="side-by-side",
+        help="Camera layout for --gif-output.",
     )
 
     parser.add_argument(
@@ -261,6 +326,10 @@ def main():
     print(env.action_space)
 
     successes = 0
+    gif_frames: list[Image.Image] = []
+
+    if args.gif_output is not None and args.episodes != 1:
+        raise ValueError("Use --episodes 1 when recording a GIF")
 
     try:
         for episode in range(args.episodes):
@@ -280,6 +349,15 @@ def main():
             )
             if scheduled_env is not None:
                 print("Scheduled cube position:", scheduled_env.current_position)
+
+            if args.gif_output is not None:
+                gif_frames.append(
+                    make_gif_frame(
+                        transition[TransitionKey.OBSERVATION],
+                        args.gif_camera,
+                        step=0,
+                    )
+                )
 
             episode_reward = 0.0
             step = 0
@@ -397,6 +475,16 @@ def main():
 
                 episode_reward += reward
                 step += 1
+
+                if args.gif_output is not None:
+                    gif_frames.append(
+                        make_gif_frame(
+                            transition[TransitionKey.OBSERVATION],
+                            args.gif_camera,
+                            step=step,
+                        )
+                    )
+
                 # A second guard protects evaluation if a custom environment
                 # was constructed without Gymnasium's TimeLimit wrapper.
                 if step >= args.max_steps and not terminated:
@@ -456,6 +544,9 @@ def main():
 
     finally:
         env.close()
+
+    if args.gif_output is not None:
+        save_gif(gif_frames, args.gif_output, args.fps)
 
     print("\n" + "=" * 60)
     print("Evaluation summary")
