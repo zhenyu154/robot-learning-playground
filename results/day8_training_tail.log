@@ -1,0 +1,8 @@
+Training: 100%|█████████▉| 1998/2000 [05:06<00:00,  5.91step/s]
+Training: 100%|█████████▉| 1999/2000 [05:06<00:00,  5.95step/s]
+Training: 100%|██████████| 2000/2000 [05:06<00:00,  5.96step/s]INFO 2026-10-01 14:09:33 ot_train.py:778 step:2K smpl:16K ep:157 epch:7.85 loss:1.140 grdn:47.296 lr:1.0e-05 data_s:0.065 prep_s:0.001 updt_s:0.101 step_s:0.166 smp/s:48 l1_loss:0.328 kld_loss:0.081 unweighted_l1_loss:0.308 y_active_mae_norm:0.644 y_neutral_mae_norm:0.181 y_active_target_ratio:0.109
+INFO 2026-10-01 14:09:33 ot_train.py:820 Checkpoint policy after step 2000
+INFO 2026-10-01 14:09:33 n/_torch.py:299 Model weights successfully saved to /home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model!
+
+Training: 100%|██████████| 2000/2000 [05:07<00:00,  6.51step/s]
+INFO 2026-10-01 14:09:33 ot_train.py:915 End of training

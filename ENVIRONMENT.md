@@ -49,6 +49,21 @@ its FFmpeg shared libraries. LeRobot fell back to PyAV (`15.1.0`). Dataset
 loading, video inspection, training, and rollout were tested with this
 fallback. It generates a startup warning but did not block the experiments.
 
+## Day8 project-local training adapter
+
+Day8 uses the same environment and LeRobot revision with a process-local
+adapter in `scripts/day8_y_weighted_loss.py`; no new upstream source patch or
+additional test framework is required. Correctness tests use standard-library
+`unittest` and the installed PyTorch/LeRobot packages. The adapter depends on
+the upstream ACT forward and training/preprocessing entry points at this
+revision, and fails if the original L1 reduction no longer matches.
+
+`day8_loss_recipe.json` records weights, source hashes, and dataset metadata
+hashes at training time. The tested run's recipe is retained in
+`results/day8_loss_recipe.json`; model weights remain local. Supported training
+is fresh, local, single-process CPU/XPU, without AMP, compilation, EMA, or
+resume. Existing ACT inference scripts do not need the training adapter.
+
 ## Reproducibility scope
 
 - Training scripts support `DATASET_ROOT`, `DATASET_REPO_ID`, and `OUTPUT_DIR`

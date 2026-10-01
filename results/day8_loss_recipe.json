@@ -1,0 +1,39 @@
+{
+  "experiment": "day8_y_active_weighted_l1",
+  "active_weight": 4.0,
+  "activity_epsilon_raw_units": 1e-06,
+  "y_channel": 1,
+  "mask": "abs(raw action[..., 1]) > epsilon; exclude action_is_pad",
+  "l1_reduction": "sum(valid scalar weight * normalized absolute error) / sum(valid scalar weight)",
+  "other_scalar_weights": 1.0,
+  "kl_weight": 10.0,
+  "inference": "standard ACTPolicy; no action multiplier or intervention",
+  "resume_supported": false,
+  "dataset": {
+    "repo_id": "wusanggg/panda_pick_cube_day7_y_axis_v2",
+    "root": "/home/wusanggg/robotics/data/panda_pick_cube_day7_y_axis_v2",
+    "frames": 2037,
+    "episodes": 20,
+    "fps": 10,
+    "info_sha256": "898036cabe3aafb8832b9b25fbcf1f39f163410da9e82c660a981057627da30d",
+    "stats_sha256": "3d15bc877b251337300596ca600abf5b2eafc494409c23d520bc99a4e7252c7e"
+  },
+  "training": {
+    "steps": 2000,
+    "batch_size": 8,
+    "seed": 1000,
+    "chunk_size": 50,
+    "n_action_steps": 10
+  },
+  "source": {
+    "torch_version": "2.10.0+xpu",
+    "project_git_head": "1d9df1d2e5f3e2f1f00c84e326e1418542c54431",
+    "lerobot_git_head": "d4d94b8e9ceefae20235a9bb5a1f61fab207ddaa",
+    "upstream_act_forward_sha256": "651b631d86f650e77de94d9263e49e7f6dc61a594479b1e2692e55b84f552d4d",
+    "upstream_preprocess_sha256": "80275cd245dc5dc8f2a7bc9cd845b5577523b00e41309a8edbb89b8e75575449",
+    "project_file_sha256": {
+      "day8_y_weighted_loss.py": "b25ad4af7f5027bf2552a801cf70adf57fe788eebd12537f182d2786e3f0dbae",
+      "day8_train_y_weighted.py": "e1cb959feba97f7243b8ea6ead5c897eb499f70fa16bdc72a38a0a4e7aae456d"
+    }
+  }
+}

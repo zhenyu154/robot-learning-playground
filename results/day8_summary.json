@@ -1,0 +1,510 @@
+{
+  "experiment_date": "2026-10-01",
+  "experiment": "Y-active weighted ACT loss and replanning ablation",
+  "training_dataset": "wusanggg/panda_pick_cube_day7_y_axis_v2",
+  "train_cube_positions": [
+    {
+      "x": 0.48,
+      "y": -0.1
+    },
+    {
+      "x": 0.48,
+      "y": 0.1
+    }
+  ],
+  "training_seed": 1000,
+  "training_updates": 2000,
+  "chunk_size": 50,
+  "loss_recipe": "results/day8_loss_recipe.json",
+  "training_tail": "results/day8_training_tail.log",
+  "offline_audit": {
+    "csv": "results/offline_gripper_audit_day8_y_weighted_w4_xpu_2000.csv",
+    "scope": "in-dataset expert observations; not held-out action accuracy",
+    "frames": 2037,
+    "y_prediction_magnitude_threshold": 0.05,
+    "y_active_frames": 366,
+    "y_hits": 335,
+    "y_hit_rate": 0.9153005464480874,
+    "y_neutral_frames": 1671,
+    "y_false_motion": 245,
+    "y_false_motion_rate": 0.14661879114302812,
+    "gripper_threshold": 1.5,
+    "target_close_frames": 249,
+    "close_hits": 110,
+    "close_hit_rate": 0.44176706827309237,
+    "target_hold_frames": 1788,
+    "false_close": 0,
+    "false_close_rate": 0.0
+  },
+  "logged_online_runs": [
+    {
+      "log": "results/day8_unweighted_n5_seen_eval.log",
+      "role": "seen_reference",
+      "checkpoint": "outputs/act_panda_day7_y_axis_xpu_v2/checkpoints/002000/pretrained_model",
+      "y_active_weight": 1,
+      "n_action_steps": 5,
+      "gripper_mode": "policy",
+      "max_steps": 150,
+      "position_schedule": "configs/day7_y_axis_seen_eval_positions.json",
+      "successes": 0,
+      "episodes": 6,
+      "by_position": [
+        {
+          "x": 0.48,
+          "y": -0.1,
+          "successes": 0,
+          "episodes": 3
+        },
+        {
+          "x": 0.48,
+          "y": 0.1,
+          "successes": 0,
+          "episodes": 3
+        }
+      ],
+      "episode_records": [
+        {
+          "episode_index": 0,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 15.58
+        },
+        {
+          "episode_index": 1,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.93
+        },
+        {
+          "episode_index": 2,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.93
+        },
+        {
+          "episode_index": 3,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.94
+        },
+        {
+          "episode_index": 4,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.94
+        },
+        {
+          "episode_index": 5,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.93
+        }
+      ]
+    },
+    {
+      "log": "results/day8_y_weighted_w4_n5_seen_eval.log",
+      "role": "seen_reference",
+      "checkpoint": "outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model",
+      "y_active_weight": 4,
+      "n_action_steps": 5,
+      "gripper_mode": "policy",
+      "max_steps": 150,
+      "position_schedule": "configs/day7_y_axis_seen_eval_positions.json",
+      "successes": 6,
+      "episodes": 6,
+      "by_position": [
+        {
+          "x": 0.48,
+          "y": -0.1,
+          "successes": 3,
+          "episodes": 3
+        },
+        {
+          "x": 0.48,
+          "y": 0.1,
+          "successes": 3,
+          "episodes": 3
+        }
+      ],
+      "episode_records": [
+        {
+          "episode_index": 0,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 62,
+          "reward": 1.0,
+          "wall_time_s": 6.77
+        },
+        {
+          "episode_index": 1,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 69,
+          "reward": 1.0,
+          "wall_time_s": 6.82
+        },
+        {
+          "episode_index": 2,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 42,
+          "reward": 1.0,
+          "wall_time_s": 4.12
+        },
+        {
+          "episode_index": 3,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 60,
+          "reward": 1.0,
+          "wall_time_s": 5.93
+        },
+        {
+          "episode_index": 4,
+          "cube_xyz": [
+            0.48,
+            -0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 41,
+          "reward": 1.0,
+          "wall_time_s": 4.04
+        },
+        {
+          "episode_index": 5,
+          "cube_xyz": [
+            0.48,
+            0.1,
+            0.02
+          ],
+          "success": true,
+          "steps": 75,
+          "reward": 1.0,
+          "wall_time_s": 7.42
+        }
+      ]
+    },
+    {
+      "log": "results/day8_y_weighted_w4_n5_interpolation_eval.log",
+      "role": "heldout_midpoint",
+      "checkpoint": "outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model",
+      "y_active_weight": 4,
+      "n_action_steps": 5,
+      "gripper_mode": "policy",
+      "max_steps": 150,
+      "position_schedule": "configs/day7_y_axis_interpolation_positions.json",
+      "successes": 5,
+      "episodes": 5,
+      "by_position": [
+        {
+          "x": 0.48,
+          "y": 0.0,
+          "successes": 5,
+          "episodes": 5
+        }
+      ],
+      "episode_records": [
+        {
+          "episode_index": 0,
+          "cube_xyz": [
+            0.48,
+            0.0,
+            0.02
+          ],
+          "success": true,
+          "steps": 65,
+          "reward": 1.0,
+          "wall_time_s": 7.06
+        },
+        {
+          "episode_index": 1,
+          "cube_xyz": [
+            0.48,
+            0.0,
+            0.02
+          ],
+          "success": true,
+          "steps": 68,
+          "reward": 1.0,
+          "wall_time_s": 6.73
+        },
+        {
+          "episode_index": 2,
+          "cube_xyz": [
+            0.48,
+            0.0,
+            0.02
+          ],
+          "success": true,
+          "steps": 66,
+          "reward": 1.0,
+          "wall_time_s": 6.53
+        },
+        {
+          "episode_index": 3,
+          "cube_xyz": [
+            0.48,
+            0.0,
+            0.02
+          ],
+          "success": true,
+          "steps": 66,
+          "reward": 1.0,
+          "wall_time_s": 6.54
+        },
+        {
+          "episode_index": 4,
+          "cube_xyz": [
+            0.48,
+            0.0,
+            0.02
+          ],
+          "success": true,
+          "steps": 65,
+          "reward": 1.0,
+          "wall_time_s": 6.42
+        }
+      ]
+    },
+    {
+      "log": "results/day8_y_weighted_w4_n5_nonzero_interpolation_eval.log",
+      "role": "heldout_nonzero_interpolation",
+      "checkpoint": "outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model",
+      "y_active_weight": 4,
+      "n_action_steps": 5,
+      "gripper_mode": "policy",
+      "max_steps": 150,
+      "position_schedule": "configs/day8_y_axis_nonzero_interpolation_positions.json",
+      "successes": 3,
+      "episodes": 6,
+      "by_position": [
+        {
+          "x": 0.48,
+          "y": -0.05,
+          "successes": 3,
+          "episodes": 3
+        },
+        {
+          "x": 0.48,
+          "y": 0.05,
+          "successes": 0,
+          "episodes": 3
+        }
+      ],
+      "episode_records": [
+        {
+          "episode_index": 0,
+          "cube_xyz": [
+            0.48,
+            -0.05,
+            0.02
+          ],
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "wall_time_s": 5.17
+        },
+        {
+          "episode_index": 1,
+          "cube_xyz": [
+            0.48,
+            0.05,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.93
+        },
+        {
+          "episode_index": 2,
+          "cube_xyz": [
+            0.48,
+            -0.05,
+            0.02
+          ],
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "wall_time_s": 4.92
+        },
+        {
+          "episode_index": 3,
+          "cube_xyz": [
+            0.48,
+            0.05,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.94
+        },
+        {
+          "episode_index": 4,
+          "cube_xyz": [
+            0.48,
+            -0.05,
+            0.02
+          ],
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "wall_time_s": 4.53
+        },
+        {
+          "episode_index": 5,
+          "cube_xyz": [
+            0.48,
+            0.05,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.94
+        }
+      ]
+    },
+    {
+      "log": "results/day8_y_weighted_w4_n1_nonzero_interpolation_diagnostic.log",
+      "role": "post_failure_development_diagnostic",
+      "checkpoint": "outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model",
+      "y_active_weight": 4,
+      "n_action_steps": 1,
+      "gripper_mode": "policy",
+      "max_steps": 150,
+      "position_schedule": "configs/day8_y_axis_nonzero_interpolation_positions.json",
+      "successes": 1,
+      "episodes": 2,
+      "by_position": [
+        {
+          "x": 0.48,
+          "y": -0.05,
+          "successes": 1,
+          "episodes": 1
+        },
+        {
+          "x": 0.48,
+          "y": 0.05,
+          "successes": 0,
+          "episodes": 1
+        }
+      ],
+      "episode_records": [
+        {
+          "episode_index": 0,
+          "cube_xyz": [
+            0.48,
+            -0.05,
+            0.02
+          ],
+          "success": true,
+          "steps": 56,
+          "reward": 1.0,
+          "wall_time_s": 6.18
+        },
+        {
+          "episode_index": 1,
+          "cube_xyz": [
+            0.48,
+            0.05,
+            0.02
+          ],
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "wall_time_s": 14.95
+        }
+      ]
+    }
+  ],
+  "additional_context": [
+    {
+      "y_active_weight": 1,
+      "n_action_steps": 10,
+      "seen_successes": 0,
+      "episodes": 6,
+      "evidence": "notes/day7.md",
+      "evidence_type": "prior experiment record"
+    },
+    {
+      "y_active_weight": 4,
+      "n_action_steps": 10,
+      "seen_successes": 0,
+      "episodes": 2,
+      "evidence": "notes/day8.md",
+      "evidence_type": "operator-provided pilot log; no saved raw file"
+    },
+    {
+      "y_active_weight": 4,
+      "n_action_steps": 5,
+      "seen_successes": 2,
+      "episodes": 2,
+      "evidence": "notes/day8.md",
+      "evidence_type": "operator-provided pilot log; separate from formal 6/6"
+    }
+  ],
+  "limitations": [
+    "One training seed per objective; repeated essentially deterministic resets at few positions.",
+    "All training/test positions share fixed X, object, home configuration, and simulator.",
+    "Five midpoint runs repeat one near-home position, not five distinct unseen positions.",
+    "Nonzero interpolation is asymmetric: -0.05 is 3/3, +0.05 is 0/3 at n5.",
+    "The n1 nonzero run is a post-failure diagnostic; do not replace the prespecified n5 result.",
+    "Pilot and formal runs are separate; do not pool seen/held-out/diagnostic success rates.",
+    "Gripper control saturation does not measure finger spacing or demonstrate a grasp."
+  ]
+}
