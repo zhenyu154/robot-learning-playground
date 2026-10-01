@@ -2,7 +2,7 @@
 
 A hands-on robot-learning project built with **LeRobot, ACT, MuJoCo, and Gym-HIL**. The project studies teleoperated demonstrations, gripper-action learning, and spatial generalization for a simulated Franka Panda.
 
-> **Current result:** an ACT policy trained with improved gripper supervision completed the fixed-position pick-and-lift task in **5/5 repeated policy-only rollouts**. Spatial generalization remains unsolved; Day6 experiments identify unreliable Y-axis closed-loop control as the current bottleneck.
+> **Current result:** an ACT policy trained with improved gripper supervision completed the fixed-position pick-and-lift task in **5/5 repeated policy-only rollouts**. Corrected Day7 camera data produced measurable Y-direction predictions, but seen-position policy-only evaluation remained **0/6**; reliable spatial control is still unsolved.
 
 ## Policy demo — fixed-position task
 
@@ -19,9 +19,10 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Improved fixed-position policy | Day5 XPU ACT, 2,000 steps; policy-only, 5 repeated rollouts | **5/5** | First stable policy-only success on the fixed-position task. The runs used the same deterministic reset/task and are not a broad statistical guarantee. |
 | Original Day6 spatial dataset | XPU ACT, 2,000 steps | Seen **0/8**, unseen **1/5** | Randomized positions did not yield reliable closed-loop spatial control. |
 | Day6 Dense-XY dataset | XPU ACT, 2,000 steps | Seen **0/8**, unseen **2/5** | Denser XY data improved offline action prediction, but online success remained poor. |
-| Day6 Precision-XY dataset | XPU ACT, 3,000 steps | Seen **0/8**, unseen **0/5** | More training did not fix online spatial control; Y-axis prediction remained near zero. |
+| Day6 Precision-XY dataset | XPU ACT, 3,000 steps | Seen **0/8**, unseen **0/5** | Later found to have arm-hidden camera observations; treat visual-policy result as confounded. |
+| Day7 Y-axis, corrected camera | XPU ACT, 2,000 steps | Seen **0/6** | Offline Y-direction signal improved (70.5% sign-and-magnitude hit at threshold 0.05), but predicted motion was too small and the robot descended before lateral alignment. |
 
-On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. For Day6, the principal remaining issue is Y-axis spatial control and the gap between expert-observation predictions and online closed-loop behavior.
+On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day7 isolated Y control and corrected an arm-visibility issue in the recording pipeline. Its latest clean-camera policy still failed online, demonstrating that offline action prediction does not guarantee closed-loop task success. Day7 details and caveats are in [`notes/day7.md`](notes/day7.md).
 
 ## What this project implements
 
@@ -92,9 +93,9 @@ python scripts/evaluate_panda_act.py \
 
 GIF capture requires one episode. It records the actual front/wrist observations from the rollout; it can capture a failure as well as a success, so check the terminal success/reward before presenting the clip as a successful demonstration.
 
-## Day6 spatial experiments
+## Day6 spatial and Day7 Y-axis experiments
 
-Day6 datasets and checkpoints are local; schedules, scripts, and summary results are included. The Day6 Gym-HIL aliases require a small patch to the LeRobot source checkout. Tested package versions, source revision, and patch notes are recorded in [`ENVIRONMENT.md`](ENVIRONMENT.md). Day6 recording and evaluation details are documented in [`notes/day6.md`](notes/day6.md).
+Datasets and checkpoints are local; schedules, scripts, and summary results are included. The Day6 Gym-HIL aliases require a small patch to the LeRobot source checkout. Tested package versions, source revision, and patch notes are recorded in [`ENVIRONMENT.md`](ENVIRONMENT.md). Experiment details and data-quality caveats are documented in [`notes/day6.md`](notes/day6.md) and [`notes/day7.md`](notes/day7.md).
 
 ## Project layout
 
@@ -111,9 +112,9 @@ scripts/    Training, recording, evaluation, and dataset-inspection tools
 ## Limitations and next experiment
 
 - The Day5 `5/5` result is for a **fixed cube position** in a deterministic simulator; it is not a broad manipulation success-rate claim.
-- Day6 training used four positions. The current policy did not reliably solve either seen or held-out spatial tasks.
+- Day6 and corrected Day7 policies did not reliably solve seen spatial tasks; the Day7 interpolation schedule remains untested with corrected camera data.
 - Offline action prediction is diagnostic and does not guarantee closed-loop task success.
-- The next experiment isolates Y-axis control: hold X fixed, train on opposite Y positions, verify consistent positive/negative `delta_y`, then evaluate online before returning to the full spatial benchmark.
+- Current Day7 evidence points to under-scaled Y motion and premature descent. The next experiment should target Y-active action learning while monitoring false motion on neutral frames.
 
 ## Hardware
 

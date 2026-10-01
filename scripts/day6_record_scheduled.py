@@ -55,44 +55,6 @@ class ScheduledBlockPositionWrapper(gym.Wrapper):
 
 
 
-def set_viewer_robot_visibility(env: gym.Env, hide_robot_arm: bool) -> None:
-    """Hide only Panda arm visual meshes in the human viewer.
-
-    The gripper visual meshes stay visible. The model's camera renderers keep
-    their default geom groups, so this is a viewer-only convenience and does
-    not alter recorded front/wrist observations.
-    """
-    if not hide_robot_arm:
-        return
-
-    base = env.unwrapped
-    model = base.model
-    hidden_group = 5
-    for geom_id in range(model.ngeom):
-        if int(model.geom_group[geom_id]) != 2:
-            continue
-        body_id = int(model.geom_bodyid[geom_id])
-        body_name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_BODY, body_id)
-        if body_name is not None and body_name.startswith("link"):
-            model.geom_group[geom_id] = hidden_group
-
-    current = env
-    while current is not None:
-        viewer = getattr(current, "_viewer", None)
-        if viewer is not None and hasattr(viewer, "opt"):
-            viewer.opt.geomgroup[2] = 1  # keep gripper visual meshes
-            viewer.opt.geomgroup[hidden_group] = 0  # hide Panda arm visuals
-            # With the arm hidden, use a stricter top-down view so the
-            # gripper and cube are easy to align.
-            viewer.cam.elevation = -80.0
-            viewer.cam.distance = 1.05
-            viewer.sync()
-            print("Viewer mode: Panda arm visuals hidden; gripper remains visible")
-            return
-        current = getattr(current, "env", None)
-    raise RuntimeError("Could not find the passive viewer handle")
-
-
 def set_keyboard_input_step_size(env: gym.Env, xy_step_size: float, z_step_size: float) -> None:
     """Adjust keyboard controller deltas without changing the robot EE scale."""
     current = env
@@ -138,14 +100,6 @@ def main() -> None:
         default=0.50,
         help="Keyboard Z delta in normalized EE-action units (0.50 = 12.5 mm/tick).",
     )
-    parser.add_argument(
-        "--hide-robot-arm",
-        action="store_true",
-        help=(
-            "Hide only Panda arm visual meshes in the passive viewer; the "
-            "gripper remains visible and recorded camera observations are unchanged."
-        ),
-    )
     args = parser.parse_args()
     if not 0.05 <= args.xy_step_size <= 1.0:
         raise ValueError("--xy-step-size must be between 0.05 and 1.0")
@@ -165,7 +119,6 @@ def main() -> None:
         processor=HILSerlProcessorConfig(),
     )
     env, teleop_device = make_robot_env(env_cfg)
-    set_viewer_robot_visibility(env, args.hide_robot_arm)
     set_keyboard_input_step_size(env, args.xy_step_size, args.z_step_size)
     env = ScheduledBlockPositionWrapper(env, positions)
     env_processor, action_processor = make_processors(
@@ -195,7 +148,10 @@ def main() -> None:
     print("Keyboard Z input step size:", args.z_step_size)
     print("Physical XY step per held-key tick:", args.xy_step_size * 0.025, "m")
     print("Physical Z step per held-key tick:", args.z_step_size * 0.025, "m")
-    print("Hide Panda arm visuals:", args.hide_robot_arm)
+    print(
+        "Viewer: full robot visible; mouse camera controls affect only this viewer, "
+        "not recorded front/wrist images."
+    )
     try:
         control_loop(env, env_processor, action_processor, teleop_device, cfg)
     finally:

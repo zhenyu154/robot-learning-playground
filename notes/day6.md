@@ -236,10 +236,13 @@ online evaluation on seen and unseen position schedules.
 ## Precision-XY follow-up data collection (2026-09-28)
 
 A new precision-alignment dataset was collected successfully using the
-150-step horizon, oblique/top-down human viewer, hidden Panda arm visuals with
-the gripper preserved, and separate keyboard step sizes (`XY=0.25`, `Z=0.50`).
-Dataset quality assurance passed. The next step was a fresh 2,000-step XPU
-ACT training run; the raw Dense-XY dataset remains the prior baseline.
+150-step horizon, oblique/top-down human viewer, and separate keyboard step
+sizes (`XY=0.25`, `Z=0.50`). At the time, the arm visuals were hidden under the
+assumption that this affected only the human viewer. A later review of the
+saved dataset videos showed that the arm was also absent from recorded camera
+observations. Therefore the Precision-XY visual-policy results are confounded
+by a train/evaluation image mismatch; keep the raw dataset for provenance, but
+do not treat it as a clean visual-control baseline.
 
 ## Precision-XY 2,000-step result (2026-09-28)
 
