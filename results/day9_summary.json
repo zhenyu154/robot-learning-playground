@@ -1,0 +1,103 @@
+{
+  "experiment_date": "2026-10-02",
+  "experiment": "Day9 closed-loop failure localization",
+  "checkpoint": "outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model",
+  "dataset_positions": [
+    {
+      "x": 0.48,
+      "y": -0.05
+    },
+    {
+      "x": 0.48,
+      "y": 0.05
+    }
+  ],
+  "n_action_steps": 5,
+  "diagnostics": [
+    {
+      "name": "fixed_close_only",
+      "log": "results/day9_weighted_n5_fixed_gripper_nonzero_diagnostic.log",
+      "successes": 0,
+      "episodes": 2,
+      "success_rate": 0.0,
+      "records": [
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 15.68,
+          "max_gripper": 2.0,
+          "z_range": "-0.429, 0.004"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.93,
+          "max_gripper": 2.0,
+          "z_range": "-0.357, -0.004"
+        }
+      ]
+    },
+    {
+      "name": "fixed_close_lift",
+      "log": "results/day9_fixed_gripper_and_lift_nonzero_diagnostic.log",
+      "successes": 1,
+      "episodes": 2,
+      "success_rate": 0.5,
+      "records": [
+        {
+          "success": true,
+          "steps": 47,
+          "reward": 1.0,
+          "time_s": 5.29,
+          "max_gripper": 2.0,
+          "z_range": "-0.430, 0.500"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.93,
+          "max_gripper": 2.0,
+          "z_range": "-0.357, 0.500"
+        }
+      ]
+    },
+    {
+      "name": "freeze_y_close_lift",
+      "log": "results/day9_freeze_y_close_lift_diagnostic.log",
+      "successes": 2,
+      "episodes": 2,
+      "success_rate": 1.0,
+      "records": [
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 5.57,
+          "max_gripper": 2.0,
+          "z_range": "-0.434, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.92,
+          "max_gripper": 2.0,
+          "z_range": "-0.452, 0.500"
+        }
+      ]
+    }
+  ],
+  "policy_only_context": {
+    "day8_seen_y_pm_0_10": "6/6",
+    "day8_nonzero_interpolation_y_minus_0_05": "3/3",
+    "day8_nonzero_interpolation_y_plus_0_05": "0/3"
+  },
+  "limitations": [
+    "All Day9 rows use manual action interventions and are not policy-only benchmark results.",
+    "Only two scheduled positions and one checkpoint were tested.",
+    "The diagnostic isolates necessary conditions but does not identify every internal cause of the learned stopping/lift error."
+  ]
+}

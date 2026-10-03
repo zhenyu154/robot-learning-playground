@@ -228,6 +228,37 @@ def parse_args():
         help="Z threshold for --gripper-mode=close-on-upward-motion.",
     )
 
+    parser.add_argument(
+        "--lift-at-step",
+        type=int,
+        default=None,
+        help=(
+            "Optional diagnostic: inject a fixed positive Z command at this "
+            "1-indexed step. This is not policy-only evaluation."
+        ),
+    )
+    parser.add_argument(
+        "--lift-duration",
+        type=int,
+        default=10,
+        help="Number of consecutive steps for --lift-at-step.",
+    )
+    parser.add_argument(
+        "--lift-command",
+        type=float,
+        default=0.5,
+        help="Normalized positive Z command for --lift-at-step (0 to 1).",
+    )
+    parser.add_argument(
+        "--freeze-y-at-step",
+        type=int,
+        default=None,
+        help=(
+            "Optional diagnostic: set executed delta_y to zero from this "
+            "1-indexed step onward. This is not policy-only evaluation."
+        ),
+    )
+
     return parser.parse_args()
 
 
@@ -246,6 +277,14 @@ def main():
             raise ValueError("--close-duration must be a positive integer")
     elif args.gripper_mode == "close-on-upward-motion" and args.close_duration <= 0:
         raise ValueError("--close-duration must be a positive integer")
+    if args.lift_at_step is not None and args.lift_at_step <= 0:
+        raise ValueError("--lift-at-step must be positive")
+    if args.lift_at_step is not None and args.lift_duration <= 0:
+        raise ValueError("--lift-duration must be positive")
+    if not 0.0 <= args.lift_command <= 1.0:
+        raise ValueError("--lift-command must be between 0 and 1")
+    if args.freeze_y_at_step is not None and args.freeze_y_at_step <= 0:
+        raise ValueError("--freeze-y-at-step must be positive")
 
     checkpoint = Path(args.checkpoint)
 
@@ -299,6 +338,8 @@ def main():
     if args.gripper_mode == "close-at-step":
         print("Close step:", args.close_step)
         print("Close duration:", args.close_duration)
+    if args.freeze_y_at_step is not None:
+        print("Diagnostic Y freeze step:", args.freeze_y_at_step)
 
     # Same simulator/task used for demonstration collection.
     env_cfg = HILSerlRobotEnvConfig(
@@ -376,6 +417,9 @@ def main():
             previous_z_action = None
             close_steps_remaining = 0
             diagnostic_close_started = False
+            lift_steps_remaining = 0
+            diagnostic_lift_started = False
+            diagnostic_y_freeze_started = False
             max_gripper_action = float("-inf")
             min_z_action = float("inf")
             max_z_action = float("-inf")
@@ -448,13 +492,44 @@ def main():
                     action.reshape(-1)[3] = 2.0
                     close_steps_remaining -= 1
 
+                if (
+                    args.lift_at_step is not None
+                    and step + 1 == args.lift_at_step
+                    and not diagnostic_lift_started
+                ):
+                    lift_steps_remaining = args.lift_duration
+                    diagnostic_lift_started = True
+                    print(
+                        f"diagnostic lift at step={step + 1} "
+                        f"(command={args.lift_command:.3f}, fixed-step mode)"
+                    )
+
+                if lift_steps_remaining > 0:
+                    action = action.clone()
+                    action.reshape(-1)[2] = args.lift_command
+                    lift_steps_remaining -= 1
+
+                if (
+                    args.freeze_y_at_step is not None
+                    and step + 1 >= args.freeze_y_at_step
+                ):
+                    if not diagnostic_y_freeze_started:
+                        diagnostic_y_freeze_started = True
+                        print(
+                            f"diagnostic Y freeze at step={step + 1} "
+                            "(delta_y forced to 0)"
+                        )
+                    action = action.clone()
+                    action.reshape(-1)[1] = 0.0
+
                 previous_z_action = z_action
 
                 action_flat = action.detach().cpu().float().reshape(-1)
                 gripper_action = float(action_flat[3].item())
+                executed_z_action = float(action_flat[2].item())
                 max_gripper_action = max(max_gripper_action, gripper_action)
-                min_z_action = min(min_z_action, z_action)
-                max_z_action = max(max_z_action, z_action)
+                min_z_action = min(min_z_action, executed_z_action)
+                max_z_action = max(max_z_action, executed_z_action)
 
                 # Step simulator using exactly LeRobot's environment
                 # action-processing pipeline.

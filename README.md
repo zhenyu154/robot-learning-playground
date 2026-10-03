@@ -4,6 +4,8 @@ A hands-on robot-learning project built with **LeRobot, ACT, MuJoCo, and Gym-HIL
 
 > **Current result:** Day8 Y-active loss weighting with five-step replanning achieved **6/6 policy-only rollouts at two trained Y positions**, versus **0/6** for unweighted ACT at the same replanning setting. Held-out tests succeeded at the midpoint (**5/5**) and negative interior position (**3/3**), but failed at the positive interior position (**0/3**). These small, single-seed tests demonstrate improvement, not reliable general spatial manipulation.
 
+> **Day9 diagnosis:** externally freezing Y near the target and supplying close/lift actions produced **2/2 successful diagnostic lifts** at `y=±0.05`. This localizes the positive-side policy-only failure primarily to lateral stopping/calibration, but the intervention is not a policy-only benchmark.
+
 ## Policy demo — fixed-position task
 
 This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint using front and wrist observations. It demonstrates the **fixed-position** task and is not evidence of spatial generalization.
@@ -22,6 +24,7 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Day6 Precision-XY dataset | XPU ACT, 3,000 steps | Seen **0/8**, unseen **0/5** | Later found to have arm-hidden camera observations; treat visual-policy result as confounded. |
 | Day7 Y-axis, corrected camera | XPU ACT, 2,000 steps | Seen **0/6** | Offline Y-direction signal improved (70.5% sign-and-magnitude hit at threshold 0.05), but predicted motion was too small and the robot descended before lateral alignment. |
 | Day8 Y-active loss weighting | Same Day7 v2 data; 2,000 XPU updates; five-step replanning | Seen **6/6**; held-out midpoint **5/5**; interior positions **3/6** | Unweighted ACT with five-step replanning remained **0/6** on seen positions. Nonzero interpolation was asymmetric: negative **3/3**, positive **0/3**. |
+| Day9 failure localization | Same Day8 checkpoint; fixed close/lift and optional Y freeze diagnostics | Diagnostic **2/2** with Y freeze + fixed close/lift | Both intermediate positions could be grasped/lifted after external Y stopping correction; this is causal diagnosis, not policy-only success. |
 
 On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day8 improved active-Y offline sign-and-magnitude hits from **70.5% to 91.5%**, but gripper close hits decreased from **66.7% to 44.2%**. The successful rollouts reinforce that an offline action threshold is not a physical grasp-success criterion. Day7 data-quality caveats and the controlled Day8 results are documented in [`notes/day7.md`](notes/day7.md) and [`notes/day8.md`](notes/day8.md).
 
@@ -33,6 +36,7 @@ On the Day5 fixed-position data, the offline gripper audit reached **56.1% close
 - Offline, frame-level action audits for gripper and motion channels.
 - Controlled data/training experiments: training duration, longer gripper-close supervision, and denser XY actions.
 - Project-local, padding-aware Y-active loss weighting with numerical/gradient tests and loss-recipe provenance in standard ACT checkpoints.
+- Explicit evaluator diagnostics for fixed close, fixed lift, and Y-freeze interventions, kept separate from policy-only metrics.
 - Intel XPU training/inference validation and CPU/XPU inference comparison.
 - Scheduled cube-position recording and separate seen/unseen evaluation schedules.
 
@@ -135,6 +139,8 @@ python scripts/evaluate_panda_act.py \
 
 Full methods and caveats: [`notes/day8.md`](notes/day8.md). Recorded evidence: [`results/day8_summary.json`](results/day8_summary.json), the offline audit CSV, and five rollout logs in `results/`.
 
+Day9 failure-localization methods and logs are documented in [`notes/day9.md`](notes/day9.md), with structured results in [`results/day9_summary.json`](results/day9_summary.json). The diagnostic flags in `scripts/evaluate_panda_act.py` are not enabled by default and must not be used to claim policy-only success.
+
 ## Project layout
 
 ```text
@@ -155,6 +161,7 @@ tests/      CPU correctness tests for the custom weighted ACT training loss
 - All reported Day8 training comparisons use one seed. Repeated rollouts at identical positions primarily demonstrate repeatability, not coverage of a wide test distribution.
 - Offline action prediction is diagnostic and does not guarantee closed-loop task success.
 - The next investigation should compare successful expert states and failing positive-side states around stopping, closing, and lifting. Positions used for tuning must not continue to be described as untouched held-out tests.
+- Day9 diagnostics indicate that adding intermediate-distance demonstrations is the next controlled training experiment; once `y=±0.05` are used for training, new held-out positions such as `y=±0.075` are required for a fresh generalization claim.
 
 ## Hardware
 

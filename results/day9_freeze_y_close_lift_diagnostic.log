@@ -1,0 +1,85 @@
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:231: UserWarning: WARN: Box low's precision lowered by casting to float32, current low.dtype=float64
+  gym.logger.warn(
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:297: UserWarning: WARN: Box high's precision lowered by casting to float32, current high.dtype=float64
+  gym.logger.warn(
+============================================================
+Loading ACT policy
+============================================================
+Checkpoint: outputs/act_panda_day8_y_weighted_w4_xpu_v1/checkpoints/002000/pretrained_model
+Loading weights from local directory
+Evaluation-only n_action_steps override: 5
+Inference device: xpu
+Policy: ACTPolicy
+Device: xpu
+Chunk size: 50
+n_action_steps: 5
+Gripper mode: close-at-step
+Close step: 30
+Close duration: 10
+Diagnostic Y freeze step: 11
+Keyboard controls:
+  Arrow keys: Move in X-Y plane
+  Shift and Shift_R: Move in Z axis
+  O: Open gripper
+  C: Close gripper
+  Enter: End episode with SUCCESS
+  Backspace: End episode with FAILURE
+  Space: Start/Stop Intervention
+  ESC: Exit
+Position schedule: configs/day8_y_axis_nonzero_interpolation_positions.json
+
+Environment observation space:
+Dict('agent_pos': Box(-inf, inf, (18,), float32), 'pixels': Dict('front': Box(0, 255, (128, 128, 3), uint8), 'wrist': Box(0, 255, (128, 128, 3), uint8)))
+
+Environment action space:
+Box([-1. -1. -1.  0.], [1. 1. 1. 2.], (4,), float32)
+
+============================================================
+Episode 1/2
+============================================================
+Scheduled cube position: {'episode_index': 0, 'x': 0.48, 'y': -0.05, 'z': 0.02}
+step=  1 | action=[[ 0.    -0.136  0.003  0.998]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.05    0.0199], tcp=[ 0.4902 -0.0014  0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.    -0.25  -0.019  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.05    0.0199], tcp=[ 0.4902 -0.0468  0.0759], gripper_pos=7.1
+diagnostic Y freeze at step=11 (delta_y forced to 0)
+step= 20 | action=[[ 0.     0.    -0.062  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.05    0.0199], tcp=[ 0.49   -0.0526  0.0652], gripper_pos=0.3
+diagnostic gripper close at step=30 (fixed-step mode)
+step= 30 | action=[[ 0.     0.    -0.434  2.   ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4798 -0.0525  0.0207], tcp=[ 0.4908 -0.0527  0.0069], gripper_pos=255.0
+diagnostic lift at step=40 (command=0.500, fixed-step mode)
+step= 40 | action=[[0.   0.   0.5  1.96]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4828 -0.053   0.0195], tcp=[ 0.4926 -0.053   0.0169], gripper_pos=255.0
+step= 50 | action=[[0.    0.    0.5   0.996]] | reward=1.0 | terminated=True | truncated=False
+  geometry: cube=[ 0.4818 -0.0526  0.1281], tcp=[ 0.4916 -0.0526  0.1255], gripper_pos=252.8
+
+Episode finished: success=True, steps=50, reward=1.0, time=5.57s, max_gripper=2.000, z_range=[-0.434, 0.500]
+
+============================================================
+Episode 2/2
+============================================================
+Scheduled cube position: {'episode_index': 1, 'x': 0.48, 'y': 0.05, 'z': 0.02}
+step=  1 | action=[[ 0.     0.093 -0.011  0.971]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.48   0.05   0.0199], tcp=[0.4902 0.001  0.0775], gripper_pos=0.0
+step= 10 | action=[[ 0.     0.263 -0.029  0.974]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.48   0.05   0.0199], tcp=[0.4901 0.0408 0.0733], gripper_pos=0.0
+diagnostic Y freeze at step=11 (delta_y forced to 0)
+step= 20 | action=[[ 0.     0.    -0.178  0.984]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.48   0.05   0.0199], tcp=[0.4895 0.0467 0.0445], gripper_pos=0.0
+diagnostic gripper close at step=30 (fixed-step mode)
+step= 30 | action=[[ 0.     0.    -0.089  2.   ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.4796 0.0473 0.02  ], tcp=[0.4945 0.0473 0.0104], gripper_pos=255.0
+diagnostic lift at step=40 (command=0.500, fixed-step mode)
+step= 40 | action=[[0.    0.    0.5   1.169]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.4814 0.0463 0.0196], tcp=[0.4952 0.0461 0.0173], gripper_pos=255.0
+step= 50 | action=[[0.    0.    0.5   0.994]] | reward=1.0 | terminated=True | truncated=False
+  geometry: cube=[0.4778 0.0469 0.1278], tcp=[0.4916 0.0469 0.1254], gripper_pos=246.6
+
+Episode finished: success=True, steps=50, reward=1.0, time=4.92s, max_gripper=2.000, z_range=[-0.452, 0.500]
+
+============================================================
+Evaluation summary
+============================================================
+Successes: 2/2
+Success rate: 100.0%
