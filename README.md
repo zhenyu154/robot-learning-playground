@@ -2,7 +2,7 @@
 
 A hands-on robot-learning project built with **LeRobot, ACT, MuJoCo, and Gym-HIL**. The project studies teleoperated demonstrations, gripper-action learning, and spatial generalization for a simulated Franka Panda.
 
-> **Current result:** Day8 Y-active loss weighting with five-step replanning achieved **6/6 policy-only rollouts at two trained Y positions**, versus **0/6** for unweighted ACT at the same replanning setting. Held-out tests succeeded at the midpoint (**5/5**) and negative interior position (**3/3**), but failed at the positive interior position (**0/3**). These small, single-seed tests demonstrate improvement, not reliable general spatial manipulation.
+> **Current result:** Day10 timing-standardized intermediate-Y supervision achieved **12/12 policy-only rollouts on four training positions** and **6/6 on held-out `y=±0.075` positions** in the fixed-X MuJoCo task. This is evidence of local 1D interpolation, not broad 2D spatial generalization.
 
 > **Day9 diagnosis:** externally freezing Y near the target and supplying close/lift actions produced **2/2 successful diagnostic lifts** at `y=±0.05`. This localizes the positive-side policy-only failure primarily to lateral stopping/calibration, but the intervention is not a policy-only benchmark.
 
@@ -25,8 +25,10 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Day7 Y-axis, corrected camera | XPU ACT, 2,000 steps | Seen **0/6** | Offline Y-direction signal improved (70.5% sign-and-magnitude hit at threshold 0.05), but predicted motion was too small and the robot descended before lateral alignment. |
 | Day8 Y-active loss weighting | Same Day7 v2 data; 2,000 XPU updates; five-step replanning | Seen **6/6**; held-out midpoint **5/5**; interior positions **3/6** | Unweighted ACT with five-step replanning remained **0/6** on seen positions. Nonzero interpolation was asymmetric: negative **3/3**, positive **0/3**. |
 | Day9 failure localization | Same Day8 checkpoint; fixed close/lift and optional Y freeze diagnostics | Diagnostic **2/2** with Y freeze + fixed close/lift | Both intermediate positions could be grasped/lifted after external Y stopping correction; this is causal diagnosis, not policy-only success. |
+| Day10 timing-standardized intermediate Y | Four training positions; weighted ACT; 2,000 XPU updates; five-step replanning | Seen **12/12**; held-out `y=±0.075` **6/6** | Standardized close-to-lift timing improved closed-loop stage transitions and enabled local Y interpolation. Single seed, fixed X. |
 
 On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day8 improved active-Y offline sign-and-magnitude hits from **70.5% to 91.5%**, but gripper close hits decreased from **66.7% to 44.2%**. The successful rollouts reinforce that an offline action threshold is not a physical grasp-success criterion. Day7 data-quality caveats and the controlled Day8 results are documented in [`notes/day7.md`](notes/day7.md) and [`notes/day8.md`](notes/day8.md).
+Day10 v1 with intermediate positions but inconsistent close-to-lift timing achieved only **3/12** policy-only seen successes. Timing-v2 reduced the close-to-lift gap to approximately 2--8 frames and achieved **12/12** seen and **6/6** held-out policy-only successes. Because timing-v2 also has fewer frames and therefore more effective dataset passes at 2,000 updates, timing consistency is strongly implicated but not isolated as the only causal factor. Full details are in [`notes/day10.md`](notes/day10.md).
 
 ## What this project implements
 
@@ -123,7 +125,7 @@ python -m unittest discover -s tests -p 'test_day8*.py' -v
 bash scripts/day8_act_y_weighted_xpu.sh
 ```
 
-Datasets and checkpoints are not bundled. The launcher accepts the dataset/output overrides described above and `Y_ACTIVE_WEIGHT`, `STEPS`, `LOG_FREQ`, and `JOB_NAME`. It preserves a training log alongside the run directory and writes `day8_loss_recipe.json` into each checkpoint. Do not use vanilla `lerobot-train` to resume this custom-loss experiment; resume is intentionally unsupported.
+Datasets and checkpoints are not bundled. The launcher accepts the dataset/output overrides described above and `Y_ACTIVE_WEIGHT`, `STEPS`, `LOG_FREQ`, `PROGRESS_MINITERS`, `SAVE_LOG`, and `JOB_NAME`. Progress-bar refresh defaults to every 50 steps. Set `SAVE_LOG=1` to additionally capture terminal output beside the run directory. It writes `day8_loss_recipe.json` into each checkpoint. Do not use vanilla `lerobot-train` to resume this custom-loss experiment; resume is intentionally unsupported.
 
 Evaluate the trained positions with the successful setting:
 
@@ -141,6 +143,33 @@ Full methods and caveats: [`notes/day8.md`](notes/day8.md). Recorded evidence: [
 
 Day9 failure-localization methods and logs are documented in [`notes/day9.md`](notes/day9.md), with structured results in [`results/day9_summary.json`](results/day9_summary.json). The diagnostic flags in `scripts/evaluate_panda_act.py` are not enabled by default and must not be used to claim policy-only success.
 
+## Day10 intermediate-Y interpolation
+
+Day10 trains on four fixed-X positions:
+
+```text
+x=0.48
+y ∈ {-0.10, -0.05, +0.05, +0.10}
+```
+
+The timing-v2 checkpoint is:
+
+```text
+outputs/act_panda_day10_intermediate_timing_w4_xpu_v1/checkpoints/002000/pretrained_model
+```
+
+With `n_action_steps=5` and policy-only gripper execution:
+
+| Evaluation | Result |
+|---|---:|
+| Four seen training positions, 3 repeats each | **12/12** |
+| Held-out `y=-0.075/+0.075`, 3 repeats each | **6/6** |
+
+The held-out positions were not used for training. This is local one-dimensional
+interpolation at fixed X, not broad 2D spatial generalization. Full methods and
+caveats are in [`notes/day10.md`](notes/day10.md), with structured evidence in
+[`results/day10_summary.json`](results/day10_summary.json).
+
 ## Project layout
 
 ```text
@@ -157,11 +186,11 @@ tests/      CPU correctness tests for the custom weighted ACT training loss
 ## Limitations and next experiment
 
 - The Day5 `5/5` result is for a **fixed cube position** in a deterministic simulator; it is not a broad manipulation success-rate claim.
-- Day8 solves two trained Y positions under the tested n5 control setting, but held-out nonzero interpolation remains asymmetric (`-0.05: 3/3`, `+0.05: 0/3`). X, object appearance, home configuration, and the simulator are unchanged; this is not broad spatial generalization.
+- Day10 demonstrates local Y interpolation at fixed X, but X, object appearance, home configuration, and simulator remain fixed; this is not broad 2D spatial generalization.
 - All reported Day8 training comparisons use one seed. Repeated rollouts at identical positions primarily demonstrate repeatability, not coverage of a wide test distribution.
+- Day10 timing-v2 has fewer frames than Day10 v1, so the same 2,000 updates produce more dataset passes. A matched-pass replication is needed to isolate timing consistency from training exposure.
 - Offline action prediction is diagnostic and does not guarantee closed-loop task success.
-- The next investigation should compare successful expert states and failing positive-side states around stopping, closing, and lifting. Positions used for tuning must not continue to be described as untouched held-out tests.
-- Day9 diagnostics indicate that adding intermediate-distance demonstrations is the next controlled training experiment; once `y=±0.05` are used for training, new held-out positions such as `y=±0.075` are required for a fresh generalization claim.
+- The next experiment should either isolate X-axis control or extend the carefully controlled 1D setup toward 2D positions. New tuning positions must not continue to be described as untouched held-out tests.
 
 ## Hardware
 

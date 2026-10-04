@@ -1,0 +1,484 @@
+{
+  "experiment_date": "2026-10-03",
+  "experiment": "Day10 intermediate Y supervision and timing-standardized demonstrations",
+  "runs": [
+    {
+      "log": "results/day10_y_intermediate_w4_n5_seen_eval.log",
+      "episodes": 12,
+      "successes": 3,
+      "by_y": {
+        "-0.1": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "-0.05": {
+          "successes": 0,
+          "episodes": 3
+        },
+        "0.05": {
+          "successes": 0,
+          "episodes": 3
+        },
+        "0.1": {
+          "successes": 0,
+          "episodes": 3
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 66,
+          "reward": 1.0,
+          "time_s": 7.24,
+          "max_gripper": 2.105,
+          "z_range": "-0.539, 0.560"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.068,
+          "z_range": "-0.446, -0.004"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.101,
+          "z_range": "-0.565, -0.009"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.096,
+          "z_range": "-0.538, -0.012"
+        },
+        {
+          "success": true,
+          "steps": 66,
+          "reward": 1.0,
+          "time_s": 6.53,
+          "max_gripper": 2.105,
+          "z_range": "-0.539, 0.563"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.079,
+          "z_range": "-0.446, 0.021"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.072,
+          "z_range": "-0.555, -0.009"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.101,
+          "z_range": "-0.538, -0.012"
+        },
+        {
+          "success": true,
+          "steps": 66,
+          "reward": 1.0,
+          "time_s": 6.54,
+          "max_gripper": 2.105,
+          "z_range": "-0.539, 0.558"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.06,
+          "z_range": "-0.446, -0.003"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.058,
+          "z_range": "-0.555, -0.009"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.097,
+          "z_range": "-0.538, -0.012"
+        }
+      ]
+    },
+    {
+      "log": "results/day10_intermediate_timing_w4_n5_seen_eval.log",
+      "episodes": 12,
+      "successes": 12,
+      "by_y": {
+        "-0.1": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "-0.05": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.05": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.1": {
+          "successes": 3,
+          "episodes": 3
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 48,
+          "reward": 1.0,
+          "time_s": 5.36,
+          "max_gripper": 1.996,
+          "z_range": "-0.569, 0.551"
+        },
+        {
+          "success": true,
+          "steps": 35,
+          "reward": 1.0,
+          "time_s": 3.43,
+          "max_gripper": 1.904,
+          "z_range": "-0.422, 0.550"
+        },
+        {
+          "success": true,
+          "steps": 37,
+          "reward": 1.0,
+          "time_s": 3.62,
+          "max_gripper": 1.983,
+          "z_range": "-0.503, 0.548"
+        },
+        {
+          "success": true,
+          "steps": 42,
+          "reward": 1.0,
+          "time_s": 4.13,
+          "max_gripper": 1.946,
+          "z_range": "-0.410, 0.557"
+        },
+        {
+          "success": true,
+          "steps": 48,
+          "reward": 1.0,
+          "time_s": 4.73,
+          "max_gripper": 1.996,
+          "z_range": "-0.569, 0.551"
+        },
+        {
+          "success": true,
+          "steps": 40,
+          "reward": 1.0,
+          "time_s": 3.92,
+          "max_gripper": 1.898,
+          "z_range": "-0.422, 0.546"
+        },
+        {
+          "success": true,
+          "steps": 37,
+          "reward": 1.0,
+          "time_s": 3.63,
+          "max_gripper": 1.983,
+          "z_range": "-0.503, 0.547"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.23,
+          "max_gripper": 1.949,
+          "z_range": "-0.412, 0.543"
+        },
+        {
+          "success": true,
+          "steps": 48,
+          "reward": 1.0,
+          "time_s": 4.73,
+          "max_gripper": 1.996,
+          "z_range": "-0.569, 0.551"
+        },
+        {
+          "success": true,
+          "steps": 35,
+          "reward": 1.0,
+          "time_s": 3.43,
+          "max_gripper": 1.904,
+          "z_range": "-0.422, 0.549"
+        },
+        {
+          "success": true,
+          "steps": 37,
+          "reward": 1.0,
+          "time_s": 3.63,
+          "max_gripper": 1.984,
+          "z_range": "-0.503, 0.546"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 1.949,
+          "z_range": "-0.412, 0.543"
+        }
+      ]
+    },
+    {
+      "log": "results/day10_intermediate_timing_w4_n5_heldout_eval.log",
+      "episodes": 6,
+      "successes": 6,
+      "by_y": {
+        "-0.075": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.075": {
+          "successes": 3,
+          "episodes": 3
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 47,
+          "reward": 1.0,
+          "time_s": 5.26,
+          "max_gripper": 1.991,
+          "z_range": "-0.500, 0.551"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.22,
+          "max_gripper": 2.017,
+          "z_range": "-0.481, 0.549"
+        },
+        {
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "time_s": 4.53,
+          "max_gripper": 1.997,
+          "z_range": "-0.499, 0.549"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.23,
+          "max_gripper": 1.987,
+          "z_range": "-0.481, 0.547"
+        },
+        {
+          "success": true,
+          "steps": 47,
+          "reward": 1.0,
+          "time_s": 4.63,
+          "max_gripper": 2.001,
+          "z_range": "-0.499, 0.550"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.22,
+          "max_gripper": 2.017,
+          "z_range": "-0.481, 0.547"
+        }
+      ]
+    },
+    {
+      "log": "results/day10_fixed_close_lift_seen_diagnostic.log",
+      "episodes": 4,
+      "successes": 4,
+      "by_y": {
+        "-0.1": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "-0.05": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.05": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.1": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 5.57,
+          "max_gripper": 2.011,
+          "z_range": "-0.539, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.93,
+          "max_gripper": 2.0,
+          "z_range": "-0.446, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.93,
+          "max_gripper": 2.0,
+          "z_range": "-0.555, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.92,
+          "max_gripper": 2.0,
+          "z_range": "-0.538, 0.500"
+        }
+      ]
+    },
+    {
+      "log": "results/day10_fixed_close_policy_lift_diagnostic.log",
+      "episodes": 4,
+      "successes": 1,
+      "by_y": {
+        "-0.1": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "-0.05": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.05": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.1": {
+          "successes": 0,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 62,
+          "reward": 1.0,
+          "time_s": 6.76,
+          "max_gripper": 2.01,
+          "z_range": "-0.539, 0.556"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.0,
+          "z_range": "-0.446, -0.005"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.0,
+          "z_range": "-0.567, -0.009"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.0,
+          "z_range": "-0.538, -0.012"
+        }
+      ]
+    },
+    {
+      "log": "results/day10_policy_gripper_fixed_lift_diagnostic.log",
+      "episodes": 4,
+      "successes": 4,
+      "by_y": {
+        "-0.1": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "-0.05": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.05": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.1": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 5.56,
+          "max_gripper": 2.117,
+          "z_range": "-0.539, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.92,
+          "max_gripper": 2.056,
+          "z_range": "-0.446, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.93,
+          "max_gripper": 2.103,
+          "z_range": "-0.565, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.92,
+          "max_gripper": 2.097,
+          "z_range": "-0.538, 0.500"
+        }
+      ]
+    }
+  ]
+}

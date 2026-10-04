@@ -1,0 +1,22 @@
+{
+  "comparison": "Day10 v1 vs timing-v2 close-to-lift timing",
+  "frame_rate_hz": 10,
+  "v1": {
+    "dataset": "panda_pick_cube_day10_intermediate_v1",
+    "frames": 1791,
+    "close_to_lift_gap_frames_min": 4,
+    "close_to_lift_gap_frames_max": 15,
+    "close_to_lift_gap_frames_mean_approx": 9.0,
+    "policy_only_seen": "3/12"
+  },
+  "timing_v2": {
+    "dataset": "panda_pick_cube_day10_intermediate_timing_v2",
+    "frames": 1456,
+    "close_to_lift_gap_frames_min": 2,
+    "close_to_lift_gap_frames_max": 8,
+    "close_to_lift_gap_frames_mean": 4.75,
+    "policy_only_seen": "12/12",
+    "policy_only_heldout_y_pm_0_075": "6/6"
+  },
+  "caveat": "The timing-v2 dataset has fewer frames, so 2000 updates produce more dataset passes; timing consistency is implicated but not isolated from training exposure."
+}

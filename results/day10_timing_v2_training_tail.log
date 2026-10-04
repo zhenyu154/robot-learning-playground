@@ -1,0 +1,5 @@
+Training: 100%|███████| 2000/2000 [04:41<00:00,  7.27step/s]INFO 2026-10-03 17:52:49 ot_train.py:778 step:2K smpl:16K ep:220 epch:10.99 loss:1.132 grdn:46.635 lr:1.0e-05 data_s:0.047 prep_s:0.001 updt_s:0.090 step_s:0.137 smp/s:58 l1_loss:0.329 kld_loss:0.080 unweighted_l1_loss:0.308 y_active_mae_norm:0.872 y_neutral_mae_norm:0.182 y_active_target_ratio:0.078
+INFO 2026-10-03 17:52:49 ot_train.py:820 Checkpoint policy after step 2000
+INFO 2026-10-03 17:52:49 n/_torch.py:299 Model weights successfully saved to /home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day10_intermediate_timing_w4_xpu_v1/checkpoints/002000/pretrained_model!
+Training: 100%|███████| 2000/2000 [04:41<00:00,  7.09step/s]
+INFO 2026-10-03 17:52:49 ot_train.py:915 End of training

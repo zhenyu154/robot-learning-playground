@@ -12,6 +12,7 @@ import json
 import os
 import subprocess
 import sys
+from functools import partial
 from pathlib import Path
 
 if __package__:
@@ -124,8 +125,16 @@ def main():
     )
     parser.add_argument("--y-active-weight", type=float, default=4.0)
     parser.add_argument("--y-activity-epsilon", type=float, default=1e-6)
+    parser.add_argument(
+        "--progress-miniters",
+        type=int,
+        default=50,
+        help="Refresh the LeRobot training progress bar after this many steps.",
+    )
     parser.add_argument("--check-only", action="store_true", help="Validate only; do not train or write outputs.")
     options, upstream_args = parser.parse_known_args()
+    if options.progress_miniters <= 0:
+        raise ValueError("--progress-miniters must be positive")
     settings = YLossSettings(options.y_active_weight, options.y_activity_epsilon)
 
     # LeRobot's parser introspects concrete annotations; do not enable deferred
@@ -161,7 +170,14 @@ def main():
         with adapt_trainer(trainer, settings, write_recipe, checkpoint_recipe):
             # The ordinary trainer owns model creation, sampling, optimizer,
             # seeds, processors, checkpoints, and logging, exactly as in Day7.
-            trainer.train(cfg)
+            # Override only the local tqdm constructor. This does not modify
+            # the installed LeRobot checkout or alter training semantics.
+            original_tqdm = trainer.tqdm
+            trainer.tqdm = partial(original_tqdm, miniters=options.progress_miniters)
+            try:
+                trainer.train(cfg)
+            finally:
+                trainer.tqdm = original_tqdm
 
     original_argv = sys.argv
     try:

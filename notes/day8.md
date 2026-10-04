@@ -302,3 +302,13 @@ rather than blindly increasing training steps or execution-time limits.
 Datasets, videos, checkpoints, and the five-step smoke output remain local.
 The selected artifacts and code are intended for the Day8 GitHub closeout.
 No new training run or online rollout was executed during closeout.
+
+## Training output behavior
+
+The weighted launcher uses a project-local `tqdm` override with a default
+progress refresh interval of 50 training steps. This changes terminal display
+frequency only; it does not change optimizer updates or checkpoint behavior.
+Set `PROGRESS_MINITERS` to another positive value if needed. Terminal capture is
+opt-in via `SAVE_LOG=1`; when enabled, the log is written beside the output
+directory as `<output_dir>.log`. This file is a captured stdout/stderr artifact,
+not an external training configuration.
