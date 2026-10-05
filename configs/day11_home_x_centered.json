@@ -1,0 +1,6 @@
+{
+  "name": "day11_panda_home_x_centered_v2",
+  "home_position": [0.0, -0.004525, 0.0, -2.719293, 0.0, 2.709760, 0.785],
+  "target_tcp_xyz": [0.402, 0.0, 0.078],
+  "notes": "Project-local Day11 home pose. IK-adjusted to shift TCP X while preserving the default downward gripper orientation. Do not modify the installed gym-hil package."
+}

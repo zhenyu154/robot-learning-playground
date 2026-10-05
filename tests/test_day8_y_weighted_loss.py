@@ -17,11 +17,15 @@ from lerobot.policies.act.processor_act import make_act_pre_post_processors
 from lerobot.scripts import lerobot_train
 
 from scripts.day8_y_weighted_loss import (
+    ActionLossSettings,
     RAW_Y_ACTIVE,
     YLossSettings,
     adapt_trainer,
     attach_weighted_forward,
     raw_y_activity,
+    raw_activity,
+    raw_close_activity,
+    weighted_action_l1,
     weighted_y_l1,
 )
 
@@ -79,6 +83,28 @@ def example_batch():
 
 
 class LossTests(unittest.TestCase):
+    def test_active_x_and_close_weights_use_raw_masks(self):
+        raw = torch.zeros(1, 2, 4)
+        raw[0, 0, 0] = 0.25
+        raw[0, 0, 3] = 2.0
+        settings = ActionLossSettings(active_channel=0, active_name="x", close_weight=4)
+        active = raw_activity(raw, settings)
+        close = raw_close_activity(raw)
+        self.assertEqual(active.tolist(), [[True, False]])
+        self.assertEqual(close.tolist(), [[True, False]])
+        prediction = torch.ones_like(raw, requires_grad=True)
+        loss, _, metrics = weighted_action_l1(
+            prediction,
+            raw,
+            torch.zeros(1, 2, dtype=torch.bool),
+            active,
+            settings,
+            close,
+        )
+        self.assertGreater(loss.item(), 0)
+        self.assertEqual(metrics["x_active_target_ratio"].item(), 0.5)
+        self.assertEqual(metrics["close_active_target_ratio"].item(), 0.5)
+
     def test_invalid_weights(self):
         for weight in (0, 0.5, -1, float("nan"), float("inf")):
             with self.subTest(weight=weight), self.assertRaises(ValueError):

@@ -64,6 +64,12 @@ hashes at training time. The tested run's recipe is retained in
 is fresh, local, single-process CPU/XPU, without AMP, compilation, EMA, or
 resume. Existing ACT inference scripts do not need the training adapter.
 
+The adapter supports both `--active-axis=y` and `--active-axis=x`, plus an
+independent `--close-weight` for sparse gripper-close supervision. Day11 uses
+the X-axis and close weights together. The centered Day11 home pose and minimum
+TCP-Z bound are project-local runtime settings; they do not modify the
+installed Gym-HIL package.
+
 ## Reproducibility scope
 
 - Training scripts support `DATASET_ROOT`, `DATASET_REPO_ID`, and `OUTPUT_DIR`

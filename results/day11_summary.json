@@ -1,0 +1,493 @@
+{
+  "experiment_date": "2026-10-04",
+  "experiment": "Day11 centered-home X-axis control",
+  "checkpoint": "outputs/act_panda_day11_x_closew4_weighted_w4_z008_xpu_v1/checkpoints/002000/pretrained_model",
+  "home_pose": "configs/day11_home_x_centered.json",
+  "min_tcp_z": 0.008,
+  "runs": [
+    {
+      "log": "results/day11_x_closew4_n5_policy_smoke.log",
+      "episodes": 4,
+      "successes": 4,
+      "by_x": {
+        "0.32": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.36": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.44": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.48": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 82,
+          "reward": 1.0,
+          "time_s": 8.78,
+          "max_gripper": 2.084,
+          "z_range": "-0.581, 0.551"
+        },
+        {
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "time_s": 4.53,
+          "max_gripper": 2.09,
+          "z_range": "-0.610, 0.566"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 2.076,
+          "z_range": "-0.599, 0.572"
+        },
+        {
+          "success": true,
+          "steps": 114,
+          "reward": 1.0,
+          "time_s": 11.34,
+          "max_gripper": 2.088,
+          "z_range": "-0.623, 0.409"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_closew4_n5_seen_eval.log",
+      "episodes": 12,
+      "successes": 12,
+      "by_x": {
+        "0.32": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.36": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.44": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.48": {
+          "successes": 3,
+          "episodes": 3
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 100,
+          "reward": 1.0,
+          "time_s": 10.59,
+          "max_gripper": 2.088,
+          "z_range": "-0.581, 0.555"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.93,
+          "max_gripper": 2.088,
+          "z_range": "-0.607, 0.564"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 2.076,
+          "z_range": "-0.599, 0.570"
+        },
+        {
+          "success": true,
+          "steps": 100,
+          "reward": 1.0,
+          "time_s": 9.93,
+          "max_gripper": 2.085,
+          "z_range": "-0.623, 0.394"
+        },
+        {
+          "success": true,
+          "steps": 89,
+          "reward": 1.0,
+          "time_s": 8.83,
+          "max_gripper": 2.078,
+          "z_range": "-0.581, 0.547"
+        },
+        {
+          "success": true,
+          "steps": 50,
+          "reward": 1.0,
+          "time_s": 4.93,
+          "max_gripper": 2.088,
+          "z_range": "-0.607, 0.566"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 2.071,
+          "z_range": "-0.599, 0.572"
+        },
+        {
+          "success": true,
+          "steps": 89,
+          "reward": 1.0,
+          "time_s": 8.83,
+          "max_gripper": 2.099,
+          "z_range": "-0.622, 0.465"
+        },
+        {
+          "success": true,
+          "steps": 92,
+          "reward": 1.0,
+          "time_s": 9.13,
+          "max_gripper": 2.087,
+          "z_range": "-0.581, 0.552"
+        },
+        {
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "time_s": 4.54,
+          "max_gripper": 2.09,
+          "z_range": "-0.610, 0.566"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 2.076,
+          "z_range": "-0.599, 0.570"
+        },
+        {
+          "success": true,
+          "steps": 95,
+          "reward": 1.0,
+          "time_s": 9.43,
+          "max_gripper": 2.099,
+          "z_range": "-0.622, 0.394"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_closew4_n5_heldout_eval.log",
+      "episodes": 9,
+      "successes": 6,
+      "by_x": {
+        "0.34": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.4": {
+          "successes": 3,
+          "episodes": 3
+        },
+        "0.46": {
+          "successes": 0,
+          "episodes": 3
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "time_s": 5.18,
+          "max_gripper": 2.057,
+          "z_range": "-0.557, 0.543"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.22,
+          "max_gripper": 2.045,
+          "z_range": "-0.639, 0.541"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.088,
+          "z_range": "-0.524, 0.111"
+        },
+        {
+          "success": true,
+          "steps": 46,
+          "reward": 1.0,
+          "time_s": 4.54,
+          "max_gripper": 2.057,
+          "z_range": "-0.557, 0.548"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.23,
+          "max_gripper": 2.045,
+          "z_range": "-0.639, 0.543"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.085,
+          "z_range": "-0.480, 0.110"
+        },
+        {
+          "success": true,
+          "steps": 44,
+          "reward": 1.0,
+          "time_s": 4.33,
+          "max_gripper": 2.057,
+          "z_range": "-0.557, 0.556"
+        },
+        {
+          "success": true,
+          "steps": 43,
+          "reward": 1.0,
+          "time_s": 4.23,
+          "max_gripper": 2.045,
+          "z_range": "-0.639, 0.546"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 2.098,
+          "z_range": "-0.550, 0.110"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_fixed_close_lift_diagnostic.log",
+      "episodes": 4,
+      "successes": 4,
+      "by_x": {
+        "0.32": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.36": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.44": {
+          "successes": 1,
+          "episodes": 1
+        },
+        "0.48": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 49,
+          "reward": 1.0,
+          "time_s": 5.46,
+          "max_gripper": 2.0,
+          "z_range": "-0.544, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 49,
+          "reward": 1.0,
+          "time_s": 4.83,
+          "max_gripper": 2.0,
+          "z_range": "-0.550, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 49,
+          "reward": 1.0,
+          "time_s": 4.83,
+          "max_gripper": 2.0,
+          "z_range": "-0.535, 0.500"
+        },
+        {
+          "success": true,
+          "steps": 49,
+          "reward": 1.0,
+          "time_s": 4.82,
+          "max_gripper": 2.0,
+          "z_range": "-0.585, 0.500"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_freeze_close_lift_x046_diagnostic.log",
+      "episodes": 1,
+      "successes": 0,
+      "by_x": {
+        "0.46": {
+          "successes": 0,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 15.58,
+          "max_gripper": 2.0,
+          "z_range": "-0.276, 0.500"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_freeze_x046_late_close_lift_diagnostic.log",
+      "episodes": 1,
+      "successes": 1,
+      "by_x": {
+        "0.46": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": true,
+          "steps": 65,
+          "reward": 1.0,
+          "time_s": 7.07,
+          "max_gripper": 2.095,
+          "z_range": "-0.587, 0.547"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_weighted_w4_n5_seen_smoke_eval.log",
+      "episodes": 4,
+      "successes": 0,
+      "by_x": {
+        "0.32": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.36": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.44": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.48": {
+          "successes": 0,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 15.58,
+          "max_gripper": 1.051,
+          "z_range": "-0.029, 0.277"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 1.024,
+          "z_range": "-0.057, 0.230"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.93,
+          "max_gripper": 1.034,
+          "z_range": "-0.002, 0.344"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 1.079,
+          "z_range": "-0.009, 0.446"
+        }
+      ]
+    },
+    {
+      "log": "results/day11_x_weighted_w4_z008_n5_policy_smoke.log",
+      "episodes": 4,
+      "successes": 1,
+      "by_x": {
+        "0.32": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.36": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.44": {
+          "successes": 0,
+          "episodes": 1
+        },
+        "0.48": {
+          "successes": 1,
+          "episodes": 1
+        }
+      },
+      "records": [
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 15.61,
+          "max_gripper": 1.045,
+          "z_range": "-0.544, 0.047"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.95,
+          "max_gripper": 1.043,
+          "z_range": "-0.550, 0.014"
+        },
+        {
+          "success": false,
+          "steps": 150,
+          "reward": 0.0,
+          "time_s": 14.94,
+          "max_gripper": 1.052,
+          "z_range": "-0.535, 0.048"
+        },
+        {
+          "success": true,
+          "steps": 71,
+          "reward": 1.0,
+          "time_s": 7.04,
+          "max_gripper": 1.046,
+          "z_range": "-0.585, 0.535"
+        }
+      ]
+    }
+  ]
+}

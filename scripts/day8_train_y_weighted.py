@@ -16,9 +16,9 @@ from functools import partial
 from pathlib import Path
 
 if __package__:
-    from .day8_y_weighted_loss import YLossSettings, adapt_trainer
+    from .day8_y_weighted_loss import ActionLossSettings, adapt_trainer
 else:
-    from day8_y_weighted_loss import YLossSettings, adapt_trainer
+    from day8_y_weighted_loss import ActionLossSettings, adapt_trainer
 
 
 def validate_day8_config(cfg):
@@ -83,11 +83,13 @@ def build_recipe(cfg, settings, info, trainer):
     script_dir = Path(__file__).resolve().parent
     root = Path(cfg.dataset.root)
     return {
-        "experiment": "day8_y_active_weighted_l1",
+        "experiment": f"day{8 if settings.active_name == 'y' else 11}_{settings.active_name}_active_weighted_l1",
         "active_weight": settings.active_weight,
+        "close_weight": settings.close_weight,
         "activity_epsilon_raw_units": settings.activity_epsilon,
-        "y_channel": 1,
-        "mask": "abs(raw action[..., 1]) > epsilon; exclude action_is_pad",
+        "active_axis": settings.active_name,
+        "active_channel": settings.active_channel,
+        "mask": f"abs(raw action[..., {settings.active_channel}]) > epsilon; exclude action_is_pad",
         "l1_reduction": "sum(valid scalar weight * normalized absolute error) / sum(valid scalar weight)",
         "other_scalar_weights": 1.0,
         "kl_weight": cfg.policy.kl_weight,
@@ -123,8 +125,10 @@ def main():
         epilog="Remaining arguments are passed to LeRobot. Use the Day8 shell launcher for the control settings.",
         allow_abbrev=False,
     )
-    parser.add_argument("--y-active-weight", type=float, default=4.0)
-    parser.add_argument("--y-activity-epsilon", type=float, default=1e-6)
+    parser.add_argument("--active-weight", "--y-active-weight", dest="active_weight", type=float, default=4.0)
+    parser.add_argument("--active-axis", choices=("x", "y"), default="y")
+    parser.add_argument("--close-weight", type=float, default=1.0)
+    parser.add_argument("--activity-epsilon", "--y-activity-epsilon", dest="activity_epsilon", type=float, default=1e-6)
     parser.add_argument(
         "--progress-miniters",
         type=int,
@@ -135,7 +139,13 @@ def main():
     options, upstream_args = parser.parse_known_args()
     if options.progress_miniters <= 0:
         raise ValueError("--progress-miniters must be positive")
-    settings = YLossSettings(options.y_active_weight, options.y_activity_epsilon)
+    settings = ActionLossSettings(
+        active_weight=options.active_weight,
+        close_weight=options.close_weight,
+        activity_epsilon=options.activity_epsilon,
+        active_channel=0 if options.active_axis == "x" else 1,
+        active_name=options.active_axis,
+    )
 
     # LeRobot's parser introspects concrete annotations; do not enable deferred
     # annotations in this entry point. All custom flags must be stripped first.

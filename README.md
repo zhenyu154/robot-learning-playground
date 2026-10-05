@@ -26,6 +26,7 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Day8 Y-active loss weighting | Same Day7 v2 data; 2,000 XPU updates; five-step replanning | Seen **6/6**; held-out midpoint **5/5**; interior positions **3/6** | Unweighted ACT with five-step replanning remained **0/6** on seen positions. Nonzero interpolation was asymmetric: negative **3/3**, positive **0/3**. |
 | Day9 failure localization | Same Day8 checkpoint; fixed close/lift and optional Y freeze diagnostics | Diagnostic **2/2** with Y freeze + fixed close/lift | Both intermediate positions could be grasped/lifted after external Y stopping correction; this is causal diagnosis, not policy-only success. |
 | Day10 timing-standardized intermediate Y | Four training positions; weighted ACT; 2,000 XPU updates; five-step replanning | Seen **12/12**; held-out `y=±0.075` **6/6** | Standardized close-to-lift timing improved closed-loop stage transitions and enabled local Y interpolation. Single seed, fixed X. |
+| Day11 centered-home X-axis | Fixed Y; active-X + close-frame weighting; 2,000 XPU updates; five-step replanning | Seen **12/12**; held-out X **6/9** | Centered home pose and close weighting enabled reliable seen X control. Held-out interpolation was partial: `x=0.34` 3/3, `x=0.40` 3/3, `x=0.46` 0/3. |
 
 On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day8 improved active-Y offline sign-and-magnitude hits from **70.5% to 91.5%**, but gripper close hits decreased from **66.7% to 44.2%**. The successful rollouts reinforce that an offline action threshold is not a physical grasp-success criterion. Day7 data-quality caveats and the controlled Day8 results are documented in [`notes/day7.md`](notes/day7.md) and [`notes/day8.md`](notes/day8.md).
 Day10 v1 with intermediate positions but inconsistent close-to-lift timing achieved only **3/12** policy-only seen successes. Timing-v2 reduced the close-to-lift gap to approximately 2--8 frames and achieved **12/12** seen and **6/6** held-out policy-only successes. Because timing-v2 also has fewer frames and therefore more effective dataset passes at 2,000 updates, timing consistency is strongly implicated but not isolated as the only causal factor. Full details are in [`notes/day10.md`](notes/day10.md).
@@ -169,6 +170,41 @@ The held-out positions were not used for training. This is local one-dimensional
 interpolation at fixed X, not broad 2D spatial generalization. Full methods and
 caveats are in [`notes/day10.md`](notes/day10.md), with structured evidence in
 [`results/day10_summary.json`](results/day10_summary.json).
+
+## Day11 centered-home X-axis control
+
+Day11 moves the initial TCP to approximately `x=0.402` using the project-local
+home pose `configs/day11_home_x_centered.json`. This makes a symmetric X-axis
+experiment feasible within the safe cube range. The dataset uses:
+
+```text
+x ∈ {0.32, 0.36, 0.44, 0.48}, y=0.00
+```
+
+The active-axis loss adapter now supports both X/Y weighting and an independent
+close-frame weight. The final Day11 checkpoint uses:
+
+```text
+active X weight = 4
+close-frame weight = 4
+minimum TCP Z = 0.008
+evaluation n_action_steps = 5
+```
+
+The close-weighted checkpoint achieved **12/12** policy-only successes on the
+four seen X positions. Held-out interpolation achieved **6/9**:
+
+```text
+x=0.34: 3/3
+x=0.40: 3/3
+x=0.46: 0/3
+```
+
+The `x=0.46` target is physically graspable: a delayed close/lift diagnostic
+succeeded. Its policy-only failure is therefore a stage-timing/interpolation
+issue, not proof that the target is unreachable. Details and limitations are in
+[`notes/day11.md`](notes/day11.md), with structured results in
+[`results/day11_summary.json`](results/day11_summary.json).
 
 ## Project layout
 

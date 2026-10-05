@@ -19,6 +19,7 @@ from lerobot.rl.gym_manipulator import (
     step_env_and_process_transition,
 )
 from lerobot.utils.robot_utils import precise_sleep
+from panda_home_pose import configure_min_tcp_z, configure_panda_home_pose, load_home_pose
 
 
 class ScheduledBlockPositionWrapper(gym.Wrapper):
@@ -194,6 +195,18 @@ def parse_args():
         default=None,
         help="Optional JSON schedule with a positions list for Day6 evaluation.",
     )
+    parser.add_argument(
+        "--home-pose",
+        type=Path,
+        default=None,
+        help="Optional project-local Panda home-pose JSON, applied before reset.",
+    )
+    parser.add_argument(
+        "--min-tcp-z",
+        type=float,
+        default=None,
+        help="Optional project-local lower Cartesian Z bound for diagnostic/Day11 evaluation.",
+    )
 
     parser.add_argument(
         "--gripper-mode",
@@ -258,6 +271,15 @@ def parse_args():
             "1-indexed step onward. This is not policy-only evaluation."
         ),
     )
+    parser.add_argument(
+        "--freeze-x-at-step",
+        type=int,
+        default=None,
+        help=(
+            "Optional diagnostic: set executed delta_x to zero from this "
+            "1-indexed step onward. This is not policy-only evaluation."
+        ),
+    )
 
     return parser.parse_args()
 
@@ -285,6 +307,8 @@ def main():
         raise ValueError("--lift-command must be between 0 and 1")
     if args.freeze_y_at_step is not None and args.freeze_y_at_step <= 0:
         raise ValueError("--freeze-y-at-step must be positive")
+    if args.freeze_x_at_step is not None and args.freeze_x_at_step <= 0:
+        raise ValueError("--freeze-x-at-step must be positive")
 
     checkpoint = Path(args.checkpoint)
 
@@ -340,6 +364,8 @@ def main():
         print("Close duration:", args.close_duration)
     if args.freeze_y_at_step is not None:
         print("Diagnostic Y freeze step:", args.freeze_y_at_step)
+    if args.freeze_x_at_step is not None:
+        print("Diagnostic X freeze step:", args.freeze_x_at_step)
 
     # Same simulator/task used for demonstration collection.
     env_cfg = HILSerlRobotEnvConfig(
@@ -352,6 +378,14 @@ def main():
     )
 
     env, teleop_device = make_robot_env(env_cfg)
+    if args.home_pose is not None:
+        home_position = load_home_pose(args.home_pose)
+        tcp_xyz = configure_panda_home_pose(env, home_position)
+        print("Home pose:", args.home_pose)
+        print("Initial TCP XYZ:", tcp_xyz.round(6).tolist())
+    if args.min_tcp_z is not None:
+        configured_z = configure_min_tcp_z(env, args.min_tcp_z)
+        print("Minimum TCP Z bound:", configured_z)
 
     scheduled_env = None
     if args.position_schedule is not None:
@@ -420,6 +454,7 @@ def main():
             lift_steps_remaining = 0
             diagnostic_lift_started = False
             diagnostic_y_freeze_started = False
+            diagnostic_x_freeze_started = False
             max_gripper_action = float("-inf")
             min_z_action = float("inf")
             max_z_action = float("-inf")
@@ -521,6 +556,19 @@ def main():
                         )
                     action = action.clone()
                     action.reshape(-1)[1] = 0.0
+
+                if (
+                    args.freeze_x_at_step is not None
+                    and step + 1 >= args.freeze_x_at_step
+                ):
+                    if not diagnostic_x_freeze_started:
+                        diagnostic_x_freeze_started = True
+                        print(
+                            f"diagnostic X freeze at step={step + 1} "
+                            "(delta_x forced to 0)"
+                        )
+                    action = action.clone()
+                    action.reshape(-1)[0] = 0.0
 
                 previous_z_action = z_action
 

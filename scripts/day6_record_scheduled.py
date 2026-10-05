@@ -18,6 +18,7 @@ from lerobot.rl.gym_manipulator import (
     make_processors,
     make_robot_env,
 )
+from panda_home_pose import configure_min_tcp_z, configure_panda_home_pose, load_home_pose
 
 
 class ScheduledBlockPositionWrapper(gym.Wrapper):
@@ -87,6 +88,13 @@ def main() -> None:
     parser.add_argument("--schedule", type=Path, required=True)
     parser.add_argument("--repo-id", required=True)
     parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--home-pose", type=Path, default=None)
+    parser.add_argument(
+        "--min-tcp-z",
+        type=float,
+        default=None,
+        help="Optional project-local lower Cartesian Z bound for the Day11 grasp protocol.",
+    )
     parser.add_argument("--task-description", default="pick_cube_scheduled_position")
     parser.add_argument(
         "--xy-step-size",
@@ -119,6 +127,14 @@ def main() -> None:
         processor=HILSerlProcessorConfig(),
     )
     env, teleop_device = make_robot_env(env_cfg)
+    if args.home_pose is not None:
+        home_position = load_home_pose(args.home_pose)
+        tcp_xyz = configure_panda_home_pose(env, home_position)
+        print("Home pose:", args.home_pose)
+        print("Initial TCP XYZ:", tcp_xyz.round(6).tolist())
+    if args.min_tcp_z is not None:
+        configured_z = configure_min_tcp_z(env, args.min_tcp_z)
+        print("Minimum TCP Z bound:", configured_z)
     set_keyboard_input_step_size(env, args.xy_step_size, args.z_step_size)
     env = ScheduledBlockPositionWrapper(env, positions)
     env_processor, action_processor = make_processors(
