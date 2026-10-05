@@ -1,0 +1,71 @@
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:231: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:297: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+============================================================
+Loading ACT policy
+============================================================
+Checkpoint: outputs/act_panda_day12_xy_weighted_xy4_closew4_xpu_v1/checkpoints/002000/pretrained_model
+Loading weights from local directory
+Evaluation-only n_action_steps override: 5
+Inference device: xpu
+Policy: ACTPolicy
+Device: xpu
+Chunk size: 50
+n_action_steps: 5
+Gripper mode: policy
+Diagnostic Y freeze step: 31
+Diagnostic X freeze step: 31
+Diagnostic descend step: 31
+Keyboard controls:
+  Arrow keys: Move in X-Y plane
+  Shift and Shift_R: Move in Z axis
+  O: Open gripper
+  C: Close gripper
+  Enter: End episode with SUCCESS
+  Backspace: End episode with FAILURE
+  Space: Start/Stop Intervention
+  ESC: Exit
+Home pose: configs/day11_home_x_centered.json
+Initial TCP XYZ: [0.401855, -0.0, 0.077737]
+Minimum TCP Z bound: 0.008
+Position schedule: configs/day12_xy_failing_corner_diagnostic.json
+
+Environment observation space:
+Dict('agent_pos': Box(-inf, inf, (18,), float32), 'pixels': Dict('front': Box(0, 255, (128, 128, 3), uint8), 'wrist': Box(0, 255, (128, 128, 3), uint8)))
+
+Environment action space:
+Box([-1. -1. -1.  0.], [1. 1. 1. 2.], (4,), float32)
+
+============================================================
+Episode 1/1
+============================================================
+Scheduled cube position: {'episode_index': 0, 'x': 0.48, 'y': -0.075, 'z': 0.02}
+step=  1 | action=[[ 0.226  0.017 -0.013  0.977]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.075   0.0199], tcp=[4.041e-01 2.000e-04 7.760e-02], gripper_pos=0.0
+step= 10 | action=[[ 0.234 -0.082  0.005  0.941]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.075   0.0199], tcp=[ 0.4563 -0.0015  0.0774], gripper_pos=0.0
+step= 20 | action=[[ 0.007 -0.249 -0.005  0.979]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.075   0.0199], tcp=[ 0.472  -0.0595  0.0791], gripper_pos=0.0
+step= 30 | action=[[ 0.002 -0.003 -0.003  0.969]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.075   0.0199], tcp=[ 0.4722 -0.0704  0.0758], gripper_pos=0.0
+diagnostic descend at step=31 (command=-0.500, fixed-step mode)
+diagnostic Y freeze at step=31 (delta_y forced to 0)
+diagnostic X freeze at step=31 (delta_x forced to 0)
+step= 40 | action=[[ 0.     0.    -0.5    0.913]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.48   -0.075   0.0199], tcp=[ 0.4721 -0.0705  0.008 ], gripper_pos=0.0
+step= 50 | action=[[0.    0.    0.131 1.833]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4825 -0.0719  0.0194], tcp=[ 0.4772 -0.0719  0.0168], gripper_pos=255.0
+diagnostic lift at step=55 (command=0.500, fixed-step mode)
+step= 60 | action=[[0.    0.    0.5   1.005]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4788 -0.0706  0.0796], tcp=[ 0.4735 -0.0706  0.0771], gripper_pos=255.0
+step= 64 | action=[[0.    0.    0.5   0.972]] | reward=1.0 | terminated=True | truncated=False
+  geometry: cube=[ 0.479  -0.0706  0.1296], tcp=[ 0.4736 -0.0706  0.1271], gripper_pos=212.9
+
+Episode finished: success=True, steps=64, reward=1.0, time=6.98s, max_gripper=2.074, z_range=[-0.500, 0.500]
+
+============================================================
+Evaluation summary
+============================================================
+Successes: 1/1
+Success rate: 100.0%

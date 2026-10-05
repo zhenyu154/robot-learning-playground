@@ -83,13 +83,13 @@ def build_recipe(cfg, settings, info, trainer):
     script_dir = Path(__file__).resolve().parent
     root = Path(cfg.dataset.root)
     return {
-        "experiment": f"day{8 if settings.active_name == 'y' else 11}_{settings.active_name}_active_weighted_l1",
+        "experiment": f"active_{settings.active_axis_label}_weighted_l1",
         "active_weight": settings.active_weight,
         "close_weight": settings.close_weight,
         "activity_epsilon_raw_units": settings.activity_epsilon,
-        "active_axis": settings.active_name,
-        "active_channel": settings.active_channel,
-        "mask": f"abs(raw action[..., {settings.active_channel}]) > epsilon; exclude action_is_pad",
+        "active_axes": list(settings.active_axes or ()),
+        "active_channels": list(settings.active_channels),
+        "mask": "abs(raw action[..., active channel(s)]) > epsilon; exclude action_is_pad",
         "l1_reduction": "sum(valid scalar weight * normalized absolute error) / sum(valid scalar weight)",
         "other_scalar_weights": 1.0,
         "kl_weight": cfg.policy.kl_weight,
@@ -126,7 +126,7 @@ def main():
         allow_abbrev=False,
     )
     parser.add_argument("--active-weight", "--y-active-weight", dest="active_weight", type=float, default=4.0)
-    parser.add_argument("--active-axis", choices=("x", "y"), default="y")
+    parser.add_argument("--active-axis", choices=("x", "y", "xy"), default="y")
     parser.add_argument("--close-weight", type=float, default=1.0)
     parser.add_argument("--activity-epsilon", "--y-activity-epsilon", dest="activity_epsilon", type=float, default=1e-6)
     parser.add_argument(
@@ -139,12 +139,14 @@ def main():
     options, upstream_args = parser.parse_known_args()
     if options.progress_miniters <= 0:
         raise ValueError("--progress-miniters must be positive")
+    active_axes = tuple(options.active_axis) if options.active_axis == "xy" else (options.active_axis,)
     settings = ActionLossSettings(
         active_weight=options.active_weight,
         close_weight=options.close_weight,
         activity_epsilon=options.activity_epsilon,
-        active_channel=0 if options.active_axis == "x" else 1,
-        active_name=options.active_axis,
+        active_channel=0 if active_axes[0] == "x" else 1,
+        active_name=active_axes[0],
+        active_axes=active_axes,
     )
 
     # LeRobot's parser introspects concrete annotations; do not enable deferred

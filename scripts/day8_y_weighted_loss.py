@@ -1,6 +1,6 @@
 """Project-local active-axis weighted ACT loss adapter.
 
-The raw activity mask is captured before normalization. The adapter runs the
+The raw activity masks are captured before normalization. The adapter runs the
 upstream forward exactly once and replaces only its L1 contribution, retaining
 the original variational/KL contribution and standard ACT checkpoint type.
 """
@@ -17,20 +17,22 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor
 
-# Kept under the historical name for compatibility with the Day8 tests and
-# existing project-local callers. Its contents are now axis-independent.
 RAW_ACTIVE = "day8.raw_active"
+# Historical alias kept for Day8 tests/callers.
 RAW_Y_ACTIVE = RAW_ACTIVE
 RAW_CLOSE = "day8.raw_close"
 
 
 @dataclass(frozen=True)
 class ActionLossSettings:
+    """Loss settings for one active axis or both X/Y axes."""
+
     active_weight: float = 4.0
     close_weight: float = 1.0
     activity_epsilon: float = 1e-6
     active_channel: int = 1
     active_name: str = "y"
+    active_axes: tuple[str, ...] | None = None
 
     def __post_init__(self) -> None:
         if not math.isfinite(self.active_weight) or self.active_weight < 1:
@@ -39,13 +41,26 @@ class ActionLossSettings:
             raise ValueError("Close weight must be finite and >= 1 (1 is the control).")
         if not math.isfinite(self.activity_epsilon) or self.activity_epsilon <= 0:
             raise ValueError("Activity epsilon must be finite and > 0.")
-        if self.active_channel not in (0, 1, 2, 3):
-            raise ValueError("Active channel must be one of 0 (x), 1 (y), 2 (z), or 3 (gripper).")
-        if self.active_name not in ("x", "y"):
-            raise ValueError("Active axis name must be 'x' or 'y'.")
-        expected_channel = 0 if self.active_name == "x" else 1
-        if self.active_channel != expected_channel:
-            raise ValueError("active_channel and active_name disagree.")
+
+        axes = tuple(self.active_axes) if self.active_axes is not None else (self.active_name,)
+        if not axes or any(axis not in ("x", "y") for axis in axes) or len(set(axes)) != len(axes):
+            raise ValueError("active_axes must be a non-empty tuple containing unique 'x'/'y' values.")
+        object.__setattr__(self, "active_axes", axes)
+
+        if len(axes) == 1:
+            expected_channel = 0 if axes[0] == "x" else 1
+            if self.active_channel != expected_channel:
+                raise ValueError("active_channel and active_name/active_axes disagree.")
+        elif self.active_channel not in (0, 1):
+            raise ValueError("active_channel must be 0 or 1.")
+
+    @property
+    def active_channels(self) -> tuple[int, ...]:
+        return tuple(0 if axis == "x" else 1 for axis in self.active_axes or ())
+
+    @property
+    def active_axis_label(self) -> str:
+        return "+".join(self.active_axes or ())
 
 
 # Backward-compatible name for Day8 code/tests.
@@ -53,16 +68,21 @@ YLossSettings = ActionLossSettings
 
 
 def raw_activity(actions: Tensor, settings: ActionLossSettings) -> Tensor:
-    """Return [batch, time] activity labels from raw, unnormalized actions."""
+    """Return raw active-axis labels.
+
+    For one active axis, the result is ``[batch, time]`` for backward
+    compatibility. For multiple axes, the result is ``[batch, time, axes]``.
+    """
     if actions.ndim != 3 or actions.shape[-1] != 4:
         raise ValueError("Expected ACT action chunks [batch, time, 4] (x, y, z, gripper).")
-    return (actions[..., settings.active_channel].abs() > settings.activity_epsilon).detach().clone()
+    mask = actions[..., list(settings.active_channels)].abs() > settings.activity_epsilon
+    return mask[..., 0] if len(settings.active_channels) == 1 else mask.detach().clone()
 
 
 def raw_y_activity(actions: Tensor, settings: ActionLossSettings) -> Tensor:
-    """Backward-compatible Day8 helper; requires the default Y settings."""
-    if settings.active_channel != 1:
-        raise ValueError("raw_y_activity requires settings.active_channel == 1")
+    """Backward-compatible Day8 helper for a single active Y axis."""
+    if tuple(settings.active_axes or ()) != ("y",):
+        raise ValueError("raw_y_activity requires active_axes=('y',)")
     return raw_activity(actions, settings)
 
 
@@ -81,60 +101,68 @@ def weighted_action_l1(
     settings: ActionLossSettings,
     raw_close: Tensor | None = None,
 ) -> tuple[Tensor, Tensor, dict[str, Tensor]]:
-    """Weighted mean over valid scalar action targets, excluding padding."""
+    """Compute weighted normalized L1 while excluding padded action positions."""
     if predictions.shape != targets.shape or targets.ndim != 3 or targets.shape[-1] != 4:
         raise ValueError("Predictions and targets must have matching [batch, time, 4] shapes.")
-    if is_pad.shape != targets.shape[:2] or raw_active.shape != is_pad.shape:
-        raise ValueError("Padding and activity masks must have shape [batch, time].")
+    if is_pad.shape != targets.shape[:2]:
+        raise ValueError("Padding mask must have shape [batch, time].")
+
+    n_axes = len(settings.active_channels)
+    if n_axes == 1:
+        if raw_active.shape != is_pad.shape:
+            raise ValueError("Single-axis activity mask must have shape [batch, time].")
+        active_masks = raw_active.unsqueeze(-1)
+    else:
+        if raw_active.shape != (*is_pad.shape, n_axes):
+            raise ValueError("Multi-axis activity mask must have shape [batch, time, axes].")
+        active_masks = raw_active
+
     if raw_close is None:
-        # Only for small unit-test calls where targets are still raw actions.
-        # The real training adapter supplies this mask before normalization.
+        # This fallback is useful only for small tests that pass raw targets.
+        # The actual adapter always captures the raw mask before normalization.
         raw_close = targets[..., 3] >= 1.5
     if raw_close.shape != is_pad.shape:
         raise ValueError("Raw close mask must have shape [batch, time].")
-    if is_pad.dtype != torch.bool or raw_active.dtype != torch.bool or raw_close.dtype != torch.bool:
+    if is_pad.dtype != torch.bool or active_masks.dtype != torch.bool or raw_close.dtype != torch.bool:
         raise TypeError("Padding and activity masks must be boolean.")
 
     valid = ~is_pad.to(targets.device)
-    active = raw_active.to(targets.device) & valid
-    neutral = valid & ~active
+    active_masks = active_masks.to(targets.device) & valid.unsqueeze(-1)
+    active_any = active_masks.any(dim=-1)
+    neutral = valid & ~active_any
     close = raw_close.to(targets.device) & valid
     valid_scalars = valid.unsqueeze(-1).expand_as(targets)
     errors = torch.where(valid_scalars, F.l1_loss(predictions, targets, reduction="none"), 0.0)
+
     weights = valid_scalars.to(errors.dtype).clone()
-    channel = settings.active_channel
-    weights[..., channel] = valid.to(errors.dtype) + (settings.active_weight - 1) * active
+    for axis_index, channel in enumerate(settings.active_channels):
+        weights[..., channel] = valid.to(errors.dtype) + (settings.active_weight - 1) * active_masks[..., axis_index]
     weights[..., 3] = valid.to(errors.dtype) + (settings.close_weight - 1) * close
+
     count = valid_scalars.sum()
     baseline = errors.sum() / count.clamp_min(1)
     weighted = (weights * errors).sum() / weights.sum().clamp_min(1)
-    active_errors = errors[..., channel]
-    prefix = settings.active_name
-    metrics = {
-        "unweighted_l1_loss": baseline.detach(),
-        f"{prefix}_active_mae_norm": torch.where(active, active_errors, 0.0).sum().detach()
-        / active.sum().clamp_min(1),
-        f"{prefix}_neutral_mae_norm": torch.where(neutral, active_errors, 0.0).sum().detach()
-        / neutral.sum().clamp_min(1),
-        f"{prefix}_active_target_ratio": active.sum().detach() / valid.sum().clamp_min(1),
-        "close_active_mae_norm": torch.where(close, errors[..., 3], 0.0).sum().detach()
-        / close.sum().clamp_min(1),
-        "close_active_target_ratio": close.sum().detach() / valid.sum().clamp_min(1),
-    }
+    metrics: dict[str, Tensor] = {"unweighted_l1_loss": baseline.detach()}
+    for axis_index, (axis_name, channel) in enumerate(zip(settings.active_axes or (), settings.active_channels, strict=True)):
+        axis_errors = errors[..., channel]
+        axis_active = active_masks[..., axis_index]
+        metrics[f"{axis_name}_active_mae_norm"] = (
+            torch.where(axis_active, axis_errors, 0.0).sum().detach() / axis_active.sum().clamp_min(1)
+        )
+        metrics[f"{axis_name}_neutral_mae_norm"] = (
+            torch.where(neutral, axis_errors, 0.0).sum().detach() / neutral.sum().clamp_min(1)
+        )
+        metrics[f"{axis_name}_active_target_ratio"] = axis_active.sum().detach() / valid.sum().clamp_min(1)
+    metrics["close_active_mae_norm"] = torch.where(close, errors[..., 3], 0.0).sum().detach() / close.sum().clamp_min(1)
+    metrics["close_active_target_ratio"] = close.sum().detach() / valid.sum().clamp_min(1)
     return weighted, baseline, metrics
 
 
-def weighted_y_l1(
-    predictions: Tensor,
-    targets: Tensor,
-    is_pad: Tensor,
-    raw_active: Tensor,
-    settings: ActionLossSettings,
-) -> tuple[Tensor, Tensor, dict[str, Tensor]]:
-    """Backward-compatible Day8 helper for Y-weighted loss."""
-    if settings.active_channel != 1:
-        raise ValueError("weighted_y_l1 requires settings.active_channel == 1")
-    return weighted_action_l1(predictions, targets, is_pad, raw_active, settings)
+def weighted_y_l1(predictions: Tensor, targets: Tensor, is_pad: Tensor, raw_active: Tensor, settings: ActionLossSettings, raw_close: Tensor | None = None):
+    """Backward-compatible Day8 helper for a single active Y axis."""
+    if tuple(settings.active_axes or ()) != ("y",):
+        raise ValueError("weighted_y_l1 requires active_axes=('y',)")
+    return weighted_action_l1(predictions, targets, is_pad, raw_active, settings, raw_close)
 
 
 def attach_weighted_forward(policy: Any, settings: ActionLossSettings) -> None:
@@ -165,17 +193,12 @@ def attach_weighted_forward(policy: Any, settings: ActionLossSettings) -> None:
             handle.remove()
         if len(captured) != 1:
             raise RuntimeError("Expected exactly one upstream ACT model forward.")
-        weighted, baseline, metrics = weighted_action_l1(
-            captured[0], batch["action"], batch["action_is_pad"], batch[RAW_ACTIVE], settings,
-            batch.get(RAW_CLOSE),
-        )
+        weighted, baseline, metrics = weighted_action_l1(captured[0], batch["action"], batch["action_is_pad"], batch[RAW_ACTIVE], settings, batch.get(RAW_CLOSE))
         if not verified:
-            if "l1_loss" not in original_metrics or not math.isclose(
-                original_metrics["l1_loss"], baseline.item(), rel_tol=1e-5, abs_tol=1e-6
-            ):
+            if "l1_loss" not in original_metrics or not math.isclose(original_metrics["l1_loss"], baseline.item(), rel_tol=1e-5, abs_tol=1e-6):
                 raise RuntimeError("Upstream ACT L1 reduction changed; adapter cannot safely replace it.")
             verified = True
-        loss = original_loss if settings.active_weight == 1 else original_loss + (weighted - baseline)
+        loss = original_loss if settings.active_weight == 1 and settings.close_weight == 1 else original_loss + (weighted - baseline)
         result = dict(original_metrics)
         result["l1_loss"] = weighted.item()
         result.update({key: value.item() for key, value in metrics.items()})
@@ -185,25 +208,16 @@ def attach_weighted_forward(policy: Any, settings: ActionLossSettings) -> None:
 
 
 @contextmanager
-def adapt_trainer(
-    trainer: Any,
-    settings: ActionLossSettings,
-    on_policy: Callable[[Any], None] | None = None,
-    on_checkpoint: Callable[[Any], None] | None = None,
-) -> Iterator[None]:
+def adapt_trainer(trainer: Any, settings: ActionLossSettings, on_policy: Callable[[Any], None] | None = None, on_checkpoint: Callable[[Any], None] | None = None) -> Iterator[None]:
     """Temporarily adapt local upstream training entry points."""
     from lerobot.policies.act.modeling_act import ACTPolicy
-
-    original_preprocess = trainer._preprocess_dataset_batch
-    original_factory = trainer.make_policy
-    original_save = trainer.save_checkpoint
+    original_preprocess, original_factory, original_save = trainer._preprocess_dataset_batch, trainer.make_policy, trainer.save_checkpoint
     policies: list[Any] = []
 
     def preprocess(batch: dict[str, Any], camera_keys: list[str], rename_map: dict, preprocessor: Any) -> Any:
         mask = raw_activity(batch["action"], settings)
         close_mask = raw_close_activity(batch["action"])
-        processed = original_preprocess(batch, camera_keys, rename_map, preprocessor)
-        processed = dict(processed)
+        processed = dict(original_preprocess(batch, camera_keys, rename_map, preprocessor))
         processed[RAW_ACTIVE] = mask.to(processed["action"].device)
         processed[RAW_CLOSE] = close_mask.to(processed["action"].device)
         return processed
@@ -212,27 +226,17 @@ def adapt_trainer(
         policy = original_factory(*args, **kwargs)
         if not isinstance(policy, ACTPolicy):
             raise TypeError("The active-axis adapter supports ACTPolicy only.")
-        attach_weighted_forward(policy, settings)
-        policies.append(policy)
-        if on_policy is not None:
-            on_policy(policy)
+        attach_weighted_forward(policy, settings); policies.append(policy)
+        if on_policy is not None: on_policy(policy)
         return policy
 
     def save(*args: Any, **kwargs: Any) -> Any:
         result = original_save(*args, **kwargs)
-        if on_checkpoint is not None:
-            directory = kwargs["checkpoint_dir"] if "checkpoint_dir" in kwargs else args[0]
-            on_checkpoint(directory)
+        if on_checkpoint is not None: on_checkpoint(kwargs["checkpoint_dir"] if "checkpoint_dir" in kwargs else args[0])
         return result
 
-    trainer._preprocess_dataset_batch = preprocess
-    trainer.make_policy = factory
-    trainer.save_checkpoint = save
-    try:
-        yield
+    trainer._preprocess_dataset_batch, trainer.make_policy, trainer.save_checkpoint = preprocess, factory, save
+    try: yield
     finally:
-        trainer._preprocess_dataset_batch = original_preprocess
-        trainer.make_policy = original_factory
-        trainer.save_checkpoint = original_save
-        for policy in policies:
-            del policy.forward
+        trainer._preprocess_dataset_batch, trainer.make_policy, trainer.save_checkpoint = original_preprocess, original_factory, original_save
+        for policy in policies: del policy.forward

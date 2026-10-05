@@ -1,0 +1,57 @@
+{
+  "experiment_date": "2026-10-05",
+  "experiment": "Sequential 2D X/Y compositional control",
+  "checkpoint": "outputs/act_panda_day12_xy_weighted_xy4_closew4_xpu_v1/checkpoints/002000/pretrained_model",
+  "training_positions": [
+    [
+      0.32,
+      -0.075
+    ],
+    [
+      0.32,
+      0.075
+    ],
+    [
+      0.48,
+      -0.075
+    ],
+    [
+      0.48,
+      0.075
+    ]
+  ],
+  "training_episodes": 20,
+  "policy_only_seen": {
+    "episodes": 12,
+    "successes": 9,
+    "by_position": {
+      "0.32,-0.075": "3/3",
+      "0.32,0.075": "3/3",
+      "0.48,-0.075": "0/3",
+      "0.48,0.075": "3/3"
+    }
+  },
+  "offline_audit": {
+    "frames": 2203,
+    "x_sign_accuracy": 0.771,
+    "y_sign_accuracy": 0.8,
+    "x_neutral_false_motion": 0.132,
+    "y_neutral_false_motion": 0.092,
+    "close_hit_rate": 0.964,
+    "hold_false_close_rate": 0.089
+  },
+  "diagnostic": {
+    "position": [
+      0.48,
+      -0.075
+    ],
+    "successes": "1/1",
+    "type": "freeze X/Y, force descent, policy gripper, force lift",
+    "policy_only": false
+  },
+  "limitations": [
+    "Sequential X-then-Y demonstrations, no simultaneous diagonal action labels.",
+    "One seed and fixed home/object/simulator.",
+    "No held-out 2D evaluation because seen corner control was 9/12."
+  ]
+}

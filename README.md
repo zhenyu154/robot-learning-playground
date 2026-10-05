@@ -6,6 +6,8 @@ A hands-on robot-learning project built with **LeRobot, ACT, MuJoCo, and Gym-HIL
 
 > **Day9 diagnosis:** externally freezing Y near the target and supplying close/lift actions produced **2/2 successful diagnostic lifts** at `y=±0.05`. This localizes the positive-side policy-only failure primarily to lateral stopping/calibration, but the intervention is not a policy-only benchmark.
 
+> **Day12:** sequential 2D X/Y training achieved **9/12 policy-only successes** on four seen corner positions. The remaining corner was recovered in a controlled descent/close/lift diagnostic, so the 2D failure is localized to a compositional stage transition rather than basic reachability.
+
 ## Policy demo — fixed-position task
 
 This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint using front and wrist observations. It demonstrates the **fixed-position** task and is not evidence of spatial generalization.
@@ -27,6 +29,7 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Day9 failure localization | Same Day8 checkpoint; fixed close/lift and optional Y freeze diagnostics | Diagnostic **2/2** with Y freeze + fixed close/lift | Both intermediate positions could be grasped/lifted after external Y stopping correction; this is causal diagnosis, not policy-only success. |
 | Day10 timing-standardized intermediate Y | Four training positions; weighted ACT; 2,000 XPU updates; five-step replanning | Seen **12/12**; held-out `y=±0.075` **6/6** | Standardized close-to-lift timing improved closed-loop stage transitions and enabled local Y interpolation. Single seed, fixed X. |
 | Day11 centered-home X-axis | Fixed Y; active-X + close-frame weighting; 2,000 XPU updates; five-step replanning | Seen **12/12**; held-out X **6/9** | Centered home pose and close weighting enabled reliable seen X control. Held-out interpolation was partial: `x=0.34` 3/3, `x=0.40` 3/3, `x=0.46` 0/3. |
+| Day12 sequential 2D X/Y | Four corner positions; active X/Y + close weighting; 2,000 XPU updates; five-step replanning | Seen **9/12** | Three corner combinations succeeded policy-only. The failing `(0.48,-0.075)` corner succeeded with externally forced descent/lift, localizing a 2D stage-transition failure. |
 
 On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day8 improved active-Y offline sign-and-magnitude hits from **70.5% to 91.5%**, but gripper close hits decreased from **66.7% to 44.2%**. The successful rollouts reinforce that an offline action threshold is not a physical grasp-success criterion. Day7 data-quality caveats and the controlled Day8 results are documented in [`notes/day7.md`](notes/day7.md) and [`notes/day8.md`](notes/day8.md).
 Day10 v1 with intermediate positions but inconsistent close-to-lift timing achieved only **3/12** policy-only seen successes. Timing-v2 reduced the close-to-lift gap to approximately 2--8 frames and achieved **12/12** seen and **6/6** held-out policy-only successes. Because timing-v2 also has fewer frames and therefore more effective dataset passes at 2,000 updates, timing consistency is strongly implicated but not isolated as the only causal factor. Full details are in [`notes/day10.md`](notes/day10.md).
@@ -39,6 +42,7 @@ Day10 v1 with intermediate positions but inconsistent close-to-lift timing achie
 - Offline, frame-level action audits for gripper and motion channels.
 - Controlled data/training experiments: training duration, longer gripper-close supervision, and denser XY actions.
 - Project-local, padding-aware Y-active loss weighting with numerical/gradient tests and loss-recipe provenance in standard ACT checkpoints.
+- Project-local active-axis loss weighting for X, Y, or both X/Y channels, plus independent close-frame weighting and numerical tests.
 - Explicit evaluator diagnostics for fixed close, fixed lift, and Y-freeze interventions, kept separate from policy-only metrics.
 - Intel XPU training/inference validation and CPU/XPU inference comparison.
 - Scheduled cube-position recording and separate seen/unseen evaluation schedules.
@@ -206,6 +210,42 @@ issue, not proof that the target is unreachable. Details and limitations are in
 [`notes/day11.md`](notes/day11.md), with structured results in
 [`results/day11_summary.json`](results/day11_summary.json).
 
+## Day12 sequential 2D X/Y compositional control
+
+Day12 combines the validated one-dimensional X and Y skills at four fixed-home
+corner positions:
+
+```text
+(0.32,-0.075), (0.32,+0.075),
+(0.48,-0.075), (0.48,+0.075)
+```
+
+The demonstrations use a consistent sequential order:
+
+```text
+X movement → Y movement → descend → close → lift
+```
+
+No simultaneous X/Y action labels were present, so this is sequential 2D
+compositional control rather than diagonal-action supervision. The active-axis
+loss weights both X and Y errors by 4 and close-frame errors by 4.
+
+Policy-only seen result, three repeats per corner:
+
+```text
+(0.32,-0.075): 3/3
+(0.32,+0.075): 3/3
+(0.48,+0.075): 3/3
+(0.48,-0.075): 0/3
+total: 9/12
+```
+
+The failing `(0.48,-0.075)` corner succeeded in a diagnostic with X/Y frozen,
+forced descent, policy gripper, and forced lift (`1/1`). This is not a new
+policy-only result; it localizes the remaining failure to the combined 2D
+approach-to-descent transition. Details and evidence are in
+[`notes/day12.md`](notes/day12.md) and [`results/day12_summary.json`](results/day12_summary.json).
+
 ## Project layout
 
 ```text
@@ -223,10 +263,11 @@ tests/      CPU correctness tests for the custom weighted ACT training loss
 
 - The Day5 `5/5` result is for a **fixed cube position** in a deterministic simulator; it is not a broad manipulation success-rate claim.
 - Day10 demonstrates local Y interpolation at fixed X, but X, object appearance, home configuration, and simulator remain fixed; this is not broad 2D spatial generalization.
+- Day12 is the first 2D compositional experiment: it reaches `9/12` on seen corner positions, but one corner remains unreliable policy-only. No held-out 2D evaluation is claimed.
 - All reported Day8 training comparisons use one seed. Repeated rollouts at identical positions primarily demonstrate repeatability, not coverage of a wide test distribution.
 - Day10 timing-v2 has fewer frames than Day10 v1, so the same 2,000 updates produce more dataset passes. A matched-pass replication is needed to isolate timing consistency from training exposure.
 - Offline action prediction is diagnostic and does not guarantee closed-loop task success.
-- The next experiment should either isolate X-axis control or extend the carefully controlled 1D setup toward 2D positions. New tuning positions must not continue to be described as untouched held-out tests.
+- The next investigation should focus on the failing 2D corner's descent/stage transition before expanding held-out 2D positions. New tuning positions must not continue to be described as untouched held-out tests.
 
 ## Hardware
 

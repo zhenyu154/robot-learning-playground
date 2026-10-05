@@ -263,6 +263,27 @@ def parse_args():
         help="Normalized positive Z command for --lift-at-step (0 to 1).",
     )
     parser.add_argument(
+        "--descend-at-step",
+        type=int,
+        default=None,
+        help=(
+            "Optional diagnostic: inject a fixed negative Z command at this "
+            "1-indexed step. This is not policy-only evaluation."
+        ),
+    )
+    parser.add_argument(
+        "--descend-duration",
+        type=int,
+        default=10,
+        help="Number of consecutive steps for --descend-at-step.",
+    )
+    parser.add_argument(
+        "--descend-command",
+        type=float,
+        default=0.5,
+        help="Magnitude of normalized negative Z command for --descend-at-step (0 to 1).",
+    )
+    parser.add_argument(
         "--freeze-y-at-step",
         type=int,
         default=None,
@@ -305,6 +326,12 @@ def main():
         raise ValueError("--lift-duration must be positive")
     if not 0.0 <= args.lift_command <= 1.0:
         raise ValueError("--lift-command must be between 0 and 1")
+    if args.descend_at_step is not None and args.descend_at_step <= 0:
+        raise ValueError("--descend-at-step must be positive")
+    if args.descend_at_step is not None and args.descend_duration <= 0:
+        raise ValueError("--descend-duration must be positive")
+    if not 0.0 <= args.descend_command <= 1.0:
+        raise ValueError("--descend-command must be between 0 and 1")
     if args.freeze_y_at_step is not None and args.freeze_y_at_step <= 0:
         raise ValueError("--freeze-y-at-step must be positive")
     if args.freeze_x_at_step is not None and args.freeze_x_at_step <= 0:
@@ -366,6 +393,8 @@ def main():
         print("Diagnostic Y freeze step:", args.freeze_y_at_step)
     if args.freeze_x_at_step is not None:
         print("Diagnostic X freeze step:", args.freeze_x_at_step)
+    if args.descend_at_step is not None:
+        print("Diagnostic descend step:", args.descend_at_step)
 
     # Same simulator/task used for demonstration collection.
     env_cfg = HILSerlRobotEnvConfig(
@@ -453,6 +482,8 @@ def main():
             diagnostic_close_started = False
             lift_steps_remaining = 0
             diagnostic_lift_started = False
+            descend_steps_remaining = 0
+            diagnostic_descend_started = False
             diagnostic_y_freeze_started = False
             diagnostic_x_freeze_started = False
             max_gripper_action = float("-inf")
@@ -543,6 +574,23 @@ def main():
                     action = action.clone()
                     action.reshape(-1)[2] = args.lift_command
                     lift_steps_remaining -= 1
+
+                if (
+                    args.descend_at_step is not None
+                    and step + 1 == args.descend_at_step
+                    and not diagnostic_descend_started
+                ):
+                    descend_steps_remaining = args.descend_duration
+                    diagnostic_descend_started = True
+                    print(
+                        f"diagnostic descend at step={step + 1} "
+                        f"(command={-args.descend_command:.3f}, fixed-step mode)"
+                    )
+
+                if descend_steps_remaining > 0:
+                    action = action.clone()
+                    action.reshape(-1)[2] = -args.descend_command
+                    descend_steps_remaining -= 1
 
                 if (
                     args.freeze_y_at_step is not None

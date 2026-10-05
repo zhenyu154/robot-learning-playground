@@ -69,6 +69,47 @@ def set_keyboard_input_step_size(env: gym.Env, xy_step_size: float, z_step_size:
         current = getattr(current, "env", None)
     raise RuntimeError("Could not find the Gym-HIL keyboard controller wrapper")
 
+
+class ViewerContactMarkersWrapper(gym.Wrapper):
+    """Reapply contact-marker visibility after every passive-viewer sync."""
+
+    def __init__(self, env: gym.Env, show: bool):
+        super().__init__(env)
+        self.show = show
+        self._apply()
+
+    def _find_viewer(self):
+        current = self.env
+        while current is not None:
+            viewer = getattr(current, "_viewer", None)
+            if viewer is not None and hasattr(viewer, "opt"):
+                return viewer
+            current = getattr(current, "env", None)
+        raise RuntimeError("Could not find the passive viewer handle")
+
+    def _apply(self) -> None:
+        viewer = self._find_viewer()
+        enabled = 1 if self.show else 0
+        # launch_passive owns a separate viewer thread. MuJoCo documents that
+        # option changes happen under viewer.lock(), followed by viewer.sync().
+        with viewer.lock():
+            viewer.opt.flags[mujoco.mjtVisFlag.mjVIS_CONTACTPOINT] = enabled
+            viewer.opt.flags[mujoco.mjtVisFlag.mjVIS_CONTACTFORCE] = enabled
+            viewer.opt.flags[mujoco.mjtVisFlag.mjVIS_CONTACTSPLIT] = enabled
+        viewer.sync()
+
+    def reset(self, **kwargs):
+        result = self.env.reset(**kwargs)
+        self._apply()
+        return result
+
+    def step(self, action):
+        result = self.env.step(action)
+        # PassiveViewerWrapper.sync() runs inside the wrapped step. Reapply
+        # afterward so GUI state cannot restore the yellow overlays.
+        self._apply()
+        return result
+
 def load_schedule(path: Path) -> tuple[str, list[dict[str, float]]]:
     data = json.loads(path.read_text())
     split = str(data["split"])
@@ -89,6 +130,11 @@ def main() -> None:
     parser.add_argument("--repo-id", required=True)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--home-pose", type=Path, default=None)
+    parser.add_argument(
+        "--show-contact-markers",
+        action="store_true",
+        help="Show MuJoCo contact-point/contact-force overlays in the human viewer.",
+    )
     parser.add_argument(
         "--min-tcp-z",
         type=float,
@@ -135,6 +181,7 @@ def main() -> None:
     if args.min_tcp_z is not None:
         configured_z = configure_min_tcp_z(env, args.min_tcp_z)
         print("Minimum TCP Z bound:", configured_z)
+    env = ViewerContactMarkersWrapper(env, args.show_contact_markers)
     set_keyboard_input_step_size(env, args.xy_step_size, args.z_step_size)
     env = ScheduledBlockPositionWrapper(env, positions)
     env_processor, action_processor = make_processors(
