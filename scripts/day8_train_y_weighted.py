@@ -126,7 +126,7 @@ def main():
         allow_abbrev=False,
     )
     parser.add_argument("--active-weight", "--y-active-weight", dest="active_weight", type=float, default=4.0)
-    parser.add_argument("--active-axis", choices=("x", "y", "xy"), default="y")
+    parser.add_argument("--active-axis", choices=("x", "y", "z", "xy", "xyz"), default="y")
     parser.add_argument("--close-weight", type=float, default=1.0)
     parser.add_argument("--activity-epsilon", "--y-activity-epsilon", dest="activity_epsilon", type=float, default=1e-6)
     parser.add_argument(
@@ -139,12 +139,12 @@ def main():
     options, upstream_args = parser.parse_known_args()
     if options.progress_miniters <= 0:
         raise ValueError("--progress-miniters must be positive")
-    active_axes = tuple(options.active_axis) if options.active_axis == "xy" else (options.active_axis,)
+    active_axes = tuple(options.active_axis) if len(options.active_axis) > 1 else (options.active_axis,)
     settings = ActionLossSettings(
         active_weight=options.active_weight,
         close_weight=options.close_weight,
         activity_epsilon=options.activity_epsilon,
-        active_channel=0 if active_axes[0] == "x" else 1,
+        active_channel={"x": 0, "y": 1, "z": 2}[active_axes[0]],
         active_name=active_axes[0],
         active_axes=active_axes,
     )

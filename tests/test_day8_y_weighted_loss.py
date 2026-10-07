@@ -115,6 +115,35 @@ class LossTests(unittest.TestCase):
         self.assertEqual(metrics["y_active_target_ratio"].item(), 0.5)
         self.assertEqual(metrics["close_active_target_ratio"].item(), 0.5)
 
+    def test_active_z_activity_and_weighting(self):
+        raw = torch.tensor(
+            [[[0.0, 0.0, -0.25, 1.0], [0.0, 0.0, 0.0, 2.0]]],
+            dtype=torch.float32,
+        )
+        settings = ActionLossSettings(
+            active_weight=4,
+            close_weight=4,
+            active_channel=2,
+            active_name="z",
+            active_axes=("z",),
+        )
+        active = raw_activity(raw, settings)
+        close = raw_close_activity(raw)
+        self.assertEqual(active.tolist(), [[True, False]])
+        self.assertEqual(close.tolist(), [[False, True]])
+        prediction = torch.ones_like(raw, requires_grad=True)
+        loss, _, metrics = weighted_action_l1(
+            prediction,
+            raw,
+            torch.zeros(1, 2, dtype=torch.bool),
+            active,
+            settings,
+            close,
+        )
+        self.assertTrue(torch.isfinite(loss))
+        self.assertEqual(metrics["z_active_target_ratio"].item(), 0.5)
+        self.assertEqual(metrics["close_active_target_ratio"].item(), 0.5)
+
     def test_active_x_and_close_weights_use_raw_masks(self):
         raw = torch.zeros(1, 2, 4)
         raw[0, 0, 0] = 0.25

@@ -25,7 +25,7 @@ RAW_CLOSE = "day8.raw_close"
 
 @dataclass(frozen=True)
 class ActionLossSettings:
-    """Loss settings for one active axis or both X/Y axes."""
+    """Loss settings for one or more active Cartesian axes."""
 
     active_weight: float = 4.0
     close_weight: float = 1.0
@@ -43,20 +43,20 @@ class ActionLossSettings:
             raise ValueError("Activity epsilon must be finite and > 0.")
 
         axes = tuple(self.active_axes) if self.active_axes is not None else (self.active_name,)
-        if not axes or any(axis not in ("x", "y") for axis in axes) or len(set(axes)) != len(axes):
-            raise ValueError("active_axes must be a non-empty tuple containing unique 'x'/'y' values.")
+        if not axes or any(axis not in ("x", "y", "z") for axis in axes) or len(set(axes)) != len(axes):
+            raise ValueError("active_axes must be a non-empty tuple containing unique 'x', 'y', and/or 'z' values.")
         object.__setattr__(self, "active_axes", axes)
 
         if len(axes) == 1:
-            expected_channel = 0 if axes[0] == "x" else 1
+            expected_channel = {"x": 0, "y": 1, "z": 2}[axes[0]]
             if self.active_channel != expected_channel:
                 raise ValueError("active_channel and active_name/active_axes disagree.")
-        elif self.active_channel not in (0, 1):
-            raise ValueError("active_channel must be 0 or 1.")
+        elif self.active_channel not in (0, 1, 2):
+            raise ValueError("active_channel must be 0, 1, or 2.")
 
     @property
     def active_channels(self) -> tuple[int, ...]:
-        return tuple(0 if axis == "x" else 1 for axis in self.active_axes or ())
+        return tuple({"x": 0, "y": 1, "z": 2}[axis] for axis in self.active_axes or ())
 
     @property
     def active_axis_label(self) -> str:
