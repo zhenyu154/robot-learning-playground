@@ -25,6 +25,7 @@ from scripts.day8_y_weighted_loss import (
     raw_y_activity,
     raw_activity,
     raw_close_activity,
+    raw_positive_z_activity,
     weighted_action_l1,
     weighted_y_l1,
 )
@@ -143,6 +144,71 @@ class LossTests(unittest.TestCase):
         self.assertTrue(torch.isfinite(loss))
         self.assertEqual(metrics["z_active_target_ratio"].item(), 0.5)
         self.assertEqual(metrics["close_active_target_ratio"].item(), 0.5)
+
+    def test_axis_specific_weights_override_shared_weight(self):
+        raw = torch.tensor(
+            [[[0.25, 0.0, 0.0, 1.0], [0.0, 0.0, -0.25, 2.0]]],
+            dtype=torch.float32,
+        )
+        settings = ActionLossSettings(
+            active_weight=2,
+            close_weight=4,
+            active_channel=0,
+            active_name="x",
+            active_axes=("x", "y", "z"),
+            x_weight=2,
+            y_weight=2,
+            z_weight=3,
+        )
+        self.assertEqual(settings.active_weights, (2, 2, 3))
+        active = raw_activity(raw, settings)
+        close = raw_close_activity(raw)
+        prediction = torch.ones_like(raw, requires_grad=True)
+        loss, _, _ = weighted_action_l1(
+            prediction, raw, torch.zeros(1, 2, dtype=torch.bool), active, settings, close
+        )
+        gradient = torch.autograd.grad(loss, prediction)[0]
+        # The active Z scalar has 3x the neutral scalar gradient.
+        self.assertAlmostEqual((gradient[0, 1, 2] / gradient[0, 0, 2]).item(), 3)
+        # Active X has the explicitly overridden 2x weight.
+        self.assertAlmostEqual((gradient[0, 0, 0] / gradient[0, 1, 0]).item(), 2)
+
+    def test_invalid_axis_specific_weight(self):
+        with self.assertRaises(ValueError):
+            ActionLossSettings(x_weight=0.5)
+
+    def test_positive_z_lift_weight_overrides_ordinary_z_weight(self):
+        raw = torch.tensor(
+            [[[0.0, 0.0, -0.25, 1.0], [0.0, 0.0, 0.25, 1.0], [0.0, 0.0, 0.0, 1.0]]],
+            dtype=torch.float32,
+        )
+        settings = ActionLossSettings(
+            active_weight=2,
+            close_weight=4,
+            active_channel=2,
+            active_name="z",
+            active_axes=("z",),
+            z_weight=2,
+            positive_z_weight=4,
+        )
+        active = raw_activity(raw, settings)
+        close = raw_close_activity(raw)
+        positive_z = raw_positive_z_activity(raw)
+        self.assertEqual(positive_z.tolist(), [[False, True, False]])
+        prediction = torch.ones_like(raw, requires_grad=True)
+        loss, _, metrics = weighted_action_l1(
+            prediction,
+            raw,
+            torch.zeros(1, 3, dtype=torch.bool),
+            active,
+            settings,
+            close,
+            positive_z,
+        )
+        gradient = torch.autograd.grad(loss, prediction)[0]
+        self.assertAlmostEqual((gradient[0, 0, 2] / gradient[0, 2, 2]).item(), 2)
+        self.assertAlmostEqual((gradient[0, 1, 2] / gradient[0, 2, 2]).item(), 4)
+        self.assertAlmostEqual(metrics["positive_z_active_target_ratio"].item(), 1 / 3)
 
     def test_active_x_and_close_weights_use_raw_masks(self):
         raw = torch.zeros(1, 2, 4)

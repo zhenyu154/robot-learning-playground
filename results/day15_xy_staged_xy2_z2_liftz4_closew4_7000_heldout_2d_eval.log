@@ -1,0 +1,389 @@
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:231: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/lib/python3.12/site-packages/gymnasium/spaces/box.py:297: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+============================================================
+Loading ACT policy
+============================================================
+Checkpoint: outputs/act_panda_day15_xy_staged_xy2_z2_liftz4_closew4_xpu_7000/checkpoints/007000/pretrained_model
+Loading weights from local directory
+Evaluation-only n_action_steps override: 5
+Inference device: xpu
+Policy: ACTPolicy
+Device: xpu
+Chunk size: 50
+n_action_steps: 5
+Gripper mode: policy
+Keyboard controls:
+  Arrow keys: Move in X-Y plane
+  Shift and Shift_R: Move in Z axis
+  O: Open gripper
+  C: Close gripper
+  Enter: End episode with SUCCESS
+  Backspace: End episode with FAILURE
+  Space: Start/Stop Intervention
+  ESC: Exit
+Home pose: configs/day11_home_x_centered.json
+Initial TCP XYZ: [0.401855, -0.0, 0.077737]
+Minimum TCP Z bound: 0.008
+Position schedule: configs/day12_xy_heldout_positions.json
+
+Environment observation space:
+Dict('agent_pos': Box(-inf, inf, (18,), float32), 'pixels': Dict('front': Box(0, 255, (128, 128, 3), uint8), 'wrist': Box(0, 255, (128, 128, 3), uint8)))
+
+Environment action space:
+Box([-1. -1. -1.  0.], [1. 1. 1. 2.], (4,), float32)
+
+============================================================
+Episode 1/12
+============================================================
+Scheduled cube position: {'episode_index': 0, 'x': 0.36, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 1.100e-02  1.000e-03 -2.300e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.4019 0.     0.0775], gripper_pos=0.3
+step= 10 | action=[[-0.201  0.003  0.012  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3945 0.0007 0.0755], gripper_pos=0.3
+step= 20 | action=[[-0.169  0.011 -0.007  0.982]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3305 0.0023 0.0735], gripper_pos=0.0
+step= 30 | action=[[-0.004 -0.268 -0.007  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3227 -0.0449  0.0757], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.003  0.039  0.996]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3226 -0.0653  0.0758], gripper_pos=0.0
+step= 50 | action=[[0.    0.001 0.033 0.999]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.0611  0.0819], gripper_pos=0.0
+step= 60 | action=[[ 1.000e-03 -0.000e+00  1.600e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3223 -0.0558  0.087 ], gripper_pos=4.1
+step= 70 | action=[[ 1.000e-03 -1.200e-02  1.100e-02  1.006e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.0531  0.09  ], gripper_pos=12.1
+step= 80 | action=[[ 0.002 -0.009  0.005  1.009]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3229 -0.0513  0.0914], gripper_pos=24.1
+step= 90 | action=[[ 1.000e-03 -6.000e-03  3.000e-03  1.006e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3233 -0.0486  0.094 ], gripper_pos=34.4
+step=100 | action=[[-0.     0.004  0.     1.008]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3233 -0.0415  0.0951], gripper_pos=46.8
+
+Episode finished: success=False, steps=100, reward=0.0, time=10.72s, max_gripper=1.018, z_range=[-0.052, 0.041]
+
+============================================================
+Episode 2/12
+============================================================
+Scheduled cube position: {'episode_index': 1, 'x': 0.36, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.007 -0.    -0.007  1.002]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[ 0.4019 -0.      0.0777], gripper_pos=0.5
+step= 10 | action=[[-0.102  0.002 -0.012  0.995]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[4.00e-01 3.00e-04 7.52e-02], gripper_pos=0.0
+step= 20 | action=[[-0.274  0.003 -0.002  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3513 0.001  0.0746], gripper_pos=0.0
+step= 30 | action=[[ 0.     0.027 -0.014  1.007]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3206 0.0065 0.0728], gripper_pos=4.5
+step= 40 | action=[[-1.000e-03  2.900e-02  1.300e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3195 0.0495 0.0763], gripper_pos=0.6
+step= 50 | action=[[-1.000e-03 -3.000e-03  5.000e-03  1.003e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3191 0.0534 0.0766], gripper_pos=3.2
+step= 60 | action=[[-1.000e-03 -5.000e-03 -2.000e-03  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3186 0.0502 0.0747], gripper_pos=5.3
+step= 70 | action=[[-1.000e-03 -7.000e-03  2.000e-03  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3182 0.0467 0.0751], gripper_pos=7.4
+step= 80 | action=[[-1.000e-03 -1.100e-02 -3.000e-03  1.006e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3181 0.0419 0.0705], gripper_pos=9.1
+step= 90 | action=[[ 1.000e-03 -1.500e-02  6.000e-03  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3183 0.035  0.0632], gripper_pos=12.7
+step=100 | action=[[1.000e-03 5.000e-03 1.000e-02 1.002e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3181 0.0362 0.0564], gripper_pos=11.8
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.010, z_range=[-0.101, 0.027]
+
+============================================================
+Episode 3/12
+============================================================
+Scheduled cube position: {'episode_index': 2, 'x': 0.44, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.016 -0.002 -0.002  0.98 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.402  -0.      0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.16  -0.029 -0.003  0.971]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4249 -0.002   0.0781], gripper_pos=0.0
+step= 20 | action=[[ 0.023 -0.224 -0.011  0.986]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4471 -0.034   0.0787], gripper_pos=0.0
+step= 30 | action=[[-0.     0.008  0.028  1.003]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4475 -0.0679  0.0764], gripper_pos=2.0
+step= 40 | action=[[-0.     0.006  0.018  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4471 -0.0572  0.0769], gripper_pos=3.7
+step= 50 | action=[[-0.    -0.     0.008  1.006]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4468 -0.0517  0.075 ], gripper_pos=9.5
+step= 60 | action=[[-0.000e+00  1.000e-03  1.400e-02  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4467 -0.0485  0.0695], gripper_pos=12.2
+step= 70 | action=[[-0.     0.002 -0.018  1.004]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4464 -0.0478  0.0566], gripper_pos=15.6
+step= 80 | action=[[ 0.     0.001 -0.509  1.   ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4467 -0.0474  0.008 ], gripper_pos=16.5
+step= 90 | action=[[0.000e+00 1.000e-03 5.140e-01 1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4396 -0.0472  0.0584], tcp=[ 0.4488 -0.0473  0.056 ], gripper_pos=250.1
+step= 95 | action=[[0.001 0.001 0.506 0.994]] | reward=1.0 | terminated=True | truncated=False
+  geometry: cube=[ 0.4399 -0.047   0.1221], tcp=[ 0.449  -0.047   0.1198], gripper_pos=242.7
+
+Episode finished: success=True, steps=95, reward=1.0, time=9.44s, max_gripper=1.920, z_range=[-0.509, 0.518]
+
+============================================================
+Episode 4/12
+============================================================
+Scheduled cube position: {'episode_index': 3, 'x': 0.44, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[-0.015  0.     0.     0.988]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4016 0.     0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.192  0.011 -0.002  0.993]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4153 0.0007 0.0782], gripper_pos=0.0
+step= 20 | action=[[-0.002  0.003 -0.     1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4658 0.0017 0.0782], gripper_pos=0.1
+step= 30 | action=[[-0.002  0.002  0.001  0.992]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4633 0.0025 0.0802], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.005  0.006  0.995]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4602 0.0034 0.0839], gripper_pos=0.0
+step= 50 | action=[[-0.004  0.01   0.008  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.456  0.0045 0.0887], gripper_pos=1.7
+step= 60 | action=[[-0.002  0.105 -0.009  1.015]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4517 0.0142 0.0928], gripper_pos=19.4
+step= 70 | action=[[-1.000e-03  6.000e-03 -7.000e-03  1.003e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4511 0.0641 0.0905], gripper_pos=15.8
+step= 80 | action=[[-1.000e-03 -2.000e-03  3.000e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.451  0.0652 0.0949], gripper_pos=16.3
+step= 90 | action=[[-1.000e-03 -2.000e-03  3.000e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4507 0.0638 0.1023], gripper_pos=15.4
+step=100 | action=[[-0.    -0.002  0.024  1.003]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4505 0.063  0.1075], gripper_pos=20.0
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.019, z_range=[-0.045, 0.041]
+
+============================================================
+Episode 5/12
+============================================================
+Scheduled cube position: {'episode_index': 4, 'x': 0.36, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 1.100e-02  1.000e-03 -2.300e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.4019 0.     0.0775], gripper_pos=0.3
+step= 10 | action=[[-0.201  0.003  0.012  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3945 0.0007 0.0755], gripper_pos=0.3
+step= 20 | action=[[-0.169  0.011 -0.007  0.982]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3305 0.0023 0.0735], gripper_pos=0.0
+step= 30 | action=[[-0.004 -0.268 -0.007  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3227 -0.0449  0.0757], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.003  0.039  0.996]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3226 -0.0653  0.0758], gripper_pos=0.0
+step= 50 | action=[[0.    0.    0.037 1.   ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.0612  0.0825], gripper_pos=0.0
+step= 60 | action=[[1.000e-03 3.000e-03 1.800e-02 1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.0559  0.0883], gripper_pos=4.0
+step= 70 | action=[[ 2.000e-03 -9.000e-03 -1.000e-03  1.009e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3226 -0.051   0.0904], gripper_pos=15.2
+step= 80 | action=[[ 0.    -0.01   0.003  1.012]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3229 -0.0479  0.0922], gripper_pos=28.2
+step= 90 | action=[[ 0.    -0.004 -0.004  1.009]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3229 -0.0435  0.0928], gripper_pos=43.3
+step=100 | action=[[-0.002 -0.    -0.011  1.009]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3225 -0.0323  0.0914], gripper_pos=50.3
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.013, z_range=[-0.051, 0.045]
+
+============================================================
+Episode 6/12
+============================================================
+Scheduled cube position: {'episode_index': 5, 'x': 0.36, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.007 -0.    -0.007  1.002]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[ 0.4019 -0.      0.0777], gripper_pos=0.5
+step= 10 | action=[[-0.102  0.002 -0.012  0.995]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[4.00e-01 3.00e-04 7.52e-02], gripper_pos=0.0
+step= 20 | action=[[-0.274  0.003 -0.002  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3513 0.001  0.0746], gripper_pos=0.0
+step= 30 | action=[[ 1.000e-03  2.500e-02 -1.100e-02  1.008e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3199 0.0074 0.0727], gripper_pos=4.7
+step= 40 | action=[[-0.001  0.031  0.015  0.999]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.319  0.0405 0.0777], gripper_pos=0.0
+step= 50 | action=[[ 0.000e+00 -1.000e-03 -3.000e-03  1.007e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3188 0.0449 0.0724], gripper_pos=8.7
+step= 60 | action=[[ 0.    -0.021 -0.006  1.007]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3187 0.0394 0.0652], gripper_pos=13.0
+step= 70 | action=[[ 0.002 -0.009  0.028  1.003]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3188 0.0332 0.0587], gripper_pos=10.9
+step= 80 | action=[[1.000e-03 6.000e-03 5.000e-03 1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3184 0.0366 0.0508], gripper_pos=8.3
+step= 90 | action=[[ 0.    -0.011 -0.     1.005]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3183 0.0333 0.0449], gripper_pos=7.3
+step=100 | action=[[-1.000e-03  4.000e-03  5.000e-03  1.001e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3177 0.0285 0.0362], gripper_pos=2.5
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.010, z_range=[-0.104, 0.031]
+
+============================================================
+Episode 7/12
+============================================================
+Scheduled cube position: {'episode_index': 6, 'x': 0.44, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.016 -0.002 -0.002  0.98 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.402  -0.      0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.16  -0.029 -0.003  0.971]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4249 -0.002   0.0781], gripper_pos=0.0
+step= 20 | action=[[ 0.023 -0.224 -0.011  0.986]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4471 -0.034   0.0787], gripper_pos=0.0
+step= 30 | action=[[-0.     0.008  0.025  1.003]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4474 -0.0682  0.0758], gripper_pos=2.1
+step= 40 | action=[[-1.000e-03  7.000e-03  2.100e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.447  -0.0589  0.0769], gripper_pos=4.1
+step= 50 | action=[[-0.     0.002  0.007  1.005]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4468 -0.0521  0.0766], gripper_pos=8.0
+step= 60 | action=[[-0.000e+00 -1.000e-03  1.200e-02  1.006e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4466 -0.0499  0.0709], gripper_pos=10.0
+step= 70 | action=[[-0.000e+00  1.000e-03  1.000e-02  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4466 -0.0494  0.0652], gripper_pos=15.1
+step= 80 | action=[[-0.     0.    -0.547  1.005]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4451 -0.0487  0.0103], gripper_pos=9.9
+step= 90 | action=[[0.003 0.002 0.334 0.985]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.4389 -0.0484  0.0224], tcp=[ 0.4499 -0.0484  0.0186], gripper_pos=251.3
+step=100 | action=[[0.001 0.001 0.508 0.997]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[ 0.438  -0.0486  0.107 ], tcp=[ 0.4489 -0.0486  0.1031], gripper_pos=246.8
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.94s, max_gripper=2.041, z_range=[-0.547, 0.514]
+
+============================================================
+Episode 8/12
+============================================================
+Scheduled cube position: {'episode_index': 7, 'x': 0.44, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[-0.015  0.     0.     0.988]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4016 0.     0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.192  0.011 -0.002  0.993]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4153 0.0007 0.0782], gripper_pos=0.0
+step= 20 | action=[[-0.002  0.003 -0.     1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4658 0.0017 0.0782], gripper_pos=0.1
+step= 30 | action=[[-0.002  0.002  0.001  0.992]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4633 0.0025 0.0803], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.005  0.001  0.997]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4599 0.0034 0.083 ], gripper_pos=0.0
+step= 50 | action=[[-0.003  0.006  0.007  0.998]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4568 0.0044 0.0867], gripper_pos=0.0
+step= 60 | action=[[-0.003  0.175  0.006  1.008]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4529 0.0122 0.0918], gripper_pos=10.7
+step= 70 | action=[[-1.000e-03  3.000e-03 -0.000e+00  1.003e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4522 0.0609 0.0922], gripper_pos=10.4
+step= 80 | action=[[-1.000e-03 -2.000e-03  2.300e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.452  0.0613 0.0957], gripper_pos=10.8
+step= 90 | action=[[-1.000e-03 -1.000e-03  1.600e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4518 0.0598 0.0983], gripper_pos=12.8
+step=100 | action=[[-1.000e-03 -2.000e-03  1.400e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4516 0.0585 0.1005], gripper_pos=17.2
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.015, z_range=[-0.023, 0.041]
+
+============================================================
+Episode 9/12
+============================================================
+Scheduled cube position: {'episode_index': 8, 'x': 0.36, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 1.100e-02  1.000e-03 -2.300e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.4019 0.     0.0775], gripper_pos=0.3
+step= 10 | action=[[-0.201  0.003  0.012  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3945 0.0007 0.0755], gripper_pos=0.3
+step= 20 | action=[[-0.169  0.011 -0.007  0.982]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[0.3305 0.0023 0.0735], gripper_pos=0.0
+step= 30 | action=[[-0.004 -0.268 -0.007  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3227 -0.0449  0.0757], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.003  0.039  0.996]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3226 -0.0653  0.0758], gripper_pos=0.0
+step= 50 | action=[[0.    0.001 0.031 0.999]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.0607  0.0821], gripper_pos=0.0
+step= 60 | action=[[ 0.000e+00 -1.000e-03  1.300e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3223 -0.0574  0.0863], gripper_pos=2.1
+step= 70 | action=[[ 1.000e-03 -8.000e-03  6.000e-03  1.007e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3224 -0.052   0.0894], gripper_pos=10.3
+step= 80 | action=[[ 1.000e-03 -3.000e-03 -4.000e-03  1.007e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3228 -0.049   0.09  ], gripper_pos=18.8
+step= 90 | action=[[ 0.    -0.009 -0.008  1.012]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3229 -0.0445  0.0905], gripper_pos=32.8
+step=100 | action=[[-1.000e-03 -6.000e-03 -9.000e-03  1.009e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[ 0.36   -0.0375  0.0199], tcp=[ 0.3226 -0.0344  0.0896], gripper_pos=41.4
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.019, z_range=[-0.052, 0.042]
+
+============================================================
+Episode 10/12
+============================================================
+Scheduled cube position: {'episode_index': 9, 'x': 0.36, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.007 -0.    -0.007  1.002]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[ 0.4019 -0.      0.0777], gripper_pos=0.5
+step= 10 | action=[[-0.102  0.002 -0.012  0.995]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[4.00e-01 3.00e-04 7.52e-02], gripper_pos=0.0
+step= 20 | action=[[-0.274  0.003 -0.002  0.99 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3513 0.001  0.0746], gripper_pos=0.0
+step= 30 | action=[[ 1.000e-03  2.500e-02 -1.100e-02  1.008e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3199 0.0074 0.0727], gripper_pos=4.7
+step= 40 | action=[[-0.001  0.031  0.015  0.999]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.319  0.0405 0.0777], gripper_pos=0.0
+step= 50 | action=[[ 0.000e+00 -1.000e-03 -3.000e-03  1.007e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3188 0.0449 0.0724], gripper_pos=8.7
+step= 60 | action=[[-0.    -0.015 -0.005  1.007]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3186 0.0401 0.0647], gripper_pos=13.6
+step= 70 | action=[[ 0.002 -0.008  0.038  1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3186 0.0337 0.0591], gripper_pos=11.0
+step= 80 | action=[[ 1.000e-03 -4.000e-03  7.000e-03  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3184 0.0333 0.0541], gripper_pos=8.1
+step= 90 | action=[[-0.000e+00 -1.000e-03  6.000e-03  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.3177 0.0328 0.0457], gripper_pos=4.8
+step=100 | action=[[-1.000e-03 -3.000e-03 -2.000e-03  1.003e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.36   0.0375 0.0199], tcp=[0.317  0.0271 0.0359], gripper_pos=0.9
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.008, z_range=[-0.102, 0.038]
+
+============================================================
+Episode 11/12
+============================================================
+Scheduled cube position: {'episode_index': 10, 'x': 0.44, 'y': -0.0375, 'z': 0.02}
+step=  1 | action=[[ 0.016 -0.002 -0.002  0.98 ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.402  -0.      0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.16  -0.029 -0.003  0.971]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4249 -0.002   0.0781], gripper_pos=0.0
+step= 20 | action=[[ 0.023 -0.224 -0.011  0.986]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4471 -0.034   0.0787], gripper_pos=0.0
+step= 30 | action=[[-0.     0.009  0.025  1.003]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4474 -0.0684  0.076 ], gripper_pos=2.2
+step= 40 | action=[[-1.000e-03  7.000e-03  2.300e-02  1.003e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.447  -0.0622  0.0764], gripper_pos=6.5
+step= 50 | action=[[-0.     0.006  0.026  1.   ]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4467 -0.0537  0.0773], gripper_pos=7.5
+step= 60 | action=[[-1.000e-03  1.000e-03  1.200e-02  1.006e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4465 -0.0497  0.0762], gripper_pos=15.3
+step= 70 | action=[[-1.000e-03  2.000e-03  0.000e+00  1.007e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4461 -0.0447  0.0706], gripper_pos=21.4
+step= 80 | action=[[ 1.000e-03 -1.000e-03 -5.410e-01  1.005e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.0375  0.0199], tcp=[ 0.4447 -0.0433  0.0103], gripper_pos=16.6
+step= 90 | action=[[ 0.002 -0.    -0.056  1.517]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[ 0.44   -0.043   0.0203], tcp=[ 0.4518 -0.043   0.0162], gripper_pos=255.0
+step=100 | action=[[4.000e-03 1.000e-03 1.100e-01 1.114e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[ 0.44   -0.043   0.0203], tcp=[ 0.4518 -0.043   0.0163], gripper_pos=255.0
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.94s, max_gripper=2.059, z_range=[-0.541, 0.110]
+
+============================================================
+Episode 12/12
+============================================================
+Scheduled cube position: {'episode_index': 11, 'x': 0.44, 'y': 0.0375, 'z': 0.02}
+step=  1 | action=[[-0.015  0.     0.     0.988]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4016 0.     0.0777], gripper_pos=0.0
+step= 10 | action=[[ 0.192  0.011 -0.002  0.993]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4153 0.0007 0.0782], gripper_pos=0.0
+step= 20 | action=[[-0.002  0.003 -0.     1.001]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4658 0.0017 0.0782], gripper_pos=0.1
+step= 30 | action=[[-0.001  0.002  0.     0.992]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4634 0.0025 0.0802], gripper_pos=0.0
+step= 40 | action=[[-0.001  0.006  0.001  0.998]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.46   0.0034 0.0833], gripper_pos=0.0
+step= 50 | action=[[-0.005  0.007  0.014  0.997]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4557 0.0045 0.088 ], gripper_pos=0.0
+step= 60 | action=[[-0.003  0.034 -0.004  1.009]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4506 0.0069 0.0929], gripper_pos=6.8
+step= 70 | action=[[-0.003  0.276  0.012  0.989]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4488 0.0451 0.096 ], gripper_pos=0.0
+step= 80 | action=[[-1.000e-03 -2.000e-03  1.500e-02  1.001e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4486 0.0616 0.0939], gripper_pos=4.2
+step= 90 | action=[[-1.000e-03 -1.000e-03  1.200e-02  1.002e+00]] | reward=0.0 | terminated=False | truncated=False
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4484 0.0607 0.096 ], gripper_pos=7.7
+step=100 | action=[[-0.000e+00 -1.000e-03  1.600e-02  1.003e+00]] | reward=0.0 | terminated=False | truncated=True
+  geometry: cube=[0.44   0.0375 0.0199], tcp=[0.4483 0.0599 0.0991], gripper_pos=11.8
+
+Episode finished: success=False, steps=100, reward=0.0, time=9.93s, max_gripper=1.017, z_range=[-0.042, 0.040]
+
+============================================================
+Evaluation summary
+============================================================
+Successes: 1/12
+Success rate: 8.3%

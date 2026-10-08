@@ -12,6 +12,7 @@ CLOSE_WEIGHT="${CLOSE_WEIGHT:-4}"
 STEPS="${STEPS:-2000}"
 LOG_FREQ="${LOG_FREQ:-100}"
 PROGRESS_MINITERS="${PROGRESS_MINITERS:-50}"
+SAVE_FREQ="${SAVE_FREQ:-$STEPS}"
 SAVE_LOG="${SAVE_LOG:-0}"
 OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/outputs/act_panda_day12_xy_weighted_w${ACTIVE_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_v1}"
 JOB_NAME="${JOB_NAME:-act_panda_day12_xy_weighted_w${ACTIVE_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_v1}"
@@ -31,6 +32,6 @@ TRAIN_CMD=(python "$SCRIPT_DIR/day8_train_y_weighted.py" \
   --dataset.repo_id="$DATASET_REPO_ID" --dataset.root="$DATASET_ROOT" --dataset.video_backend=pyav \
   --policy.type=act --policy.device=xpu --policy.push_to_hub=false \
   --policy.chunk_size=50 --policy.n_action_steps=10 --batch_size=8 --num_workers=0 \
-  --steps="$STEPS" --seed=1000 --log_freq="$LOG_FREQ" --save_freq=200 \
+  --steps="$STEPS" --seed=1000 --log_freq="$LOG_FREQ" --save_freq="$SAVE_FREQ" \
   --env_eval_freq=0 --wandb.enable=false --output_dir="$OUTPUT_DIR" --job_name="$JOB_NAME")
 if [[ "$SAVE_LOG" == "1" ]]; then "${TRAIN_CMD[@]}" 2>&1 | tee "${OUTPUT_DIR}.log"; else "${TRAIN_CMD[@]}"; fi

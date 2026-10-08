@@ -85,6 +85,11 @@ def build_recipe(cfg, settings, info, trainer):
     return {
         "experiment": f"active_{settings.active_axis_label}_weighted_l1",
         "active_weight": settings.active_weight,
+        "active_axis_weights": {
+            axis: weight
+            for axis, weight in zip(settings.active_axes or (), settings.active_weights, strict=True)
+        },
+        "positive_z_weight": settings.positive_z_weight,
         "close_weight": settings.close_weight,
         "activity_epsilon_raw_units": settings.activity_epsilon,
         "active_axes": list(settings.active_axes or ()),
@@ -128,6 +133,13 @@ def main():
     parser.add_argument("--active-weight", "--y-active-weight", dest="active_weight", type=float, default=4.0)
     parser.add_argument("--active-axis", choices=("x", "y", "z", "xy", "xyz"), default="y")
     parser.add_argument("--close-weight", type=float, default=1.0)
+    parser.add_argument("--x-weight", type=float, default=None, help="Optional active-X weight override.")
+    parser.add_argument("--y-weight", type=float, default=None, help="Optional active-Y weight override.")
+    parser.add_argument("--z-weight", type=float, default=None, help="Optional active-Z weight override.")
+    parser.add_argument(
+        "--positive-z-weight", "--lift-z-weight", dest="positive_z_weight", type=float, default=None,
+        help="Optional weight override for positive-Z lift actions.",
+    )
     parser.add_argument("--activity-epsilon", "--y-activity-epsilon", dest="activity_epsilon", type=float, default=1e-6)
     parser.add_argument(
         "--progress-miniters",
@@ -147,6 +159,10 @@ def main():
         active_channel={"x": 0, "y": 1, "z": 2}[active_axes[0]],
         active_name=active_axes[0],
         active_axes=active_axes,
+        x_weight=options.x_weight,
+        y_weight=options.y_weight,
+        z_weight=options.z_weight,
+        positive_z_weight=options.positive_z_weight,
     )
 
     # LeRobot's parser introspects concrete annotations; do not enable deferred

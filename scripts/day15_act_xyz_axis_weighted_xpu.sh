@@ -2,22 +2,25 @@
 
 set -euo pipefail
 
-# Day13: fixed-home 2D X/Y pick-and-lift with active X/Y/Z and close weighting.
-# This is a controlled ablation of the Day12 4,000-step model: only the
-# action-loss weighting changes by adding active-Z weighting.
+# Day15: axis-specific 2D staged ablation.
+# Keep lateral X/Y weighting at 2 while testing a stronger active-Z weight.
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
-DATASET_REPO_ID="${DATASET_REPO_ID:-wusanggg/panda_pick_cube_day12_xy_v2}"
-DATASET_ROOT="${DATASET_ROOT:-${HOME}/robotics/data/panda_pick_cube_day12_xy_v2}"
-ACTIVE_WEIGHT="${ACTIVE_WEIGHT:-4}"
+DATASET_REPO_ID="${DATASET_REPO_ID:-wusanggg/panda_pick_cube_day14_xy_staged_v1}"
+DATASET_ROOT="${DATASET_ROOT:-${HOME}/robotics/data/panda_pick_cube_day14_xy_staged_v1}"
+ACTIVE_WEIGHT="${ACTIVE_WEIGHT:-2}"
+X_WEIGHT="${X_WEIGHT:-2}"
+Y_WEIGHT="${Y_WEIGHT:-2}"
+Z_WEIGHT="${Z_WEIGHT:-2}"
+POSITIVE_Z_WEIGHT="${POSITIVE_Z_WEIGHT:-4}"
 CLOSE_WEIGHT="${CLOSE_WEIGHT:-4}"
-STEPS="${STEPS:-4000}"
+STEPS="${STEPS:-7000}"
 LOG_FREQ="${LOG_FREQ:-100}"
 PROGRESS_MINITERS="${PROGRESS_MINITERS:-50}"
 SAVE_FREQ="${SAVE_FREQ:-$STEPS}"
 SAVE_LOG="${SAVE_LOG:-0}"
-OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/outputs/act_panda_day13_xy_z_weighted_xy4_z${ACTIVE_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_4000}"
-JOB_NAME="${JOB_NAME:-act_panda_day13_xy_z_weighted_xy4_z${ACTIVE_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_4000}"
+OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/outputs/act_panda_day15_xy_staged_xy2_z${Z_WEIGHT}_liftz${POSITIVE_Z_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_7000}"
+JOB_NAME="${JOB_NAME:-act_panda_day15_xy_staged_xy2_z${Z_WEIGHT}_liftz${POSITIVE_Z_WEIGHT}_closew${CLOSE_WEIGHT}_xpu_7000}"
 
 if [[ "$SAVE_LOG" != "0" && "$SAVE_LOG" != "1" ]]; then
   echo "SAVE_LOG must be 0 or 1" >&2
@@ -42,6 +45,10 @@ mkdir -p -- "$(dirname -- "$OUTPUT_DIR")"
 TRAIN_CMD=(python "$SCRIPT_DIR/day8_train_y_weighted.py" \
   --active-axis=xyz \
   --active-weight="$ACTIVE_WEIGHT" \
+  --x-weight="$X_WEIGHT" \
+  --y-weight="$Y_WEIGHT" \
+  --z-weight="$Z_WEIGHT" \
+  --positive-z-weight="$POSITIVE_Z_WEIGHT" \
   --close-weight="$CLOSE_WEIGHT" \
   --progress-miniters="$PROGRESS_MINITERS" \
   --dataset.repo_id="$DATASET_REPO_ID" \
