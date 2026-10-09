@@ -1,0 +1,25 @@
+Dataset root: /home/wusanggg/robotics/data/panda_pick_cube_day16_xy_intermediate_smoke
+Split: smoke
+FPS: 10
+Episodes: 8
+Frames: 777
+Position counts: {(0.32, -0.075): 1, (0.32, 0.075): 1, (0.36, -0.075): 1, (0.36, 0.075): 1, (0.44, -0.075): 1, (0.44, 0.075): 1, (0.48, -0.075): 1, (0.48, 0.075): 1}
+Reward-positive frames: 8
+Done frames: 8
+Front videos: 1
+Wrist videos: 1
+Phase indices below are zero-based recorded frame indices.
+
+ep=00 pos=(0.320,-0.075) frames=116 x_active=14 x_sign=100% y_active=13 y_sign=100% hover= 7 descend_at= 79 close_before_lift= 9 close_hold= 9 lift_at=108 lift= 8 lift_run= 8 xy_during_lift= 0 reward=1.0 done=1
+ep=01 pos=(0.320,+0.075) frames= 92 x_active=14 x_sign=100% y_active=11 y_sign=100% hover= 9 descend_at= 51 close_before_lift= 9 close_hold= 9 lift_at= 82 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=02 pos=(0.360,-0.075) frames=109 x_active= 7 x_sign=100% y_active=12 y_sign=100% hover= 7 descend_at= 54 close_before_lift= 8 close_hold= 8 lift_at= 99 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=03 pos=(0.360,+0.075) frames= 82 x_active= 7 x_sign=100% y_active=11 y_sign=100% hover= 7 descend_at= 47 close_before_lift= 8 close_hold= 8 lift_at= 72 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=04 pos=(0.440,-0.075) frames= 94 x_active= 6 x_sign=100% y_active=12 y_sign=100% hover= 8 descend_at= 56 close_before_lift= 7 close_hold= 7 lift_at= 84 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=05 pos=(0.440,+0.075) frames= 87 x_active= 7 x_sign=100% y_active=10 y_sign=100% hover= 8 descend_at= 46 close_before_lift= 8 close_hold= 8 lift_at= 77 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=06 pos=(0.480,-0.075) frames=100 x_active=13 x_sign=100% y_active=11 y_sign=100% hover=16 descend_at= 55 close_before_lift= 7 close_hold= 7 lift_at= 90 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=07 pos=(0.480,+0.075) frames= 97 x_active=14 x_sign=100% y_active=12 y_sign=100% hover= 8 descend_at= 54 close_before_lift= 9 close_hold= 9 lift_at= 87 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+
+Failed demonstrations: []
+Manual video check required: visible arm, completed XY approach, stable grasp, and actual cube lift.
+
+QA: PASS (action labels/metadata; manual video check still required)

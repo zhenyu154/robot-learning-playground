@@ -1,0 +1,54 @@
+{
+  "split": "reserved_test",
+  "description": "Fresh 2D configurations reserved before Day16 collection. Evaluate only after freezing the candidate; do not use for tuning.",
+  "positions": [
+    {
+      "x": 0.34,
+      "y": -0.05
+    },
+    {
+      "x": 0.34,
+      "y": 0.05
+    },
+    {
+      "x": 0.46,
+      "y": -0.05
+    },
+    {
+      "x": 0.46,
+      "y": 0.05
+    },
+    {
+      "x": 0.34,
+      "y": -0.05
+    },
+    {
+      "x": 0.34,
+      "y": 0.05
+    },
+    {
+      "x": 0.46,
+      "y": -0.05
+    },
+    {
+      "x": 0.46,
+      "y": 0.05
+    },
+    {
+      "x": 0.34,
+      "y": -0.05
+    },
+    {
+      "x": 0.34,
+      "y": 0.05
+    },
+    {
+      "x": 0.46,
+      "y": -0.05
+    },
+    {
+      "x": 0.46,
+      "y": 0.05
+    }
+  ]
+}
