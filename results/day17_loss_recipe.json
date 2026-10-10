@@ -1,0 +1,55 @@
+{
+  "experiment": "active_x+y+z_weighted_l1",
+  "active_weight": 2.0,
+  "active_axis_weights": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 2.0
+  },
+  "positive_z_weight": 4.0,
+  "close_weight": 4.0,
+  "activity_epsilon_raw_units": 1e-06,
+  "active_axes": [
+    "x",
+    "y",
+    "z"
+  ],
+  "active_channels": [
+    0,
+    1,
+    2
+  ],
+  "mask": "abs(raw action[..., active channel(s)]) > epsilon; exclude action_is_pad",
+  "l1_reduction": "sum(valid scalar weight * normalized absolute error) / sum(valid scalar weight)",
+  "other_scalar_weights": 1.0,
+  "kl_weight": 10.0,
+  "inference": "standard ACTPolicy; no action multiplier or intervention",
+  "resume_supported": false,
+  "dataset": {
+    "repo_id": "wusanggg/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+    "root": "/home/wusanggg/robotics/data/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+    "frames": 5635,
+    "episodes": 60,
+    "fps": 10,
+    "info_sha256": "4fb5f4100d264c48b8637f9e6474b7cdb8c1d6d8a33708b4356cd7c6fdf168b2",
+    "stats_sha256": "3d0ab82a51edc7e081b5e221396cbcf8975218edceb44c90b5f8d07df50a49c1"
+  },
+  "training": {
+    "steps": 10500,
+    "batch_size": 8,
+    "seed": 1000,
+    "chunk_size": 50,
+    "n_action_steps": 10
+  },
+  "source": {
+    "torch_version": "2.10.0+xpu",
+    "project_git_head": "413341ffb02562250b03c6f52846c78c6a8155c9",
+    "lerobot_git_head": "d4d94b8e9ceefae20235a9bb5a1f61fab207ddaa",
+    "upstream_act_forward_sha256": "651b631d86f650e77de94d9263e49e7f6dc61a594479b1e2692e55b84f552d4d",
+    "upstream_preprocess_sha256": "80275cd245dc5dc8f2a7bc9cd845b5577523b00e41309a8edbb89b8e75575449",
+    "project_file_sha256": {
+      "day8_y_weighted_loss.py": "e65dea998130e3aad642e44652de9e3c659751b72bb7a4a761aa24e54c3a7728",
+      "day8_train_y_weighted.py": "96cd11c955ea69bc3921206acb1119983731ebab6b2653298cd27c1c12c008f2"
+    }
+  }
+}

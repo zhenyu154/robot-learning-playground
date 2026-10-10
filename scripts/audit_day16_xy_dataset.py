@@ -157,8 +157,13 @@ def position_key(position: dict) -> tuple[float, float]:
     return (round(float(position['x']), 6), round(float(position['y']), 6))
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(
+    argv: list[str] | None = None,
+    *,
+    expected_counts: dict[tuple[float, float], int] | None = None,
+    description: str = __doc__,
+) -> int:
+    parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--dataset-root', type=Path, required=True)
     parser.add_argument('--episodes-per-position', type=int, default=5)
     parser.add_argument('--min-active-frames', type=int, default=4)
@@ -192,11 +197,16 @@ def main(argv: list[str] | None = None) -> int:
     if any(p.get('episode_index') != i for i, p in enumerate(history)):
         errors.append('position history episode indices are not sequential')
     counts = Counter(positions)
-    if set(counts) != set(EXPECTED_POSITIONS):
-        errors.append(f'expected eight positions {EXPECTED_POSITIONS}, found {sorted(counts)}')
-    for pos in EXPECTED_POSITIONS:
-        if counts[pos] != args.episodes_per_position:
-            errors.append(f'{pos} has {counts[pos]} scheduled episodes; expected {args.episodes_per_position}')
+    required = expected_counts if expected_counts is not None else {
+        pos: args.episodes_per_position for pos in EXPECTED_POSITIONS
+    }
+    if not required or any(count <= 0 for count in required.values()):
+        raise ValueError('expected position counts must be positive')
+    if set(counts) != set(required):
+        errors.append(f'expected positions {sorted(required)}, found {sorted(counts)}')
+    for pos, count in required.items():
+        if counts[pos] != count:
+            errors.append(f'{pos} has {counts[pos]} scheduled episodes; expected {count}')
     if info.get('fps') != 10:
         errors.append('expected 10 FPS')
     feature = info.get('features', {}).get('action', {})

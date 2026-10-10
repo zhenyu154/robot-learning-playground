@@ -82,8 +82,8 @@ By endpoint corner:
 ```text
 (0.32,-0.075): 3/3
 (0.32,+0.075): 3/3
-(0.48,-0.075): 2/3
-(0.48,+0.075): 1/3
+(0.48,-0.075): 1/3
+(0.48,+0.075): 2/3
 ```
 
 Successful rollouts reached approximately `z_range max=+0.52`. Failures usually

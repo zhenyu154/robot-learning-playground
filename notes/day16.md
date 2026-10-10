@@ -1,7 +1,7 @@
 # Day16: Intermediate-X Coverage with Fixed Lift-Specific Weighting
 
 **Experiment date:** October 8, 2026
-**Status:** Setup prepared; smoke collection and training results pending.
+**Status:** Complete: collection QA, training, seen evaluation, and longer-horizon diagnostics recorded.
 
 ## Question and controls
 
@@ -61,8 +61,8 @@ not a broad generalization guarantee.
 ## Baseline correction
 
 The actual Day15 liftZ4 seen log reports endpoint counts 3/3, 3/3, 1/3, 2/3
-in ascending X/Y order (total 9/12). The previous Day15 note reversed the two
-far-X counts; the log is the source of truth. The previous held-out result was
+in ascending X/Y order (total 9/12). The original Day15 note reversed the two
+far-X counts; that note has been corrected, and the log remains the source of truth. The previous held-out result was
 1/12. An apparent 8/12 -> 9/12 gain is one extra success, not evidence of a
 statistically established optimum.
 

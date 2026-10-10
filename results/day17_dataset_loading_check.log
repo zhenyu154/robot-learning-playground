@@ -1,0 +1,14 @@
+LeRobot frame count: 5635
+Read frame 0 episode 0 frame 0 action [0.0, 0.0, 0.0, 1.0]
+front (3, 128, 128) range 0.0 1.0
+wrist (3, 128, 128) range 0.0 0.9372549057006836
+Read frame 3764 episode 39 frame 90 action [0.0, 0.0, 0.5, 1.0]
+front (3, 128, 128) range 0.0 1.0
+wrist (3, 128, 128) range 0.0 0.9254902005195618
+Read frame 3765 episode 40 frame 0 action [0.0, 0.0, 0.0, 1.0]
+front (3, 128, 128) range 0.019607843831181526 1.0
+wrist (3, 128, 128) range 0.0 0.9333333373069763
+Read frame 5634 episode 59 frame 90 action [0.0, 0.0, 0.5, 1.0]
+front (3, 128, 128) range 0.003921568859368563 1.0
+wrist (3, 128, 128) range 0.0 0.9490196108818054
+LeRobot source-boundary loading check: PASS

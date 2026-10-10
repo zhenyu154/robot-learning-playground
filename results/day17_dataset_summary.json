@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-09",
+  "status": "dataset_verified_training_and_evaluation_completed",
+  "repo_id": "wusanggg/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+  "dataset_root": "/home/wusanggg/robotics/data/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+  "episodes": 60,
+  "frames": 5635,
+  "fps": 10,
+  "position_counts": [
+    {
+      "x": 0.32,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.32,
+      "y": 0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.36,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.48,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.48,
+      "y": 0.075,
+      "episodes": 10
+    }
+  ],
+  "source_selection": [
+    {
+      "label": "day14",
+      "root": "/home/wusanggg/robotics/data/panda_pick_cube_day14_xy_staged_v1",
+      "selected_episode_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "label": "day16",
+      "root": "/home/wusanggg/robotics/data/panda_pick_cube_day16_xy_intermediate_v1",
+      "selected_episode_indices": [
+        2,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12,
+        13,
+        16,
+        19,
+        20,
+        22,
+        27,
+        28,
+        29,
+        31,
+        32,
+        33,
+        37,
+        38
+      ]
+    }
+  ],
+  "verification": {
+    "exact_label_state_timestamp_preservation": true,
+    "normalization_stats_match_merged_rows": true,
+    "videos": {
+      "sampled_frames": 360,
+      "max_rgb_mae_0_to_255": 1.9965616464614868,
+      "mean_rgb_mae_0_to_255": 0.38304002574748464,
+      "endpoint_samples_exact": true,
+      "intermediate_reencode_mae_limit": 8,
+      "contact_sheet": "verification/source_vs_merged.png",
+      "scope": "first/middle/last frames of all 60 episodes, both cameras; not exhaustive video equality"
+    },
+    "source_files_unchanged": true
+  },
+  "lerobot_boundary_loading": "PASS: frames 0, 3764, 3765, 5634; both cameras decoded",
+  "tests_passed": 50,
+  "evaluation_schedules": {
+    "seen": "configs/day16_xy_intermediate_seen_eval_positions.json",
+    "development": "configs/day16_xy_development_positions.json",
+    "reserved_test": "configs/day16_xy_reserved_test_positions.json"
+  },
+  "limitations": [
+    "Endpoint-preservation hypothesis is unproven.",
+    "Day16 intermediate subset is re-encoded by the upstream selection tool.",
+    "First/middle/last frames are checked for all episodes, not every decoded pixel.",
+    "Image normalization stats are aggregated upstream per-source/per-episode stats, not recomputed over the re-encoded pixels."
+  ],
+  "manual_video_review_passed": true,
+  "training": {
+    "steps": 10500,
+    "batch_size": 8,
+    "seed": 1000,
+    "approximate_dataset_passes": 14.906832298136646,
+    "x_weight": 2,
+    "y_weight": 2,
+    "z_weight": 2,
+    "positive_z_weight": 4,
+    "close_weight": 4,
+    "save_freq": 10500,
+    "start_from_scratch": true
+  },
+  "experiment_summary": "results/day17_summary.json"
+}
