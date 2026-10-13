@@ -1,0 +1,149 @@
+{
+  "status": "reserved_test_completed_after_candidate_freeze",
+  "date": "2026-10-12",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "candidate_manifest": "results/day18_frozen_candidate.json",
+  "candidate_manifest_sha256": "85ccd3111b4c8289c8855fd3c73286dff0859279b2e4c32b0a6946cdbbdc9497",
+  "checkpoint_files_match_frozen_hashes": true,
+  "reserved_schedule_matches_frozen_hash": true,
+  "candidate_specification_modified_after_test": false,
+  "schedule": "configs/day16_xy_reserved_test_positions.json",
+  "log": "results/day18_reserved_test_n10_150step_eval.log",
+  "policy_only": true,
+  "n_action_steps": 10,
+  "max_steps": 150,
+  "successes": 12,
+  "episodes": 12,
+  "success_rate": 1.0,
+  "successes_by_step_100": 12,
+  "successes_after_step_100": 0,
+  "minimum_success_steps": 76,
+  "maximum_success_steps": 87,
+  "by_position": [
+    {
+      "x": 0.34,
+      "y": -0.05,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.34,
+      "y": 0.05,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.46,
+      "y": -0.05,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.46,
+      "y": 0.05,
+      "successes": 3,
+      "episodes": 3
+    }
+  ],
+  "episode_results": [
+    {
+      "episode": 1,
+      "x": 0.34,
+      "y": -0.05,
+      "success": true,
+      "steps": 86
+    },
+    {
+      "episode": 2,
+      "x": 0.34,
+      "y": 0.05,
+      "success": true,
+      "steps": 76
+    },
+    {
+      "episode": 3,
+      "x": 0.46,
+      "y": -0.05,
+      "success": true,
+      "steps": 77
+    },
+    {
+      "episode": 4,
+      "x": 0.46,
+      "y": 0.05,
+      "success": true,
+      "steps": 76
+    },
+    {
+      "episode": 5,
+      "x": 0.34,
+      "y": -0.05,
+      "success": true,
+      "steps": 87
+    },
+    {
+      "episode": 6,
+      "x": 0.34,
+      "y": 0.05,
+      "success": true,
+      "steps": 76
+    },
+    {
+      "episode": 7,
+      "x": 0.46,
+      "y": -0.05,
+      "success": true,
+      "steps": 77
+    },
+    {
+      "episode": 8,
+      "x": 0.46,
+      "y": 0.05,
+      "success": true,
+      "steps": 78
+    },
+    {
+      "episode": 9,
+      "x": 0.34,
+      "y": -0.05,
+      "success": true,
+      "steps": 85
+    },
+    {
+      "episode": 10,
+      "x": 0.34,
+      "y": 0.05,
+      "success": true,
+      "steps": 76
+    },
+    {
+      "episode": 11,
+      "x": 0.46,
+      "y": -0.05,
+      "success": true,
+      "steps": 77
+    },
+    {
+      "episode": 12,
+      "x": 0.46,
+      "y": 0.05,
+      "success": true,
+      "steps": 78
+    }
+  ],
+  "claim": "Evidence of local 2D positional interpolation at four predeclared configurations with frozen checkpoint/inference, one trained seed, fixed simulator/cameras/object/home pose.",
+  "known_seen_position_failure": {
+    "position": {
+      "x": 0.36,
+      "y": -0.0375
+    },
+    "result": "0/3 in added-position n10 evaluation; not solved by this result"
+  },
+  "limitations": [
+    "Three repeats per position; not a statistical guarantee of universal 100% success.",
+    "No appearance, lighting, camera, home-pose, dynamics, or real-robot transfer tested.",
+    "Prefix length can narrow alignment margins and does not solve every training position.",
+    "Results are from a 150-step run with all successes occurring by step 100, not a separately rerun 100-step benchmark."
+  ],
+  "future_split_discipline": "Reserved schedule is now evaluated, not untouched. Preserve this historical final test; if results inform a future candidate, use separate new reserved positions for that candidate."
+}

@@ -1,0 +1,490 @@
+{
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+  "n5": {
+    "log": "results/day18_original_seen_150step_eval.log",
+    "max_steps": 150,
+    "n_action_steps": 5,
+    "policy_only": true,
+    "successes": 20,
+    "episodes": 24,
+    "successes_by_step_100": 19,
+    "successes_after_step_100": 1,
+    "by_position": [
+      {
+        "x": 0.32,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.32,
+        "y": 0.075,
+        "successes": 1,
+        "episodes": 3
+      },
+      {
+        "x": 0.36,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.36,
+        "y": 0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.44,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.44,
+        "y": 0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.48,
+        "y": -0.075,
+        "successes": 2,
+        "episodes": 3
+      },
+      {
+        "x": 0.48,
+        "y": 0.075,
+        "successes": 2,
+        "episodes": 3
+      }
+    ],
+    "episode_results": [
+      {
+        "episode": 1,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 2,
+        "x": 0.32,
+        "y": 0.075,
+        "success": false,
+        "steps": 150
+      },
+      {
+        "episode": 3,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 71
+      },
+      {
+        "episode": 4,
+        "x": 0.36,
+        "y": 0.075,
+        "success": true,
+        "steps": 79
+      },
+      {
+        "episode": 5,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 69
+      },
+      {
+        "episode": 6,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 66
+      },
+      {
+        "episode": 7,
+        "x": 0.48,
+        "y": -0.075,
+        "success": true,
+        "steps": 78
+      },
+      {
+        "episode": 8,
+        "x": 0.48,
+        "y": 0.075,
+        "success": true,
+        "steps": 72
+      },
+      {
+        "episode": 9,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 74
+      },
+      {
+        "episode": 10,
+        "x": 0.32,
+        "y": 0.075,
+        "success": true,
+        "steps": 80
+      },
+      {
+        "episode": 11,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 67
+      },
+      {
+        "episode": 12,
+        "x": 0.36,
+        "y": 0.075,
+        "success": true,
+        "steps": 78
+      },
+      {
+        "episode": 13,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 65
+      },
+      {
+        "episode": 14,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 66
+      },
+      {
+        "episode": 15,
+        "x": 0.48,
+        "y": -0.075,
+        "success": false,
+        "steps": 150
+      },
+      {
+        "episode": 16,
+        "x": 0.48,
+        "y": 0.075,
+        "success": false,
+        "steps": 150
+      },
+      {
+        "episode": 17,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 18,
+        "x": 0.32,
+        "y": 0.075,
+        "success": false,
+        "steps": 150
+      },
+      {
+        "episode": 19,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 71
+      },
+      {
+        "episode": 20,
+        "x": 0.36,
+        "y": 0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 21,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 64
+      },
+      {
+        "episode": 22,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 63
+      },
+      {
+        "episode": 23,
+        "x": 0.48,
+        "y": -0.075,
+        "success": true,
+        "steps": 144
+      },
+      {
+        "episode": 24,
+        "x": 0.48,
+        "y": 0.075,
+        "success": true,
+        "steps": 82
+      }
+    ]
+  },
+  "n10": {
+    "log": "results/day18_original_seen_n10_150step_eval.log",
+    "max_steps": 150,
+    "n_action_steps": 10,
+    "policy_only": true,
+    "successes": 23,
+    "episodes": 24,
+    "successes_by_step_100": 23,
+    "successes_after_step_100": 0,
+    "by_position": [
+      {
+        "x": 0.32,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.32,
+        "y": 0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.36,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.36,
+        "y": 0.075,
+        "successes": 2,
+        "episodes": 3
+      },
+      {
+        "x": 0.44,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.44,
+        "y": 0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.48,
+        "y": -0.075,
+        "successes": 3,
+        "episodes": 3
+      },
+      {
+        "x": 0.48,
+        "y": 0.075,
+        "successes": 3,
+        "episodes": 3
+      }
+    ],
+    "episode_results": [
+      {
+        "episode": 1,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 2,
+        "x": 0.32,
+        "y": 0.075,
+        "success": true,
+        "steps": 71
+      },
+      {
+        "episode": 3,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 100
+      },
+      {
+        "episode": 4,
+        "x": 0.36,
+        "y": 0.075,
+        "success": true,
+        "steps": 85
+      },
+      {
+        "episode": 5,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 83
+      },
+      {
+        "episode": 6,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 87
+      },
+      {
+        "episode": 7,
+        "x": 0.48,
+        "y": -0.075,
+        "success": true,
+        "steps": 77
+      },
+      {
+        "episode": 8,
+        "x": 0.48,
+        "y": 0.075,
+        "success": true,
+        "steps": 78
+      },
+      {
+        "episode": 9,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 10,
+        "x": 0.32,
+        "y": 0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 11,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 99
+      },
+      {
+        "episode": 12,
+        "x": 0.36,
+        "y": 0.075,
+        "success": true,
+        "steps": 85
+      },
+      {
+        "episode": 13,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 82
+      },
+      {
+        "episode": 14,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 87
+      },
+      {
+        "episode": 15,
+        "x": 0.48,
+        "y": -0.075,
+        "success": true,
+        "steps": 86
+      },
+      {
+        "episode": 16,
+        "x": 0.48,
+        "y": 0.075,
+        "success": true,
+        "steps": 78
+      },
+      {
+        "episode": 17,
+        "x": 0.32,
+        "y": -0.075,
+        "success": true,
+        "steps": 76
+      },
+      {
+        "episode": 18,
+        "x": 0.32,
+        "y": 0.075,
+        "success": true,
+        "steps": 73
+      },
+      {
+        "episode": 19,
+        "x": 0.36,
+        "y": -0.075,
+        "success": true,
+        "steps": 98
+      },
+      {
+        "episode": 20,
+        "x": 0.36,
+        "y": 0.075,
+        "success": false,
+        "steps": 150
+      },
+      {
+        "episode": 21,
+        "x": 0.44,
+        "y": -0.075,
+        "success": true,
+        "steps": 83
+      },
+      {
+        "episode": 22,
+        "x": 0.44,
+        "y": 0.075,
+        "success": true,
+        "steps": 86
+      },
+      {
+        "episode": 23,
+        "x": 0.48,
+        "y": -0.075,
+        "success": true,
+        "steps": 86
+      },
+      {
+        "episode": 24,
+        "x": 0.48,
+        "y": 0.075,
+        "success": true,
+        "steps": 82
+      }
+    ]
+  },
+  "interpretation": "Longer prefix improved completion on original eight seen positions; 23/24 completed by step 100, versus 19/24 in n5 run. Alignment margin remains a concern; broader shorter-Y/development evaluation pending.",
+  "observed_failure": {
+    "episode": 20,
+    "position": {
+      "x": 0.36,
+      "y": 0.075
+    },
+    "tcp_at_step_40": [
+      0.3486,
+      0.0659,
+      0.0729
+    ],
+    "cube_at_step_70": [
+      0.3652,
+      0.0678,
+      0.0432
+    ],
+    "tcp_at_step_70": [
+      0.3478,
+      0.0661,
+      0.008
+    ],
+    "source": "user observed upward tilt; untraced geometry log does not contain cube rotation/contact force",
+    "limitations": "Neither secure grasp, unseen tilt, nor guaranteed success from forced lift is established."
+  },
+  "next": "Evaluate n10 on added shorter-Y positions (n5 baseline 6/12), then exact development (n5 retained run 11/12), before adopting or changing execution by phase."
+}

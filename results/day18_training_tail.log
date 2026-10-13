@@ -1,0 +1,4 @@
+INFO 2026-10-12 21:33:40 ot_train.py:778 step:14K smpl:112K ep:1K epch:14.86 loss:0.211 grdn:11.077 lr:1.0e-05 data_s:0.061 prep_s:0.001 updt_s:0.089 step_s:0.152 smp/s:53 l1_loss:0.188 kld_loss:0.002 unweighted_l1_loss:0.182 x_active_mae_norm:0.576 x_neutral_mae_norm:0.073 x_active_target_ratio:0.043 y_active_mae_norm:0.737 y_neutral_mae_norm:0.151 y_active_target_ratio:0.099 z_active_mae_norm:0.154 z_neutral_mae_norm:0.359 z_active_target_ratio:0.317 close_active_mae_norm:0.197 close_active_target_ratio:0.118 positive_z_active_mae_norm:0.071 positive_z_active_target_ratio:0.155
+INFO 2026-10-12 21:33:40 ot_train.py:820 Checkpoint policy after step 14000
+INFO 2026-10-12 21:33:40 n/_torch.py:299 Model weights successfully saved to /home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model!
+INFO 2026-10-12 21:33:40 ot_train.py:915 End of training

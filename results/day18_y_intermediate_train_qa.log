@@ -1,0 +1,37 @@
+Dataset root: /home/wusanggg/robotics/data/panda_pick_cube_day18_y_intermediate_v1
+Split: train
+FPS: 10
+Episodes: 20
+Frames: 1902
+Position counts: {(0.36, -0.0375): 5, (0.36, 0.0375): 5, (0.44, -0.0375): 5, (0.44, 0.0375): 5}
+Reward-positive frames: 20
+Done frames: 20
+Front videos: 1
+Wrist videos: 1
+Phase indices below are zero-based recorded frame indices.
+
+ep=00 pos=(0.440,-0.037) frames=112 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover=10 descend_at= 71 close_before_lift=10 close_hold=10 lift_at=102 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=01 pos=(0.440,+0.037) frames= 90 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 8 descend_at= 49 close_before_lift= 7 close_hold= 7 lift_at= 80 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=02 pos=(0.360,+0.037) frames=102 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover=10 descend_at= 58 close_before_lift= 8 close_hold= 8 lift_at= 92 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=03 pos=(0.360,-0.037) frames=101 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover= 9 descend_at= 59 close_before_lift= 7 close_hold= 7 lift_at= 91 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=04 pos=(0.360,-0.037) frames= 96 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover= 9 descend_at= 56 close_before_lift= 8 close_hold= 8 lift_at= 86 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=05 pos=(0.440,+0.037) frames= 97 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover=11 descend_at= 55 close_before_lift= 8 close_hold= 8 lift_at= 87 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=06 pos=(0.440,-0.037) frames=103 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 8 descend_at= 61 close_before_lift= 8 close_hold= 8 lift_at= 93 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=07 pos=(0.360,+0.037) frames= 93 x_active= 7 x_sign=100% y_active= 5 y_sign=100% hover=11 descend_at= 52 close_before_lift= 8 close_hold= 8 lift_at= 83 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=08 pos=(0.360,-0.037) frames= 97 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover=10 descend_at= 55 close_before_lift= 7 close_hold= 7 lift_at= 87 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=09 pos=(0.360,+0.037) frames= 91 x_active= 7 x_sign=100% y_active= 5 y_sign=100% hover=11 descend_at= 49 close_before_lift= 8 close_hold= 8 lift_at= 81 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=10 pos=(0.440,-0.037) frames= 88 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover=11 descend_at= 46 close_before_lift=10 close_hold=10 lift_at= 78 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=11 pos=(0.440,+0.037) frames= 92 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover= 8 descend_at= 52 close_before_lift= 6 close_hold= 6 lift_at= 82 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=12 pos=(0.440,+0.037) frames= 87 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover=12 descend_at= 47 close_before_lift= 8 close_hold= 8 lift_at= 77 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=13 pos=(0.440,-0.037) frames= 94 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 8 descend_at= 52 close_before_lift= 8 close_hold= 8 lift_at= 84 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=14 pos=(0.360,-0.037) frames= 91 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover= 8 descend_at= 48 close_before_lift= 8 close_hold= 8 lift_at= 81 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=15 pos=(0.360,+0.037) frames= 88 x_active= 7 x_sign=100% y_active= 5 y_sign=100% hover=10 descend_at= 48 close_before_lift= 8 close_hold= 8 lift_at= 78 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=16 pos=(0.440,-0.037) frames= 93 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 7 descend_at= 52 close_before_lift= 6 close_hold= 6 lift_at= 83 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=17 pos=(0.440,+0.037) frames= 99 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 9 descend_at= 58 close_before_lift= 7 close_hold= 7 lift_at= 89 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=18 pos=(0.360,+0.037) frames= 90 x_active= 8 x_sign=100% y_active= 6 y_sign=100% hover= 9 descend_at= 48 close_before_lift= 8 close_hold= 8 lift_at= 80 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=19 pos=(0.360,-0.037) frames= 98 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover= 8 descend_at= 52 close_before_lift= 8 close_hold= 8 lift_at= 88 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+
+Failed demonstrations: []
+Manual video check required: visible arm, completed XY approach, stable grasp, and actual cube lift.
+
+QA: PASS (action labels/metadata; manual video check still required)

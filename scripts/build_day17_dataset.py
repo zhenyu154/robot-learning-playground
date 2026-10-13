@@ -43,7 +43,7 @@ def read_data(root: Path):
     return pq.read_table(files).to_pandas().sort_values(['episode_index', 'frame_index']).reset_index(drop=True)
 
 
-def read_source(root: Path, label: str) -> dict:
+def read_source(root: Path, label: str, expected_episodes: int = 40) -> dict:
     info = read_json(root / 'meta/info.json')
     history = read_json(root / 'position_history.json')
     schedule = read_json(root / 'position_schedule.json')
@@ -55,8 +55,8 @@ def read_source(root: Path, label: str) -> dict:
         raise ValueError(f'{label}: expected a LeRobot v3 dataset')
     if info.get('fps') != 10 or protocol.get('fps') != 10:
         raise ValueError(f'{label}: expected 10 FPS')
-    if info.get('total_episodes') != 40 or len(history) != 40:
-        raise ValueError(f'{label}: expected all 40 source episodes')
+    if info.get('total_episodes') != expected_episodes or len(history) != expected_episodes:
+        raise ValueError(f'{label}: expected all {expected_episodes} source episodes')
     if [position_key(p) for p in history] != [position_key(p) for p in schedule['positions']]:
         raise ValueError(f'{label}: schedule/history mismatch')
     if any(p.get('episode_index') != i for i, p in enumerate(history)):
@@ -64,7 +64,7 @@ def read_source(root: Path, label: str) -> dict:
     if any(not np.isclose(float(p.get('z', 0)), 0.02) for p in history):
         raise ValueError(f'{label}: unexpected cube Z position')
     data = read_data(root)
-    if len(data) != info['total_frames'] or set(data.episode_index) != set(range(40)):
+    if len(data) != info['total_frames'] or set(data.episode_index) != set(range(expected_episodes)):
         raise ValueError(f'{label}: frame/episode metadata mismatch')
     for ep, rows in data.groupby('episode_index'):
         if not np.array_equal(rows.frame_index.to_numpy(), np.arange(len(rows))):
@@ -153,7 +153,7 @@ def verify_labels_and_stats(root: Path, plan: dict, sources: list[dict]):
     info = read_json(root / 'meta/info.json')
     if info['total_episodes'] != plan['episodes'] or len(data) != plan['frames'] or info['total_frames'] != len(data):
         raise ValueError('merged frame/episode counts differ from plan')
-    if set(data.episode_index) != set(range(60)) or not np.array_equal(data['index'], np.arange(len(data))):
+    if set(data.episode_index) != set(range(plan['episodes'])) or not np.array_equal(data['index'], np.arange(len(data))):
         raise ValueError('merged global/episode indices are not contiguous')
     by_source = {s['label']: s for s in sources}
     unchanged = ('action', 'observation.state', 'next.reward', 'next.done', 'timestamp', 'frame_index')
@@ -225,8 +225,11 @@ def sampled_images(root: Path, episode_ids: list[int]) -> dict:
     return images
 
 
-def verify_videos(root: Path, plan: dict, sources: list[dict]) -> dict:
-    merged = sampled_images(root, list(range(60)))
+def verify_videos(
+    root: Path, plan: dict, sources: list[dict], *,
+    exact_source_labels: tuple[str, ...] = ('day14',),
+) -> dict:
+    merged = sampled_images(root, list(range(plan['episodes'])))
     originals = {s['label']: sampled_images(s['root'], s['selected_episode_indices']) for s in sources}
     errors = []
     comparisons = []
@@ -238,8 +241,8 @@ def verify_videos(root: Path, plan: dict, sources: list[dict]) -> dict:
                 if src.shape != dst.shape:
                     raise ValueError('merged camera frame dimensions changed')
                 mae = float(np.abs(src.astype(np.float32) - dst).mean())
-                if p['source'] == 'day14' and mae != 0:
-                    raise ValueError('endpoint camera frames are not exact copies')
+                if p['source'] in exact_source_labels and mae != 0:
+                    raise ValueError(f"{p['source']} camera frames are not exact copies")
                 if mae > 8:
                     errors.append((p['episode_index'], camera, offset, mae))
                 comparisons.append(mae)
@@ -249,7 +252,10 @@ def verify_videos(root: Path, plan: dict, sources: list[dict]) -> dict:
     # both sources, front and wrist, original on the left, merged on the right.
     from PIL import Image, ImageDraw
 
-    selected = [0, 1, 20, 21, 40, 41, 50, 51]
+    selected = []
+    for source in sources:
+        ids = [p['episode_index'] for p in plan['episode_provenance'] if p['source'] == source['label']]
+        selected.extend(ids[i] for i in sorted({0, min(1, len(ids) - 1), len(ids) // 2, len(ids) - 1}))
     sheet = Image.new('RGB', (620, len(selected) * 156), 'white')
     draw = ImageDraw.Draw(sheet)
     for row_index, ep in enumerate(selected):
@@ -268,7 +274,8 @@ def verify_videos(root: Path, plan: dict, sources: list[dict]) -> dict:
             'mean_rgb_mae_0_to_255': float(np.mean(comparisons)),
             'endpoint_samples_exact': True, 'intermediate_reencode_mae_limit': 8,
             'contact_sheet': 'verification/source_vs_merged.png',
-            'scope': 'first/middle/last frames of all 60 episodes, both cameras; not exhaustive video equality'}
+            'scope': f"first/middle/last frames of all {plan['episodes']} episodes, both cameras; not exhaustive video equality",
+            'exact_source_labels': list(exact_source_labels)}
 
 
 def execute(plan: dict, sources: list[dict]) -> dict:

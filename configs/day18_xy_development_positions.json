@@ -1,0 +1,54 @@
+{
+  "split": "development_interpolation",
+  "description": "Predeclared Day18 development benchmark: new Y magnitude between 0.0375 and 0.075 at trained X values. First evaluate frozen Day17, then Day18 with identical 150-step controls; also report completions by step 100. Excludes the reserved final test.",
+  "positions": [
+    {
+      "x": 0.36,
+      "y": -0.05625
+    },
+    {
+      "x": 0.36,
+      "y": 0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": 0.05625
+    },
+    {
+      "x": 0.36,
+      "y": -0.05625
+    },
+    {
+      "x": 0.36,
+      "y": 0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": 0.05625
+    },
+    {
+      "x": 0.36,
+      "y": -0.05625
+    },
+    {
+      "x": 0.36,
+      "y": 0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": 0.05625
+    }
+  ]
+}

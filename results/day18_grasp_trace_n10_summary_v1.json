@@ -1,0 +1,108 @@
+{
+  "trace": "results/day18_grasp_trace_n10_v1.jsonl",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "n_action_steps": 10,
+  "max_steps": 150,
+  "positive_z_action_threshold": 0.1,
+  "cube_bottom_clearance_threshold_m": 0.001,
+  "episodes": [
+    {
+      "episode_index": 0,
+      "complete": true,
+      "success": true,
+      "steps": 80,
+      "first_close_command_step": 61,
+      "first_post_close_positive_z_command_step": 71,
+      "first_post_close_clearance_without_table_contact_step": 72,
+      "maximum_cube_bottom_clearance_m": 0.10136142905040947,
+      "maximum_post_close_z_command": 0.51878821849823,
+      "post_close_steps_with_active_table_contact": 10,
+      "post_close_steps_with_both_finger_contacts": 20,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 61,
+          "chunk_id": 7,
+          "first_positive_z_offset_zero_based": 14,
+          "executed_prefix_max_z": 0.008170238696038723,
+          "full_chunk_max_z": 0.5210471749305725
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "complete": true,
+      "success": true,
+      "steps": 89,
+      "first_close_command_step": 62,
+      "first_post_close_positive_z_command_step": 79,
+      "first_post_close_clearance_without_table_contact_step": 80,
+      "maximum_cube_bottom_clearance_m": 0.1119321151321124,
+      "maximum_post_close_z_command": 0.5207160115242004,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 28,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    },
+    {
+      "episode_index": 2,
+      "complete": true,
+      "success": true,
+      "steps": 89,
+      "first_close_command_step": 62,
+      "first_post_close_positive_z_command_step": 79,
+      "first_post_close_clearance_without_table_contact_step": 80,
+      "maximum_cube_bottom_clearance_m": 0.11211553065221987,
+      "maximum_post_close_z_command": 0.5206462144851685,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 28,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    },
+    {
+      "episode_index": 3,
+      "complete": true,
+      "success": true,
+      "steps": 89,
+      "first_close_command_step": 62,
+      "first_post_close_positive_z_command_step": 79,
+      "first_post_close_clearance_without_table_contact_step": 80,
+      "maximum_cube_bottom_clearance_m": 0.11207998041978325,
+      "maximum_post_close_z_command": 0.520641565322876,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 28,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    },
+    {
+      "episode_index": 4,
+      "complete": true,
+      "success": true,
+      "steps": 89,
+      "first_close_command_step": 62,
+      "first_post_close_positive_z_command_step": 79,
+      "first_post_close_clearance_without_table_contact_step": 80,
+      "maximum_cube_bottom_clearance_m": 0.1118866332453606,
+      "maximum_post_close_z_command": 0.5206918120384216,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 28,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    },
+    {
+      "episode_index": 5,
+      "complete": true,
+      "success": true,
+      "steps": 89,
+      "first_close_command_step": 62,
+      "first_post_close_positive_z_command_step": 79,
+      "first_post_close_clearance_without_table_contact_step": 80,
+      "maximum_cube_bottom_clearance_m": 0.11179128661652425,
+      "maximum_post_close_z_command": 0.5206356644630432,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 28,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    }
+  ],
+  "scope": "passive association/queue/contact diagnostic, not evidence of causal dependence on sway",
+  "notes": [
+    "first/late lift is an ACTION threshold, not a measure of physical cube motion",
+    "contact counts and actuator target are not proof of a stable grasp",
+    "existing final benchmark is not replaced by these repeated-position traced trials"
+  ]
+}

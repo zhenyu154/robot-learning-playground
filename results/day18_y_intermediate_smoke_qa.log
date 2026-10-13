@@ -1,0 +1,21 @@
+Dataset root: /home/wusanggg/robotics/data/panda_pick_cube_day18_y_intermediate_smoke
+Split: smoke
+FPS: 10
+Episodes: 4
+Frames: 404
+Position counts: {(0.36, -0.0375): 1, (0.36, 0.0375): 1, (0.44, -0.0375): 1, (0.44, 0.0375): 1}
+Reward-positive frames: 4
+Done frames: 4
+Front videos: 1
+Wrist videos: 1
+Phase indices below are zero-based recorded frame indices.
+
+ep=00 pos=(0.360,-0.037) frames=105 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover=10 descend_at= 64 close_before_lift= 8 close_hold= 8 lift_at= 95 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=01 pos=(0.360,+0.037) frames=107 x_active= 7 x_sign=100% y_active= 6 y_sign=100% hover=10 descend_at= 63 close_before_lift=10 close_hold=10 lift_at= 97 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=02 pos=(0.440,-0.037) frames= 98 x_active= 6 x_sign=100% y_active= 6 y_sign=100% hover= 9 descend_at= 55 close_before_lift=11 close_hold=11 lift_at= 88 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+ep=03 pos=(0.440,+0.037) frames= 94 x_active= 6 x_sign=100% y_active= 5 y_sign=100% hover= 8 descend_at= 52 close_before_lift= 8 close_hold= 8 lift_at= 84 lift=10 lift_run=10 xy_during_lift= 0 reward=1.0 done=1
+
+Failed demonstrations: []
+Manual video check required: visible arm, completed XY approach, stable grasp, and actual cube lift.
+
+QA: PASS (action labels/metadata; manual video check still required)

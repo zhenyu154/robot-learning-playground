@@ -1,0 +1,54 @@
+{
+  "split": "seen_eval_added_positions",
+  "description": "Three trials per newly trained position. These were Day17 development combinations; after adding demonstrations they are SEEN positions, not a generalization test.",
+  "positions": [
+    {
+      "x": 0.36,
+      "y": -0.0375
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375
+    },
+    {
+      "x": 0.36,
+      "y": -0.0375
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375
+    },
+    {
+      "x": 0.36,
+      "y": -0.0375
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375
+    }
+  ]
+}

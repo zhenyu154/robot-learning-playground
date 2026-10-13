@@ -1,0 +1,344 @@
+{
+  "trace": "results/day18_grasp_trace_v1.jsonl",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "n_action_steps": 5,
+  "max_steps": 150,
+  "positive_z_action_threshold": 0.1,
+  "cube_bottom_clearance_threshold_m": 0.001,
+  "episodes": [
+    {
+      "episode_index": 0,
+      "complete": true,
+      "success": true,
+      "steps": 61,
+      "first_close_command_step": 46,
+      "first_post_close_positive_z_command_step": 52,
+      "first_post_close_clearance_without_table_contact_step": 53,
+      "maximum_cube_bottom_clearance_m": 0.10191237887510879,
+      "maximum_post_close_z_command": 0.5169856548309326,
+      "post_close_steps_with_active_table_contact": 6,
+      "post_close_steps_with_both_finger_contacts": 16,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 46,
+          "chunk_id": 10,
+          "first_positive_z_offset_zero_based": 14,
+          "executed_prefix_max_z": 0.0071852970868349075,
+          "full_chunk_max_z": 0.5218238234519958
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "complete": true,
+      "success": true,
+      "steps": 78,
+      "first_close_command_step": 47,
+      "first_post_close_positive_z_command_step": 69,
+      "first_post_close_clearance_without_table_contact_step": 69,
+      "maximum_cube_bottom_clearance_m": 0.10184092793289354,
+      "maximum_post_close_z_command": 0.5181763172149658,
+      "post_close_steps_with_active_table_contact": 22,
+      "post_close_steps_with_both_finger_contacts": 32,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 51,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 5,
+          "executed_prefix_max_z": 0.09987097233533859,
+          "full_chunk_max_z": 0.5221410393714905
+        },
+        {
+          "step": 56,
+          "chunk_id": 12,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.01443320233374834,
+          "full_chunk_max_z": 0.5212502479553223
+        },
+        {
+          "step": 61,
+          "chunk_id": 13,
+          "first_positive_z_offset_zero_based": 5,
+          "executed_prefix_max_z": 0.02120717242360115,
+          "full_chunk_max_z": 0.5217581987380981
+        }
+      ]
+    },
+    {
+      "episode_index": 2,
+      "complete": true,
+      "success": true,
+      "steps": 109,
+      "first_close_command_step": 47,
+      "first_post_close_positive_z_command_step": 95,
+      "first_post_close_clearance_without_table_contact_step": 99,
+      "maximum_cube_bottom_clearance_m": 0.10585989203113758,
+      "maximum_post_close_z_command": 0.5209089517593384,
+      "post_close_steps_with_active_table_contact": 49,
+      "post_close_steps_with_both_finger_contacts": 63,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 51,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.011082994751632214,
+          "full_chunk_max_z": 0.5232512354850769
+        },
+        {
+          "step": 56,
+          "chunk_id": 12,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.010911465622484684,
+          "full_chunk_max_z": 0.5223584771156311
+        },
+        {
+          "step": 61,
+          "chunk_id": 13,
+          "first_positive_z_offset_zero_based": 5,
+          "executed_prefix_max_z": 0.03057807683944702,
+          "full_chunk_max_z": 0.5226410627365112
+        },
+        {
+          "step": 66,
+          "chunk_id": 14,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.007828916423022747,
+          "full_chunk_max_z": 0.5232071280479431
+        },
+        {
+          "step": 71,
+          "chunk_id": 15,
+          "first_positive_z_offset_zero_based": 5,
+          "executed_prefix_max_z": 0.051478881388902664,
+          "full_chunk_max_z": 0.5235292315483093
+        },
+        {
+          "step": 76,
+          "chunk_id": 16,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.011061831377446651,
+          "full_chunk_max_z": 0.5228086113929749
+        },
+        {
+          "step": 81,
+          "chunk_id": 17,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.009809507988393307,
+          "full_chunk_max_z": 0.5235878229141235
+        },
+        {
+          "step": 86,
+          "chunk_id": 18,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.008372782729566097,
+          "full_chunk_max_z": 0.5230433344841003
+        }
+      ]
+    },
+    {
+      "episode_index": 3,
+      "complete": true,
+      "success": true,
+      "steps": 66,
+      "first_close_command_step": 47,
+      "first_post_close_positive_z_command_step": 57,
+      "first_post_close_clearance_without_table_contact_step": 57,
+      "maximum_cube_bottom_clearance_m": 0.10810971738779557,
+      "maximum_post_close_z_command": 0.5199655890464783,
+      "post_close_steps_with_active_table_contact": 10,
+      "post_close_steps_with_both_finger_contacts": 20,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 51,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.01444139052182436,
+          "full_chunk_max_z": 0.522910475730896
+        }
+      ]
+    },
+    {
+      "episode_index": 4,
+      "complete": true,
+      "success": false,
+      "steps": 150,
+      "first_close_command_step": 47,
+      "first_post_close_positive_z_command_step": null,
+      "first_post_close_clearance_without_table_contact_step": null,
+      "maximum_cube_bottom_clearance_m": -0.00010775542021618581,
+      "maximum_post_close_z_command": 0.013570566661655903,
+      "post_close_steps_with_active_table_contact": 104,
+      "post_close_steps_with_both_finger_contacts": 104,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 51,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 9,
+          "executed_prefix_max_z": 0.007961454801261425,
+          "full_chunk_max_z": 0.5203928351402283
+        },
+        {
+          "step": 56,
+          "chunk_id": 12,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.010773700661957264,
+          "full_chunk_max_z": 0.5241072177886963
+        },
+        {
+          "step": 61,
+          "chunk_id": 13,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.009509908966720104,
+          "full_chunk_max_z": 0.5239809155464172
+        },
+        {
+          "step": 66,
+          "chunk_id": 14,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.011728051118552685,
+          "full_chunk_max_z": 0.523071825504303
+        },
+        {
+          "step": 71,
+          "chunk_id": 15,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.010245402343571186,
+          "full_chunk_max_z": 0.5226666331291199
+        },
+        {
+          "step": 76,
+          "chunk_id": 16,
+          "first_positive_z_offset_zero_based": 7,
+          "executed_prefix_max_z": 0.008974161930382252,
+          "full_chunk_max_z": 0.5233805179595947
+        },
+        {
+          "step": 81,
+          "chunk_id": 17,
+          "first_positive_z_offset_zero_based": 7,
+          "executed_prefix_max_z": 0.010248136706650257,
+          "full_chunk_max_z": 0.5235216617584229
+        },
+        {
+          "step": 86,
+          "chunk_id": 18,
+          "first_positive_z_offset_zero_based": 7,
+          "executed_prefix_max_z": 0.009907304309308529,
+          "full_chunk_max_z": 0.523080050945282
+        },
+        {
+          "step": 91,
+          "chunk_id": 19,
+          "first_positive_z_offset_zero_based": 7,
+          "executed_prefix_max_z": 0.011542933993041515,
+          "full_chunk_max_z": 0.5222395062446594
+        },
+        {
+          "step": 96,
+          "chunk_id": 20,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.009517163969576359,
+          "full_chunk_max_z": 0.5213858485221863
+        },
+        {
+          "step": 101,
+          "chunk_id": 21,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.010106665082275867,
+          "full_chunk_max_z": 0.5203157067298889
+        },
+        {
+          "step": 106,
+          "chunk_id": 22,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.01024681981652975,
+          "full_chunk_max_z": 0.522784411907196
+        },
+        {
+          "step": 111,
+          "chunk_id": 23,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.010873132385313511,
+          "full_chunk_max_z": 0.5209954380989075
+        },
+        {
+          "step": 116,
+          "chunk_id": 24,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.00969864334911108,
+          "full_chunk_max_z": 0.5218411087989807
+        },
+        {
+          "step": 121,
+          "chunk_id": 25,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.011749607510864735,
+          "full_chunk_max_z": 0.5225273370742798
+        },
+        {
+          "step": 126,
+          "chunk_id": 26,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.0127071188762784,
+          "full_chunk_max_z": 0.5230373740196228
+        },
+        {
+          "step": 131,
+          "chunk_id": 27,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.012348243035376072,
+          "full_chunk_max_z": 0.5231451988220215
+        },
+        {
+          "step": 136,
+          "chunk_id": 28,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.013570566661655903,
+          "full_chunk_max_z": 0.5228915214538574
+        },
+        {
+          "step": 141,
+          "chunk_id": 29,
+          "first_positive_z_offset_zero_based": 6,
+          "executed_prefix_max_z": 0.011484715156257153,
+          "full_chunk_max_z": 0.5215067863464355
+        },
+        {
+          "step": 146,
+          "chunk_id": 30,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.010822433046996593,
+          "full_chunk_max_z": 0.5218050479888916
+        }
+      ]
+    },
+    {
+      "episode_index": 5,
+      "complete": true,
+      "success": true,
+      "steps": 67,
+      "first_close_command_step": 47,
+      "first_post_close_positive_z_command_step": 57,
+      "first_post_close_clearance_without_table_contact_step": 58,
+      "maximum_cube_bottom_clearance_m": 0.10826405981855503,
+      "maximum_post_close_z_command": 0.5148681998252869,
+      "post_close_steps_with_active_table_contact": 11,
+      "post_close_steps_with_both_finger_contacts": 21,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 51,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 8,
+          "executed_prefix_max_z": 0.014437357895076275,
+          "full_chunk_max_z": 0.5229101777076721
+        }
+      ]
+    }
+  ],
+  "scope": "passive association/queue/contact diagnostic, not evidence of causal dependence on sway",
+  "notes": [
+    "first/late lift is an ACTION threshold, not a measure of physical cube motion",
+    "contact counts and actuator target are not proof of a stable grasp",
+    "existing final benchmark is not replaced by these repeated-position traced trials"
+  ]
+}

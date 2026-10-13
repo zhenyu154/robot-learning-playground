@@ -161,6 +161,7 @@ def main(
     argv: list[str] | None = None,
     *,
     expected_counts: dict[tuple[float, float], int] | None = None,
+    expected_positions: tuple[tuple[float, float], ...] = EXPECTED_POSITIONS,
     description: str = __doc__,
 ) -> int:
     parser = argparse.ArgumentParser(description=description)
@@ -198,7 +199,7 @@ def main(
         errors.append('position history episode indices are not sequential')
     counts = Counter(positions)
     required = expected_counts if expected_counts is not None else {
-        pos: args.episodes_per_position for pos in EXPECTED_POSITIONS
+        pos: args.episodes_per_position for pos in expected_positions
     }
     if not required or any(count <= 0 for count in required.values()):
         raise ValueError('expected position counts must be positive')

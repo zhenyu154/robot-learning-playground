@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-12",
+  "checkpoint": "outputs/act_panda_day17_xy_preserved_endpoints_xy2_z2_liftz4_closew4_xpu_10500/checkpoints/010500/pretrained_model",
+  "log": "results/day18_day17_baseline_development_150step.log",
+  "schedule": "configs/day18_xy_development_positions.json",
+  "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+  "policy_only": true,
+  "max_steps": 150,
+  "n_action_steps": 5,
+  "successes": 7,
+  "episodes": 12,
+  "success_rate": 0.5833333333333334,
+  "successes_by_step_100": 6,
+  "successes_after_step_100": 1,
+  "by_position": [
+    {
+      "x": 0.36,
+      "y": -0.05625,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.36,
+      "y": 0.05625,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625,
+      "successes": 1,
+      "episodes": 3
+    },
+    {
+      "x": 0.44,
+      "y": 0.05625,
+      "successes": 0,
+      "episodes": 3
+    }
+  ],
+  "episode_results": [
+    {
+      "episode": 1,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 62,
+      "max_gripper_command": 2.041,
+      "min_z_command": -0.551,
+      "max_z_command": 0.516
+    },
+    {
+      "episode": 2,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 92,
+      "max_gripper_command": 2.04,
+      "min_z_command": -0.525,
+      "max_z_command": 0.519
+    },
+    {
+      "episode": 3,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": false,
+      "steps": 150,
+      "max_gripper_command": 2.044,
+      "min_z_command": -0.535,
+      "max_z_command": 0.179
+    },
+    {
+      "episode": 4,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": false,
+      "steps": 150,
+      "max_gripper_command": 2.046,
+      "min_z_command": -0.519,
+      "max_z_command": 0.025
+    },
+    {
+      "episode": 5,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 62,
+      "max_gripper_command": 2.041,
+      "min_z_command": -0.551,
+      "max_z_command": 0.516
+    },
+    {
+      "episode": 6,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 81,
+      "max_gripper_command": 2.048,
+      "min_z_command": -0.542,
+      "max_z_command": 0.521
+    },
+    {
+      "episode": 7,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": false,
+      "steps": 150,
+      "max_gripper_command": 2.045,
+      "min_z_command": -0.535,
+      "max_z_command": 0.024
+    },
+    {
+      "episode": 8,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": false,
+      "steps": 150,
+      "max_gripper_command": 2.039,
+      "min_z_command": -0.504,
+      "max_z_command": 0.503
+    },
+    {
+      "episode": 9,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 60,
+      "max_gripper_command": 2.04,
+      "min_z_command": -0.551,
+      "max_z_command": 0.522
+    },
+    {
+      "episode": 10,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 106,
+      "max_gripper_command": 2.041,
+      "min_z_command": -0.53,
+      "max_z_command": 0.52
+    },
+    {
+      "episode": 11,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": true,
+      "steps": 71,
+      "max_gripper_command": 2.041,
+      "min_z_command": -0.528,
+      "max_z_command": 0.522
+    },
+    {
+      "episode": 12,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": false,
+      "steps": 150,
+      "max_gripper_command": 1.007,
+      "min_z_command": -0.03,
+      "max_z_command": 0.075
+    }
+  ],
+  "interpretation": "Frozen Day17 baseline at Y=\u00b10.05625 before Day18 training; distinct from the prior Y=\u00b10.0375 benchmark. Most failures occur at x=0.44 and include lateral misalignment, unsuccessful grasp/lift, and missing descent.",
+  "reserved_test_evaluated": false
+}

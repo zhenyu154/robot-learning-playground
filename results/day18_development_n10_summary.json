@@ -1,0 +1,123 @@
+{
+  "log": "results/day18_development_interpolation_n10_150step_eval.log",
+  "policy_only": true,
+  "n_action_steps": 10,
+  "max_steps": 150,
+  "successes": 12,
+  "episodes": 12,
+  "successes_by_step_100": 12,
+  "successes_after_step_100": 0,
+  "by_position": [
+    {
+      "x": 0.36,
+      "y": -0.05625,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.36,
+      "y": 0.05625,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625,
+      "successes": 3,
+      "episodes": 3
+    },
+    {
+      "x": 0.44,
+      "y": 0.05625,
+      "successes": 3,
+      "episodes": 3
+    }
+  ],
+  "episode_results": [
+    {
+      "episode": 1,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 85
+    },
+    {
+      "episode": 2,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 80
+    },
+    {
+      "episode": 3,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": true,
+      "steps": 80
+    },
+    {
+      "episode": 4,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": true,
+      "steps": 71
+    },
+    {
+      "episode": 5,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 87
+    },
+    {
+      "episode": 6,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 80
+    },
+    {
+      "episode": 7,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": true,
+      "steps": 81
+    },
+    {
+      "episode": 8,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": true,
+      "steps": 77
+    },
+    {
+      "episode": 9,
+      "x": 0.36,
+      "y": -0.05625,
+      "success": true,
+      "steps": 85
+    },
+    {
+      "episode": 10,
+      "x": 0.36,
+      "y": 0.05625,
+      "success": true,
+      "steps": 80
+    },
+    {
+      "episode": 11,
+      "x": 0.44,
+      "y": -0.05625,
+      "success": true,
+      "steps": 89
+    },
+    {
+      "episode": 12,
+      "x": 0.44,
+      "y": 0.05625,
+      "success": true,
+      "steps": 76
+    }
+  ],
+  "scope": "development Y interpolation at trained X values; inference selected using development results, not an independent final test"
+}

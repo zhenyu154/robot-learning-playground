@@ -1,0 +1,22 @@
+{
+  "split": "smoke",
+  "description": "One staged demonstration per shorter-Y combination. Smoke is separate from training data.",
+  "positions": [
+    {
+      "x": 0.36,
+      "y": -0.0375
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375
+    }
+  ]
+}

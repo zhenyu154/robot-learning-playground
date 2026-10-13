@@ -1,0 +1,204 @@
+{
+  "date": "2026-10-12",
+  "status": "day18_complete",
+  "repo_id": "wusanggg/panda_pick_cube_day18_xy_expanded_v1",
+  "dataset_root": "/home/wusanggg/robotics/data/panda_pick_cube_day18_xy_expanded_v1",
+  "episodes": 80,
+  "frames": 7537,
+  "fps": 10,
+  "position_counts": [
+    {
+      "x": 0.32,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.32,
+      "y": 0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.36,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": -0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.48,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.48,
+      "y": 0.075,
+      "episodes": 10
+    }
+  ],
+  "sources": [
+    {
+      "label": "day17",
+      "repo_id": "wusanggg/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+      "episodes": 60
+    },
+    {
+      "label": "day18",
+      "repo_id": "wusanggg/panda_pick_cube_day18_y_intermediate_v1",
+      "episodes": 20
+    }
+  ],
+  "verification": {
+    "exact_label_state_timestamp_preservation": true,
+    "normalization_stats_match_merged_rows": true,
+    "task_strings_preserved": true,
+    "output_tasks": [
+      "pick_cube_scheduled_position",
+      "pick_cube_day16_staged_intermediate_x",
+      "pick_cube_day18_staged_shorter_y"
+    ],
+    "videos": {
+      "sampled_frames": 480,
+      "max_rgb_mae_0_to_255": 0.0,
+      "mean_rgb_mae_0_to_255": 0.0,
+      "contact_sheet": "verification/source_vs_merged.png",
+      "scope": "first/middle/last frames of all 80 episodes, both cameras; not exhaustive video equality",
+      "exact_source_labels": [
+        "day17",
+        "day18"
+      ],
+      "all_source_samples_exact": true,
+      "new_reencoding": false
+    },
+    "source_files_unchanged": true
+  },
+  "lerobot_boundary_loading": "PASS: frames 0, 5634, 5635, 7536; both cameras decoded",
+  "contact_sheet_review_by_assistant": "PASS: sampled source/merged views visually align",
+  "user_full_source_video_review": "not yet explicitly reported; source QA pass reported",
+  "tests_passed": 66,
+  "baseline": {
+    "checkpoint": "outputs/act_panda_day17_xy_preserved_endpoints_xy2_z2_liftz4_closew4_xpu_10500/checkpoints/010500/pretrained_model",
+    "schedule": "configs/day18_xy_development_positions.json",
+    "episodes": 12,
+    "max_steps": 150,
+    "n_action_steps": 5,
+    "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+    "result": {
+      "successes": 7,
+      "episodes": 12,
+      "success_rate": 0.5833333333333334,
+      "successes_by_step_100": 6,
+      "successes_after_step_100": 1,
+      "by_position": [
+        {
+          "x": 0.36,
+          "y": -0.05625,
+          "successes": 3,
+          "episodes": 3
+        },
+        {
+          "x": 0.36,
+          "y": 0.05625,
+          "successes": 3,
+          "episodes": 3
+        },
+        {
+          "x": 0.44,
+          "y": -0.05625,
+          "successes": 1,
+          "episodes": 3
+        },
+        {
+          "x": 0.44,
+          "y": 0.05625,
+          "successes": 0,
+          "episodes": 3
+        }
+      ],
+      "summary_file": "results/day18_day17_baseline_summary.json"
+    }
+  },
+  "reserved_test": {
+    "schedule": "configs/day16_xy_reserved_test_positions.json",
+    "evaluated": true,
+    "used_for_tuning": false,
+    "candidate_manifest": "results/day18_frozen_candidate.json",
+    "result_summary": "results/day18_reserved_test_summary.json",
+    "successes": 12,
+    "episodes": 12,
+    "n_action_steps": 10,
+    "max_steps": 150
+  },
+  "limitations": [
+    "Phase audit and sampled images do not replace manual review of grasp/stopping behavior.",
+    "Copied video samples match exactly; the Day17 source contains previously re-encoded Day16 frames.",
+    "Per-camera image stats are aggregated source episode stats, not fresh measurements over every decoded frame.",
+    "New Y=\u00b10.0375 combinations are training positions; generalization must be evaluated separately."
+  ],
+  "training": {
+    "steps": 14000,
+    "batch_size": 8,
+    "seed": 1000,
+    "approximate_dataset_passes": 14.86002388218124,
+    "x_weight": 2,
+    "y_weight": 2,
+    "z_weight": 2,
+    "positive_z_weight": 4,
+    "close_weight": 4,
+    "save_freq": 14000,
+    "start_from_scratch": true,
+    "complete": true,
+    "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+    "final_logged_metrics": {
+      "loss": 0.211,
+      "l1_loss": 0.188,
+      "kld_loss": 0.002,
+      "unweighted_l1_loss": 0.182,
+      "x_active_mae_norm": 0.576,
+      "x_neutral_mae_norm": 0.073,
+      "y_active_mae_norm": 0.737,
+      "y_neutral_mae_norm": 0.151,
+      "z_active_mae_norm": 0.154,
+      "z_neutral_mae_norm": 0.359,
+      "close_active_mae_norm": 0.197,
+      "positive_z_active_mae_norm": 0.071
+    },
+    "loss_recipe": "results/day18_loss_recipe.json",
+    "training_tail": "results/day18_training_tail.log",
+    "only_final_checkpoint_saved": true
+  },
+  "experiment_summary": "results/day18_summary.json",
+  "test_suite_at_closeout": 71
+}

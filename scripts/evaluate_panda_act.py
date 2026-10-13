@@ -157,6 +157,11 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--trace-output", type=Path, default=None,
+        help="Optional exclusive JSONL trace: full normal ACT chunks, per-step state and grasp contacts; no extra inference or action changes.",
+    )
+
+    parser.add_argument(
         "--gif-output",
         type=Path,
         default=None,
@@ -337,6 +342,9 @@ def main():
     if args.freeze_x_at_step is not None and args.freeze_x_at_step <= 0:
         raise ValueError("--freeze-x-at-step must be positive")
 
+    if args.trace_output is not None and args.trace_output.exists():
+        raise FileExistsError(f"Refusing to overwrite trace: {args.trace_output}")
+
     checkpoint = Path(args.checkpoint)
 
     if not checkpoint.exists():
@@ -446,7 +454,24 @@ def main():
     if args.gif_output is not None and args.episodes != 1:
         raise ValueError("Use --episodes 1 when recording a GIF")
 
+    trace = None
     try:
+        if args.trace_output is not None:
+            from panda_grasp_trace import GraspTrace
+
+            policy_only = (
+                args.gripper_mode == "policy" and args.lift_at_step is None
+                and args.descend_at_step is None and args.freeze_x_at_step is None
+                and args.freeze_y_at_step is None
+            )
+            trace = GraspTrace(args.trace_output, policy, postprocessor, env, {
+                "checkpoint": str(checkpoint), "task": args.task, "fps": args.fps,
+                "max_steps": args.max_steps, "device": str(device),
+                "position_schedule": str(args.position_schedule) if args.position_schedule else None,
+                "home_pose": str(args.home_pose) if args.home_pose else None,
+                "min_tcp_z": args.min_tcp_z, "policy_only_cli_settings": policy_only,
+            })
+            print("Passive grasp trace:", args.trace_output)
         for episode in range(args.episodes):
             print("\n" + "=" * 60)
             print(f"Episode {episode + 1}/{args.episodes}")
@@ -464,6 +489,8 @@ def main():
             )
             if scheduled_env is not None:
                 print("Scheduled cube position:", scheduled_env.current_position)
+            if trace is not None:
+                trace.reset(episode, scheduled_env.current_position if scheduled_env is not None else None)
 
             if args.gif_output is not None:
                 gif_frames.append(
@@ -508,6 +535,9 @@ def main():
                     preprocessor.process_observation(observation)
                 )
 
+                if trace is not None:
+                    trace.before_step(step + 1, observation.get("observation.state"))
+
                 # No gradients during rollout.
                 with torch.inference_mode():
                     action = policy.select_action(
@@ -516,6 +546,9 @@ def main():
 
                 # Undo action normalization.
                 action = postprocessor.process_action(action)
+                if trace is not None:
+                    policy_action_for_trace = action.detach().clone()
+                    trace.after_prediction(policy_action_for_trace)
 
                 # Optional diagnostic overrides. These do not change the
                 # learned policy; they test whether the learned XYZ motion
@@ -672,6 +705,9 @@ def main():
                 if step >= args.max_steps and not terminated:
                     truncated = True
 
+                if trace is not None:
+                    trace.after_step(policy_action_for_trace, action, reward, terminated, truncated)
+
                 action_np = action.detach().cpu().numpy()
 
                 # Don't print every single step forever.
@@ -701,6 +737,8 @@ def main():
 
                     if success:
                         successes += 1
+                    if trace is not None:
+                        trace.end_episode(success, step, episode_reward)
 
                     print(
                         f"\nEpisode finished: "
@@ -725,6 +763,8 @@ def main():
                 )
 
     finally:
+        if trace is not None:
+            trace.close()
         env.close()
 
     if args.gif_output is not None:

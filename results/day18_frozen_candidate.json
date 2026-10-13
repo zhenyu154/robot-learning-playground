@@ -1,0 +1,70 @@
+{
+  "status": "candidate_frozen_before_reserved_evaluation",
+  "selected_date": "2026-10-12",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "checkpoint_file_sha256": {
+    "config.json": "5d4592ff988dfbaab991854e72d858f67f9fb9f5e5619e9100cd9a39607278a0",
+    "model.safetensors": "383e2a1a195bf6f8d47cecdd78a8023c382b345d8ef8e7168080314455f87bcf",
+    "policy_postprocessor.json": "0e1790afcabc4ab149c95f833f8068f8470f6fa923e87734284e63d4d5eb0ee5",
+    "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "60e97f06bfecb5c83b1e5ddb9e56699d8aa919cc1ce465f6d443093cc79c2479",
+    "policy_preprocessor.json": "1f5457c9ddf58c9b7eb675fa0a68996c8723aee9cb529c77a451d7522eeec88f",
+    "policy_preprocessor_step_3_normalizer_processor.safetensors": "5428aaa78381006a8c4f80168644883f31195d7aadfc51d952d9581de4a84857"
+  },
+  "weights": {
+    "x": 2,
+    "y": 2,
+    "z": 2,
+    "positive_z": 4,
+    "close": 4
+  },
+  "inference": {
+    "n_action_steps": 10,
+    "chunk_size": 50,
+    "temporal_ensemble_coeff": null,
+    "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+    "max_steps": 150,
+    "fps": 10,
+    "device": "xpu",
+    "home_pose": "configs/day11_home_x_centered.json",
+    "min_tcp_z": 0.008,
+    "gripper_mode": "policy",
+    "forced_actions": false,
+    "trace_enabled": false
+  },
+  "selection_evidence": {
+    "original_seen": "23/24, all 23 by step 100",
+    "added_shorter_y_seen": "9/12, three by step 100",
+    "development": "12/12, all by step 100",
+    "development_summary": "results/day18_development_n10_summary.json"
+  },
+  "known_limitation": "Training position (0.36,-0.0375) still 0/3; do not hide this after seeing reserved outcomes. Longer prefix can degrade lateral alignment.",
+  "reserved_test": {
+    "schedule": "configs/day16_xy_reserved_test_positions.json",
+    "schedule_sha256": "052361fa5e7a8dcc4afc20113977aaf1526dcb70beccb5234e7500cc243e802e",
+    "episodes": 12,
+    "evaluated": false,
+    "position_values": [
+      [
+        0.34,
+        -0.05
+      ],
+      [
+        0.34,
+        0.05
+      ],
+      [
+        0.46,
+        -0.05
+      ],
+      [
+        0.46,
+        0.05
+      ]
+    ],
+    "no_exact_training_or_development_overlap": true,
+    "no_prior_run_in_saved_logs": true,
+    "report": "per-position success, actual cube elevation, failures, and completions by steps 100/150"
+  },
+  "discipline": "Do not adjust checkpoint, prefix, weights or thresholds based on reserved results while claiming an untouched test. If results inform future tuning, reclassify those positions as development and reserve a new test.",
+  "claim_scope": "four predeclared simulator configurations, one trained seed, three repeats each; not broad arbitrary-position or real-world generalization"
+}

@@ -1,0 +1,25 @@
+Audit CSV: results/offline_gripper_audit_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000.csv
+Position history: /home/wusanggg/robotics/data/panda_pick_cube_day18_xy_expanded_v1/position_history.json
+Motion threshold: 0.05
+Close threshold: 1.5
+
+pos=(+0.320,-0.075) frames=978 X_hit=97.9% X_pred=-0.254 Y_hit=90.4% Y_pred=-0.229 X_neutral_false=5.6% Y_neutral_false=1.5% close_hit=89.9% false_close=2.1%
+pos=(+0.320,+0.075) frames=948 X_hit=97.2% X_pred=-0.255 Y_hit=87.4% Y_pred=+0.216 X_neutral_false=4.4% Y_neutral_false=1.0% close_hit=100.0% false_close=2.7%
+pos=(+0.360,-0.075) frames=470 X_hit=100.0% X_pred=-0.268 Y_hit=87.9% Y_pred=-0.224 X_neutral_false=4.6% Y_neutral_false=0.2% close_hit=95.3% false_close=0.7%
+pos=(+0.360,-0.037) frames=483 X_hit=82.9% X_pred=-0.204 Y_hit=80.0% Y_pred=-0.178 X_neutral_false=5.4% Y_neutral_false=2.9% close_hit=94.7% false_close=1.6%
+pos=(+0.360,+0.037) frames=464 X_hit=88.9% X_pred=-0.210 Y_hit=66.7% Y_pred=+0.179 X_neutral_false=3.0% Y_neutral_false=1.1% close_hit=100.0% false_close=4.0%
+pos=(+0.360,+0.075) frames=469 X_hit=100.0% X_pred=-0.265 Y_hit=89.1% Y_pred=+0.220 X_neutral_false=6.0% Y_neutral_false=2.2% close_hit=97.3% false_close=3.0%
+pos=(+0.440,-0.075) frames=474 X_hit=100.0% X_pred=+0.264 Y_hit=89.7% Y_pred=-0.224 X_neutral_false=7.4% Y_neutral_false=2.4% close_hit=94.7% false_close=2.5%
+pos=(+0.440,-0.037) frames=490 X_hit=83.3% X_pred=+0.205 Y_hit=85.7% Y_pred=-0.205 X_neutral_false=2.8% Y_neutral_false=4.3% close_hit=95.2% false_close=4.0%
+pos=(+0.440,+0.037) frames=465 X_hit=83.3% X_pred=+0.201 Y_hit=85.2% Y_pred=+0.206 X_neutral_false=6.9% Y_neutral_false=3.2% close_hit=100.0% false_close=4.2%
+pos=(+0.440,+0.075) frames=457 X_hit=100.0% X_pred=+0.263 Y_hit=87.3% Y_pred=+0.224 X_neutral_false=7.3% Y_neutral_false=0.7% close_hit=100.0% false_close=8.4%
+pos=(+0.480,-0.075) frames=923 X_hit=98.4% X_pred=+0.259 Y_hit=91.7% Y_pred=-0.228 X_neutral_false=5.5% Y_neutral_false=1.5% close_hit=100.0% false_close=3.3%
+pos=(+0.480,+0.075) frames=916 X_hit=98.4% X_pred=+0.253 Y_hit=87.8% Y_pred=+0.222 X_neutral_false=3.2% Y_neutral_false=1.0% close_hit=96.1% false_close=5.2%
+
+Overall
+X sign accuracy: 96.1% (773/804)
+Y sign accuracy: 87.7% (700/798)
+X neutral false-motion: 5.1%
+Y neutral false-motion: 1.7%
+Gripper close hit rate: 96.7%
+Gripper hold false-close rate: 3.4%

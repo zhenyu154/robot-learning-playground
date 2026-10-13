@@ -1,0 +1,14 @@
+LeRobot frame count: 7537
+Global frame 0 episode 0 frame 0 action [0.0, 0.0, 0.0, 1.0]
+front (3, 128, 128) range 0.0 1.0
+wrist (3, 128, 128) range 0.0 0.9372549057006836
+Global frame 5634 episode 59 frame 90 action [0.0, 0.0, 0.5, 1.0]
+front (3, 128, 128) range 0.003921568859368563 1.0
+wrist (3, 128, 128) range 0.0 0.9490196108818054
+Global frame 5635 episode 60 frame 0 action [0.0, 0.0, 0.0, 1.0]
+front (3, 128, 128) range 0.007843137718737125 1.0
+wrist (3, 128, 128) range 0.0 0.9647058844566345
+Global frame 7536 episode 79 frame 97 action [0.0, 0.0, 0.5, 1.0]
+front (3, 128, 128) range 0.0 1.0
+wrist (3, 128, 128) range 0.0 0.9882352948188782
+LeRobot Day17-to-Day18 boundary loading: PASS

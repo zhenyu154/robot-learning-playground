@@ -1,0 +1,30 @@
+{
+  "split": "development_grasp_transition_diagnostic",
+  "description": "Six policy-only traced repeats at the existing Day18 development position where a post-close stall was observed. Not a new final test.",
+  "positions": [
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    },
+    {
+      "x": 0.44,
+      "y": -0.05625
+    }
+  ]
+}

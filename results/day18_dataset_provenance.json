@@ -1,0 +1,1065 @@
+{
+  "builder_version": 1,
+  "repo_id": "wusanggg/panda_pick_cube_day18_xy_expanded_v1",
+  "output_root": "/home/wusanggg/robotics/data/panda_pick_cube_day18_xy_expanded_v1",
+  "episodes": 80,
+  "frames": 7537,
+  "stage": "verified_complete",
+  "position_counts": [
+    {
+      "x": 0.32,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.32,
+      "y": 0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.36,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": -0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.36,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": -0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375,
+      "episodes": 5
+    },
+    {
+      "x": 0.44,
+      "y": 0.075,
+      "episodes": 5
+    },
+    {
+      "x": 0.48,
+      "y": -0.075,
+      "episodes": 10
+    },
+    {
+      "x": 0.48,
+      "y": 0.075,
+      "episodes": 10
+    }
+  ],
+  "sources": [
+    {
+      "label": "day17",
+      "repo_id": "wusanggg/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+      "root": "/home/wusanggg/robotics/data/panda_pick_cube_day17_xy_preserved_endpoints_v1",
+      "selected_episode_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "file_sha256": {
+        "collection_protocol.json": "e1d1163a7d6d018e55c79bbf309fc914285c9b8877e27a1adca7d13b256fef2c",
+        "data/chunk-000/file-000.parquet": "9f1898d3a308381bd44292f7793ef207f02251c671254215d74ad7fd9c3bb3b8",
+        "data/chunk-000/file-001.parquet": "2a1ef79d7f4cb281ee092569ad90bd35a67a0c33474495cce22e458a34827f8d",
+        "dataset_provenance.json": "6fd8e279cc1908264367096e08b2f789ed84036470e937233cee97f8cc343d68",
+        "meta/episodes/chunk-000/file-000.parquet": "387deb5bcb15573b23a88c3fc2a853f81c3466453f8baf871b35105b9780d447",
+        "meta/info.json": "4fb5f4100d264c48b8637f9e6474b7cdb8c1d6d8a33708b4356cd7c6fdf168b2",
+        "meta/stats.json": "3d0ab82a51edc7e081b5e221396cbcf8975218edceb44c90b5f8d07df50a49c1",
+        "meta/tasks.parquet": "3a2083d9a07a64ed0ef5429afe9be4462103ea97755a1966330672cd6c6fba76",
+        "position_history.json": "55441ff899c43a2c627a2123c67d09402d9f67871107b36c5c17e62a729fc786",
+        "position_schedule.json": "4b434caa32ac7d5d3c565b9febdb3d5b244b99a0b4d90e5ce856c826ea6b3ff0",
+        "verification/source_vs_merged.png": "32d5a27633b5d8f6c38bdc1c6e9a3416f16d8fae62ce366f43c266d552604bb4",
+        "videos/observation.images.front/chunk-000/file-000.mp4": "2a0141aaccac92cd75fa498e851ced0c4a4467390fc15bc65a0cc617c434db0f",
+        "videos/observation.images.front/chunk-000/file-001.mp4": "c0b7d91bfd6d4e2eea11f818d023b979c375c161a3813501d42b59c1d45c5064",
+        "videos/observation.images.wrist/chunk-000/file-000.mp4": "6de39aaa5da838254df6150d9ad4bad3bf277bef65d310c8b452cd1ec19481de",
+        "videos/observation.images.wrist/chunk-000/file-001.mp4": "4af4e3b8ad61746b6caf21084be3d40041aff995db32df4bd1adfa5f6da1a638"
+      }
+    },
+    {
+      "label": "day18",
+      "repo_id": "wusanggg/panda_pick_cube_day18_y_intermediate_v1",
+      "root": "/home/wusanggg/robotics/data/panda_pick_cube_day18_y_intermediate_v1",
+      "selected_episode_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "file_sha256": {
+        "collection_protocol.json": "b67b96b2d419854ed018986f45d244f82a754e2d4eb18dcc84bdcc93115e221a",
+        "data/chunk-000/file-000.parquet": "8518caa402b96908d49bad7d18781fd29fa09e6b713689a55e87c00b78a7d81f",
+        "meta/episodes/chunk-000/file-000.parquet": "17b015743bf871948d8a3d049778068c40d9f8195ae302b3b77bca8789fa3ac0",
+        "meta/info.json": "1f02e2dbab5ba746fad948cd3ed77a1de8894dab1fa0e231cc93abd1c78da91f",
+        "meta/stats.json": "dece1947b4c2df42d5a90ec44bf7dc8bc4b614cc1dfab3d5bd8a3ede736c9a8d",
+        "meta/tasks.parquet": "dcbf201b3b9013338b2c324d9a4ad5456f0a2c3f230e5cc57f5c9a7b5f2c3c14",
+        "position_history.json": "a7576f8a7abc311e79d09cb24e4c65389c10efbc7eaa0aae3ae2bc0f9bb2b3d3",
+        "position_schedule.json": "0d1070c74fa8475d6141667b2a284833a73573189c3f63ba9a8d85dd3d99e0a6",
+        "videos/observation.images.front/chunk-000/file-000.mp4": "92094f63d90eeed6c364b75635f71a8f6872b0437c07c3c625fc8203352466dc",
+        "videos/observation.images.wrist/chunk-000/file-000.mp4": "1cffb164bf22e800bd4edfd7eda6dc19b80fe317131fc42afcec218512ebd57a"
+      }
+    }
+  ],
+  "day17_ancestor_provenance_sha256": "6fd8e279cc1908264367096e08b2f789ed84036470e937233cee97f8cc343d68",
+  "episode_provenance": [
+    {
+      "episode_index": 0,
+      "source": "day17",
+      "source_episode_index": 0,
+      "frames": 107,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 0
+    },
+    {
+      "episode_index": 1,
+      "source": "day17",
+      "source_episode_index": 1,
+      "frames": 104,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 1
+    },
+    {
+      "episode_index": 2,
+      "source": "day17",
+      "source_episode_index": 2,
+      "frames": 93,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 2
+    },
+    {
+      "episode_index": 3,
+      "source": "day17",
+      "source_episode_index": 3,
+      "frames": 94,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 3
+    },
+    {
+      "episode_index": 4,
+      "source": "day17",
+      "source_episode_index": 4,
+      "frames": 99,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 4
+    },
+    {
+      "episode_index": 5,
+      "source": "day17",
+      "source_episode_index": 5,
+      "frames": 98,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 5
+    },
+    {
+      "episode_index": 6,
+      "source": "day17",
+      "source_episode_index": 6,
+      "frames": 89,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 6
+    },
+    {
+      "episode_index": 7,
+      "source": "day17",
+      "source_episode_index": 7,
+      "frames": 95,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 7
+    },
+    {
+      "episode_index": 8,
+      "source": "day17",
+      "source_episode_index": 8,
+      "frames": 103,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 8
+    },
+    {
+      "episode_index": 9,
+      "source": "day17",
+      "source_episode_index": 9,
+      "frames": 89,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 9
+    },
+    {
+      "episode_index": 10,
+      "source": "day17",
+      "source_episode_index": 10,
+      "frames": 93,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 10
+    },
+    {
+      "episode_index": 11,
+      "source": "day17",
+      "source_episode_index": 11,
+      "frames": 93,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 11
+    },
+    {
+      "episode_index": 12,
+      "source": "day17",
+      "source_episode_index": 12,
+      "frames": 94,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 12
+    },
+    {
+      "episode_index": 13,
+      "source": "day17",
+      "source_episode_index": 13,
+      "frames": 91,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 13
+    },
+    {
+      "episode_index": 14,
+      "source": "day17",
+      "source_episode_index": 14,
+      "frames": 92,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 14
+    },
+    {
+      "episode_index": 15,
+      "source": "day17",
+      "source_episode_index": 15,
+      "frames": 91,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 15
+    },
+    {
+      "episode_index": 16,
+      "source": "day17",
+      "source_episode_index": 16,
+      "frames": 94,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 16
+    },
+    {
+      "episode_index": 17,
+      "source": "day17",
+      "source_episode_index": 17,
+      "frames": 95,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 17
+    },
+    {
+      "episode_index": 18,
+      "source": "day17",
+      "source_episode_index": 18,
+      "frames": 95,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 18
+    },
+    {
+      "episode_index": 19,
+      "source": "day17",
+      "source_episode_index": 19,
+      "frames": 92,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 19
+    },
+    {
+      "episode_index": 20,
+      "source": "day17",
+      "source_episode_index": 20,
+      "frames": 100,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 20
+    },
+    {
+      "episode_index": 21,
+      "source": "day17",
+      "source_episode_index": 21,
+      "frames": 93,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 21
+    },
+    {
+      "episode_index": 22,
+      "source": "day17",
+      "source_episode_index": 22,
+      "frames": 92,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 22
+    },
+    {
+      "episode_index": 23,
+      "source": "day17",
+      "source_episode_index": 23,
+      "frames": 90,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 23
+    },
+    {
+      "episode_index": 24,
+      "source": "day17",
+      "source_episode_index": 24,
+      "frames": 97,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 24
+    },
+    {
+      "episode_index": 25,
+      "source": "day17",
+      "source_episode_index": 25,
+      "frames": 92,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 25
+    },
+    {
+      "episode_index": 26,
+      "source": "day17",
+      "source_episode_index": 26,
+      "frames": 92,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 26
+    },
+    {
+      "episode_index": 27,
+      "source": "day17",
+      "source_episode_index": 27,
+      "frames": 92,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 27
+    },
+    {
+      "episode_index": 28,
+      "source": "day17",
+      "source_episode_index": 28,
+      "frames": 94,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 28
+    },
+    {
+      "episode_index": 29,
+      "source": "day17",
+      "source_episode_index": 29,
+      "frames": 94,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 29
+    },
+    {
+      "episode_index": 30,
+      "source": "day17",
+      "source_episode_index": 30,
+      "frames": 89,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 30
+    },
+    {
+      "episode_index": 31,
+      "source": "day17",
+      "source_episode_index": 31,
+      "frames": 91,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 31
+    },
+    {
+      "episode_index": 32,
+      "source": "day17",
+      "source_episode_index": 32,
+      "frames": 96,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 32
+    },
+    {
+      "episode_index": 33,
+      "source": "day17",
+      "source_episode_index": 33,
+      "frames": 97,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 33
+    },
+    {
+      "episode_index": 34,
+      "source": "day17",
+      "source_episode_index": 34,
+      "frames": 96,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 34
+    },
+    {
+      "episode_index": 35,
+      "source": "day17",
+      "source_episode_index": 35,
+      "frames": 87,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 35
+    },
+    {
+      "episode_index": 36,
+      "source": "day17",
+      "source_episode_index": 36,
+      "frames": 94,
+      "x": 0.32,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 36
+    },
+    {
+      "episode_index": 37,
+      "source": "day17",
+      "source_episode_index": 37,
+      "frames": 95,
+      "x": 0.32,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 37
+    },
+    {
+      "episode_index": 38,
+      "source": "day17",
+      "source_episode_index": 38,
+      "frames": 92,
+      "x": 0.48,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 38
+    },
+    {
+      "episode_index": 39,
+      "source": "day17",
+      "source_episode_index": 39,
+      "frames": 91,
+      "x": 0.48,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day14",
+      "original_source_episode_index": 39
+    },
+    {
+      "episode_index": 40,
+      "source": "day17",
+      "source_episode_index": 40,
+      "frames": 94,
+      "x": 0.36,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 2
+    },
+    {
+      "episode_index": 41,
+      "source": "day17",
+      "source_episode_index": 41,
+      "frames": 97,
+      "x": 0.44,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 4
+    },
+    {
+      "episode_index": 42,
+      "source": "day17",
+      "source_episode_index": 42,
+      "frames": 99,
+      "x": 0.44,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 5
+    },
+    {
+      "episode_index": 43,
+      "source": "day17",
+      "source_episode_index": 43,
+      "frames": 95,
+      "x": 0.36,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 6
+    },
+    {
+      "episode_index": 44,
+      "source": "day17",
+      "source_episode_index": 44,
+      "frames": 94,
+      "x": 0.44,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 8
+    },
+    {
+      "episode_index": 45,
+      "source": "day17",
+      "source_episode_index": 45,
+      "frames": 91,
+      "x": 0.36,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 9
+    },
+    {
+      "episode_index": 46,
+      "source": "day17",
+      "source_episode_index": 46,
+      "frames": 94,
+      "x": 0.36,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 12
+    },
+    {
+      "episode_index": 47,
+      "source": "day17",
+      "source_episode_index": 47,
+      "frames": 89,
+      "x": 0.44,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 13
+    },
+    {
+      "episode_index": 48,
+      "source": "day17",
+      "source_episode_index": 48,
+      "frames": 102,
+      "x": 0.44,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 16
+    },
+    {
+      "episode_index": 49,
+      "source": "day17",
+      "source_episode_index": 49,
+      "frames": 85,
+      "x": 0.44,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 19
+    },
+    {
+      "episode_index": 50,
+      "source": "day17",
+      "source_episode_index": 50,
+      "frames": 95,
+      "x": 0.36,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 20
+    },
+    {
+      "episode_index": 51,
+      "source": "day17",
+      "source_episode_index": 51,
+      "frames": 94,
+      "x": 0.36,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 22
+    },
+    {
+      "episode_index": 52,
+      "source": "day17",
+      "source_episode_index": 52,
+      "frames": 94,
+      "x": 0.44,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 27
+    },
+    {
+      "episode_index": 53,
+      "source": "day17",
+      "source_episode_index": 53,
+      "frames": 97,
+      "x": 0.36,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 28
+    },
+    {
+      "episode_index": 54,
+      "source": "day17",
+      "source_episode_index": 54,
+      "frames": 94,
+      "x": 0.36,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 29
+    },
+    {
+      "episode_index": 55,
+      "source": "day17",
+      "source_episode_index": 55,
+      "frames": 90,
+      "x": 0.44,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 31
+    },
+    {
+      "episode_index": 56,
+      "source": "day17",
+      "source_episode_index": 56,
+      "frames": 90,
+      "x": 0.44,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 32
+    },
+    {
+      "episode_index": 57,
+      "source": "day17",
+      "source_episode_index": 57,
+      "frames": 92,
+      "x": 0.36,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 33
+    },
+    {
+      "episode_index": 58,
+      "source": "day17",
+      "source_episode_index": 58,
+      "frames": 93,
+      "x": 0.36,
+      "y": -0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 37
+    },
+    {
+      "episode_index": 59,
+      "source": "day17",
+      "source_episode_index": 59,
+      "frames": 91,
+      "x": 0.44,
+      "y": 0.075,
+      "z": 0.02,
+      "original_source": "day16",
+      "original_source_episode_index": 38
+    },
+    {
+      "episode_index": 60,
+      "source": "day18",
+      "source_episode_index": 0,
+      "frames": 112,
+      "x": 0.44,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 61,
+      "source": "day18",
+      "source_episode_index": 1,
+      "frames": 90,
+      "x": 0.44,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 62,
+      "source": "day18",
+      "source_episode_index": 2,
+      "frames": 102,
+      "x": 0.36,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 63,
+      "source": "day18",
+      "source_episode_index": 3,
+      "frames": 101,
+      "x": 0.36,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 64,
+      "source": "day18",
+      "source_episode_index": 4,
+      "frames": 96,
+      "x": 0.36,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 65,
+      "source": "day18",
+      "source_episode_index": 5,
+      "frames": 97,
+      "x": 0.44,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 66,
+      "source": "day18",
+      "source_episode_index": 6,
+      "frames": 103,
+      "x": 0.44,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 67,
+      "source": "day18",
+      "source_episode_index": 7,
+      "frames": 93,
+      "x": 0.36,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 68,
+      "source": "day18",
+      "source_episode_index": 8,
+      "frames": 97,
+      "x": 0.36,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 69,
+      "source": "day18",
+      "source_episode_index": 9,
+      "frames": 91,
+      "x": 0.36,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 70,
+      "source": "day18",
+      "source_episode_index": 10,
+      "frames": 88,
+      "x": 0.44,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 71,
+      "source": "day18",
+      "source_episode_index": 11,
+      "frames": 92,
+      "x": 0.44,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 72,
+      "source": "day18",
+      "source_episode_index": 12,
+      "frames": 87,
+      "x": 0.44,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 73,
+      "source": "day18",
+      "source_episode_index": 13,
+      "frames": 94,
+      "x": 0.44,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 74,
+      "source": "day18",
+      "source_episode_index": 14,
+      "frames": 91,
+      "x": 0.36,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 75,
+      "source": "day18",
+      "source_episode_index": 15,
+      "frames": 88,
+      "x": 0.36,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 76,
+      "source": "day18",
+      "source_episode_index": 16,
+      "frames": 93,
+      "x": 0.44,
+      "y": -0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 77,
+      "source": "day18",
+      "source_episode_index": 17,
+      "frames": 99,
+      "x": 0.44,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 78,
+      "source": "day18",
+      "source_episode_index": 18,
+      "frames": 90,
+      "x": 0.36,
+      "y": 0.0375,
+      "z": 0.02
+    },
+    {
+      "episode_index": 79,
+      "source": "day18",
+      "source_episode_index": 19,
+      "frames": 98,
+      "x": 0.36,
+      "y": -0.0375,
+      "z": 0.02
+    }
+  ],
+  "order": "all Day17 episodes become 0--59; all Day18 new episodes become 60--79, source order retained",
+  "video_handling": "merge all episodes; copy source video shards with no concatenation or new re-encoding",
+  "split_note": "added Y=\u00b10.0375 combinations are now seen; development Y=\u00b10.05625 and reserved test excluded",
+  "verification": {
+    "exact_label_state_timestamp_preservation": true,
+    "normalization_stats_match_merged_rows": true,
+    "task_strings_preserved": true,
+    "output_tasks": [
+      "pick_cube_scheduled_position",
+      "pick_cube_day16_staged_intermediate_x",
+      "pick_cube_day18_staged_shorter_y"
+    ],
+    "videos": {
+      "sampled_frames": 480,
+      "max_rgb_mae_0_to_255": 0.0,
+      "mean_rgb_mae_0_to_255": 0.0,
+      "contact_sheet": "verification/source_vs_merged.png",
+      "scope": "first/middle/last frames of all 80 episodes, both cameras; not exhaustive video equality",
+      "exact_source_labels": [
+        "day17",
+        "day18"
+      ],
+      "all_source_samples_exact": true,
+      "new_reencoding": false
+    },
+    "source_files_unchanged": true
+  }
+}
