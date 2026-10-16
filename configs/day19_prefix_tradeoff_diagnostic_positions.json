@@ -1,0 +1,12 @@
+{
+  "split": "seen_prefix_tradeoff_diagnostic",
+  "description": "Day19: three alternating repeats of a longer-Y training position preserved by n=10 but lost by n=20, and a shorter-Y training position recovered by n=20. Test n=10 on steps 1-20, then n=20 from step 21. Seen-position diagnostic, not a reserved test.",
+  "positions": [
+    {"x": 0.36, "y": -0.075},
+    {"x": 0.36, "y": -0.0375},
+    {"x": 0.36, "y": -0.075},
+    {"x": 0.36, "y": -0.0375},
+    {"x": 0.36, "y": -0.075},
+    {"x": 0.36, "y": -0.0375}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "split": "seen_approach_diagnostic",
+  "description": "Day19: three alternating repeats at the Day18 failing training position and its successful mirrored training position. Passive tracing with the frozen Day18 checkpoint and n_action_steps=10; not a generalization test.",
+  "positions": [
+    {"x": 0.36, "y": -0.0375},
+    {"x": 0.36, "y": 0.0375},
+    {"x": 0.36, "y": -0.0375},
+    {"x": 0.36, "y": 0.0375},
+    {"x": 0.36, "y": -0.0375},
+    {"x": 0.36, "y": 0.0375}
+  ]
+}

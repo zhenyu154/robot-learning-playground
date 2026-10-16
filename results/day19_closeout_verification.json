@@ -1,0 +1,337 @@
+{
+  "date": "2026-10-15",
+  "status": "passed_with_documented_historical_preparation_exception",
+  "parent_project_revision": "3db367f9a2f21fb4f6d64070b6ec866d6045dc27",
+  "cpu_unit_tests": {
+    "command": "python -m unittest discover -s tests -p 'test_*.py' -v",
+    "passed": 80,
+    "interpreter": "/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/bin/python",
+    "scope": "CPU tests, including real ACT queue behavior with synthetic policy outputs; not a learned-policy XPU rollout."
+  },
+  "trace_revalidation": {
+    "trace_files": 7,
+    "complete_episode_records": 45,
+    "step_records": 4323,
+    "reports": [
+      {
+        "trace": "results/day19_added_seen_initial7_capped_then20_step21_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "9719d21693f8504ef8a7e48c96b93925bef45c0148cece8e269e5a33133274ce",
+        "complete_episodes": 12,
+        "successes": 9,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 12,
+          "prediction": 93,
+          "step": 1218,
+          "end": 12
+        },
+        "matching_saved_summaries": [
+          "results/day19_added_seen_initial7_capped_then20_step21_v1_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_approach_n10_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "9735e233992ae2b350b6f9d78c0f90618a8a63025e3a728f68e649953e70d2ac",
+        "complete_episodes": 6,
+        "successes": 3,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 6,
+          "prediction": 71,
+          "step": 695,
+          "end": 6
+        },
+        "matching_saved_summaries": [
+          "results/day19_approach_n10_v1_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_approach_n20_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "bae6dc6436c8a110e557defd0f65bcaefe3ee1dac2f38aeca99864ca047ac766",
+        "complete_episodes": 6,
+        "successes": 6,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 6,
+          "prediction": 30,
+          "step": 577,
+          "end": 6
+        },
+        "matching_saved_summaries": [
+          "results/day19_approach_n20_v1_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_early5_then20_step21_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "6542c58369480f7bc2089ca7734e1565d338451b0b0f72339c7909bcaf57cf08",
+        "complete_episodes": 6,
+        "successes": 6,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 6,
+          "prediction": 42,
+          "step": 448,
+          "end": 6
+        },
+        "matching_saved_summaries": [
+          "results/day19_early5_then20_step21_v1_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_initial7_capped_then20_step21_v2_grasp_trace_v1.jsonl",
+        "trace_sha256": "e8ae7dfa767fccc0625b0e94a75d5606db96c53466f2bb2cb1a4c4bf6daddc80",
+        "complete_episodes": 6,
+        "successes": 6,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 6,
+          "prediction": 39,
+          "step": 480,
+          "end": 6
+        },
+        "matching_saved_summaries": [
+          "results/day19_initial7_capped_then20_step21_v2_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_observed_failure_fixed_n10_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "a25b1d57af0609980e24a0b78230029ac92b759aeec5b5e2f06b5007a4217f51",
+        "complete_episodes": 3,
+        "successes": 1,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 3,
+          "prediction": 40,
+          "step": 398,
+          "end": 3
+        },
+        "matching_saved_summaries": [
+          "results/day19_observed_failure_fixed_n10_v1_summary.json"
+        ]
+      },
+      {
+        "trace": "results/day19_prefix_10_then_20_step21_v1_grasp_trace_v1.jsonl",
+        "trace_sha256": "8ed5175358b5f9e09c69084c5657bdea76a94b11d7c35d831cc1b16abffe9f27",
+        "complete_episodes": 6,
+        "successes": 6,
+        "event_counts": {
+          "metadata": 1,
+          "reset": 6,
+          "prediction": 36,
+          "step": 507,
+          "end": 6
+        },
+        "matching_saved_summaries": [
+          "results/day19_prefix_10_then_20_step21_v1_summary.json"
+        ]
+      }
+    ]
+  },
+  "retained_evaluation_logs": {
+    "completed_runs": 14,
+    "complete_episode_records": 165,
+    "reports": [
+      {
+        "log": "results/day19_added_seen_10_then_20_step21_v1_eval.log",
+        "log_sha256": "ea6a24028db3f2378354ea753fab0542418aaab85dd5c8a3b8491e3d586562de",
+        "episodes": 12,
+        "successes": 12,
+        "position_schedule": "configs/day18_y_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_added_seen_5_then_20_step21_v1_eval.log",
+        "log_sha256": "5480fff187c06df832fe715faa8745f1348d196165fda27a94904c5282a51736",
+        "episodes": 12,
+        "successes": 9,
+        "position_schedule": "configs/day18_y_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_added_seen_initial7_capped_then20_step21_v1_eval.log",
+        "log_sha256": "f8ac1245aede62bd267de940570f06016fae41171b6b62e125df98fa5bf3b445",
+        "episodes": 12,
+        "successes": 9,
+        "position_schedule": "configs/day18_y_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_approach_n10_v1_eval.log",
+        "log_sha256": "d84be2ba14c9f8a34475da5060d6f8139ae947f969a74c5ecfd72a853b61b801",
+        "episodes": 6,
+        "successes": 3,
+        "position_schedule": "configs/day19_approach_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": true
+      },
+      {
+        "log": "results/day19_approach_n20_v1_eval.log",
+        "log_sha256": "bb1fd8e5a432e0d70986e7cf123cc65e5cdf5bddc139ba46714f63ffdbcfcdaa",
+        "episodes": 6,
+        "successes": 6,
+        "position_schedule": "configs/day19_approach_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_development_10_then_20_step21_v1_eval.log",
+        "log_sha256": "884563110c8b5241e9f0347e398d9b0c84509ce771f4e7299e95bb1ffcf8a61a",
+        "episodes": 12,
+        "successes": 12,
+        "position_schedule": "configs/day18_xy_development_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_early5_then20_step21_v1_eval.log",
+        "log_sha256": "9968e9add2632309edfba6ed40e5ba083f64d6e7268cb4cfc1a0df3d82fe2cf6",
+        "episodes": 6,
+        "successes": 6,
+        "position_schedule": "configs/day19_early_feedback_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_initial7_capped_then20_step21_v2_eval.log",
+        "log_sha256": "c17602d68ab0b9faaf889e52a0e42775f162c2b0aa6a3b8b20e40bf7735006b8",
+        "episodes": 6,
+        "successes": 6,
+        "position_schedule": "configs/day19_intermediate_prefix_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_observed_failure_fixed_n10_v1_eval.log",
+        "log_sha256": "6ac0e5b8f40693f2c89c3f7e0fe53f3489a7fcb2fdadb3e38f9f769a43a4470c",
+        "episodes": 3,
+        "successes": 1,
+        "position_schedule": "configs/day19_observed_failure_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_original_seen_10_then_20_step21_v1_eval.log",
+        "log_sha256": "de7d7d0ef2a1db14f552dd844077207f09afb77ae566aa425fb2e4c00acb5cb0",
+        "episodes": 24,
+        "successes": 24,
+        "position_schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_original_seen_5_then_20_step21_v1_eval.log",
+        "log_sha256": "30e09438d26cc49bbf2769ae12ffff46f6b32e913945b60c4f9e7f865d5be9e4",
+        "episodes": 24,
+        "successes": 24,
+        "position_schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_original_seen_n20_150step_v1_eval.log",
+        "log_sha256": "1ba6e13ef66245db283f4e2ef7db9b0c454733b0243b5cf9b1609d5be6e76faf",
+        "episodes": 24,
+        "successes": 12,
+        "position_schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_prefix_10_then_20_step21_v1_eval.log",
+        "log_sha256": "f38a8bacbed0735e596445a05fb31aa5887325a006922d2617c65d64de90d34c",
+        "episodes": 6,
+        "successes": 6,
+        "position_schedule": "configs/day19_prefix_tradeoff_diagnostic_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      },
+      {
+        "log": "results/day19_reserved_test_10_then_20_step21_v1_eval.log",
+        "log_sha256": "7b0c36395d0dae62e33bad22d060c02e93e9fb8b2057d4ef5095b186b316ff01",
+        "episodes": 12,
+        "successes": 9,
+        "position_schedule": "configs/day19_xy_reserved_test_positions.json",
+        "complete_episode_and_summary_records_match": true,
+        "post_summary_glfw_teardown_failure": false
+      }
+    ],
+    "failed_startup": [
+      {
+        "log": "results/day19_initial7_capped_then20_step21_v1_eval.log",
+        "bytes": 153,
+        "episodes": 0,
+        "reason": "Missing capped evaluator; failed before rollout."
+      }
+    ],
+    "scope": "Counts audit heterogeneous experiments; do not pool them as a generalization benchmark."
+  },
+  "artifact_hash_references_checked": 184,
+  "matching_hash_references": 178,
+  "known_historical_preparation_exceptions": [
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "scripts/panda_capped_action_prefix.py",
+      "expected_historical_sha256": "0c4c40fe684956b7ab1c78a98060e0eefd69b0e6274a92f75cd4c9e33eaa421a",
+      "current_sha256": "f362114ccef25563fc16a25e7e8a09d6413797c0f976b2e229423c8eb0eedd0b"
+    },
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "scripts/evaluate_panda_capped_prefix.py",
+      "expected_historical_sha256": "b81308714d32ad0480d03445fe7871952ec7bf546c1f95b436487fce63f111ce",
+      "current_sha256": "4bf3b6e8cc92bda52a4b583cdd7b8d880a360678a493cca2897b3c671bab90f7"
+    },
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "scripts/summarize_capped_approach_trace.py",
+      "expected_historical_sha256": "b335f0158673847de9fcbf4c170e6a67193d83a1c5a5674fa5328b12659883e8",
+      "current_sha256": "2623f208e6cc52ece017be00b2afbe06f01c649ee8615e8229e5255ff9feb2ad"
+    },
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "tests/test_day19_capped_prefix.py",
+      "expected_historical_sha256": "380e99ce75a456624148ade9c27acd3b437cc2ff648126bbbbe02323ed83e677",
+      "current_sha256": "b9b1706f03d93276dacaae2dfcf198b9686a31409521f816c1391e944c2fa57d"
+    },
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "configs/day19_intermediate_prefix_diagnostic_positions.json",
+      "expected_historical_sha256": "11e135d477ecda32c92f408ff2e63c538a20202fee91b176de14552b897c8eb8",
+      "current_sha256": "3dd5d302dc7fefa7e4da3339a6b8841b45f4f61896f5f00f523d9ab175da28fa"
+    },
+    {
+      "recipe": "results/day19_intermediate_prefix_recipe_v2.json",
+      "source": "scripts/run_day19_intermediate_prefix_diagnostic.sh",
+      "expected_historical_sha256": "28bd675b1bc00086d7700cee3d661078a61a4395b4cd8d29a17de4a827181dc0",
+      "current_sha256": "196caf3215c9f180edada4d32b1ee22bd72bae713b073faa69c9327ea82f9a88"
+    }
+  ],
+  "exception_reason": "Unused intermediate recipe_v2 describes a different preparation snapshot. Completed capped rollouts use recipe_v3 or initial7_added_seen_recipe_v1, whose source hashes match. Preserve the unused recipe; do not rewrite historical evidence.",
+  "all_used_recipe_and_frozen_hashes_match": true,
+  "frozen_manifests": {
+    "results/day18_frozen_candidate.json": "85ccd3111b4c8289c8855fd3c73286dff0859279b2e4c32b0a6946cdbbdc9497",
+    "results/day19_frozen_candidate.json": "4fe30b2529189969ef2d002459cfd71668b641552ddb5d1c8c18efd0e0ac2a57"
+  },
+  "shell_checks": {
+    "launchers": 2,
+    "explicit_reference_blocks": 3,
+    "syntax_passed": true,
+    "evaluation_commands_executed": false
+  },
+  "publication_exclusions": [
+    "HANDOFF.md",
+    "outputs/",
+    "external datasets",
+    "results/*_grasp_trace_*.jsonl"
+  ],
+  "historical_day19_final_result": {
+    "successes": 9,
+    "episodes": 12,
+    "summary": "results/day19_reserved_test_summary.json"
+  },
+  "future_reserved_v2_evaluated": false,
+  "no_new_training_or_rollouts_at_closeout": true,
+  "checkpoint_and_processor_files_verified": 6
+}

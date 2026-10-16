@@ -17,6 +17,8 @@ from lerobot.policies.act.modeling_act import ACTPolicy
 from lerobot.policies.act.processor_act import make_act_pre_post_processors
 
 from scripts.panda_grasp_trace import GraspTrace, PandaStateProbe, cube_bottom_clearance
+from scripts.panda_action_prefix import ActionPrefixSchedule
+from scripts.summarize_approach_trace import summarize as summarize_approach
 from scripts.summarize_grasp_trace import summarize
 
 XML = '''<mujoco><option gravity="0 0 -9.81"/>
@@ -103,6 +105,63 @@ class ProbeTests(unittest.TestCase):
 
 
 class TraceTests(unittest.TestCase):
+    def test_scheduled_real_act_queue_preserves_prefix_and_resets_each_episode(self):
+        p = policy()
+        with torch.no_grad():
+            # Distinct action offsets expose taking the last 10 of a 20-action
+            # prefix, the silent bug caused by retaining deque(maxlen=10).
+            p.model.values[0, :, 0] = torch.arange(50) * 0.001
+        schedule = ActionPrefixSchedule(10, 20, 21)
+        schedule.reset_episode(p)
+        baseline = copy.deepcopy(p)
+        obs = {'observation.state': torch.zeros(1, 18)}
+        expected_initial = [baseline.select_action(obs).clone() for _ in range(20)]
+        post = SimpleNamespace(process_action=lambda a: a.clone())
+        offsets = list(range(10)) * 2 + list(range(20)) + list(range(5))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'scheduled.jsonl'
+            trace = GraspTrace(path, p, post, env(), {
+                'checkpoint': 'unit-test', 'max_steps': 45,
+                'policy_only_cli_settings': True,
+                'execution_prefix_schedule': schedule.to_metadata(),
+            })
+            try:
+                for episode in range(2):
+                    schedule.reset_episode(p)
+                    self.assertEqual(p._action_queue.maxlen, 10)
+                    trace.reset(episode, {'x': 0.36, 'y': -0.075})
+                    for step in range(1, 46):
+                        changed = schedule.before_step(p, step)
+                        self.assertEqual(changed, step == 21)
+                        trace.before_step(step)
+                        action = post.process_action(p.select_action(obs))
+                        trace.after_prediction(action)
+                        self.assertAlmostEqual(float(action[0, 0]), offsets[step - 1] * 0.001, places=6)
+                        if step <= 20:
+                            torch.testing.assert_close(action, expected_initial[step - 1], rtol=0, atol=0)
+                        else:
+                            self.assertEqual(p._action_queue.maxlen, 20)
+                        trace.after_step(action, action, 0, False, step == 45)
+                    trace.end_episode(False, 45, 0)
+            finally:
+                trace.close()
+            self.assertEqual(p.model.calls, 8)  # steps 1,11,21,41 in each episode
+            self.assertEqual(len(p.model._forward_hooks), 0)
+            rows = [json.loads(line) for line in path.read_text().splitlines()]
+            self.assertEqual(rows[0]['schema_version'], 2)
+            predictions = [r for r in rows if r['event'] == 'prediction']
+            self.assertEqual([r['step'] for r in predictions], [1, 11, 21, 41] * 2)
+            self.assertEqual([r['queue_executed_prefix_length'] for r in predictions], [10, 10, 20, 20] * 2)
+            summary = summarize_approach(path)
+            self.assertEqual(summary['complete_episodes'], 2)
+            self.assertEqual(summary['event_counts']['prediction'], 8)
+            self.assertEqual([r['queue_executed_prefix_length'] for r in summary['episodes'][1]['preclose_chunks']],
+                             [10, 10, 20, 20])
+            predictions[2]['queue_executed_prefix_length'] = 10
+            path.write_text('\n'.join(json.dumps(r) for r in rows) + '\n')
+            with self.assertRaisesRegex(ValueError, 'declared execution schedule'):
+                summarize_approach(path)
+
     def test_real_act_queue_and_unnormalizer_unchanged_no_extra_forward(self):
         original = policy()
         traced = copy.deepcopy(original)

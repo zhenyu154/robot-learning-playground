@@ -1,0 +1,12 @@
+{
+  "split": "mixed_observed_prefix_tradeoff_diagnostic",
+  "description": "Three repeats each at the added-training stall (0.44,+0.0375) and the observed former-test overshoot (0.45,+0.0625). Test maximum initial prefix seven with prefixes 7+7+6 over steps 1-20, then twenty from step 21. One training position and one observed untrained position; diagnostic, not a fresh final test.",
+  "positions": [
+    {"x": 0.44, "y": 0.0375},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.44, "y": 0.0375},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.44, "y": 0.0375},
+    {"x": 0.45, "y": 0.0625}
+  ]
+}

@@ -1,0 +1,1175 @@
+{
+  "date": "2026-10-15",
+  "status": "complete",
+  "recipe": "results/day19_initial7_added_seen_recipe_v1.json",
+  "summary": "results/day19_added_seen_initial7_capped_then20_step21_v1_summary.json",
+  "log": "results/day19_added_seen_initial7_capped_then20_step21_v1_eval.log",
+  "trace": "results/day19_added_seen_initial7_capped_then20_step21_v1_grasp_trace_v1.jsonl",
+  "recovery_analysis": "results/day19_initial7_failure_recovery_analysis_v1.json",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time_capped_initial",
+    "initial_n_action_steps": 7,
+    "later_n_action_steps": 20,
+    "switch_step": 21,
+    "initial_boundary": "shorten_last_prefix_before_switch"
+  },
+  "successes": 9,
+  "episodes": 12,
+  "successes_by_step100": 9,
+  "successful_completion_step_range": [
+    83,
+    87
+  ],
+  "event_counts": {
+    "metadata": 1,
+    "reset": 12,
+    "prediction": 93,
+    "step": 1218,
+    "end": 12
+  },
+  "schedule_queue_actions_log_and_frozen_hashes_verified": true,
+  "per_position": [
+    {
+      "x": 0.36,
+      "y": -0.0375,
+      "episodes": 3,
+      "successes": 3,
+      "steps": [
+        87,
+        87,
+        87
+      ]
+    },
+    {
+      "x": 0.36,
+      "y": 0.0375,
+      "episodes": 3,
+      "successes": 3,
+      "steps": [
+        86,
+        86,
+        86
+      ]
+    },
+    {
+      "x": 0.44,
+      "y": -0.0375,
+      "episodes": 3,
+      "successes": 0,
+      "steps": [
+        150,
+        150,
+        150
+      ]
+    },
+    {
+      "x": 0.44,
+      "y": 0.0375,
+      "episodes": 3,
+      "successes": 3,
+      "steps": [
+        83,
+        83,
+        83
+      ]
+    }
+  ],
+  "episode_results": [
+    {
+      "episode_one_based": 1,
+      "position": {
+        "episode_index": 0,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 87,
+      "first_descent_step": 47,
+      "first_close_step": 63,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.35902064874569173,
+            0.0004699747452832113,
+            0.07646606009637003
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.9793512543082583,
+            37.96997474528321
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.44975295183696806,
+            -0.05132772239453101,
+            -0.17745830194874912
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.35848416147159995,
+            -0.04819312193916764,
+            0.07698047849309039
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -1.5158385284000375,
+            -10.69312193916764
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.00929564762042201,
+            0.037804975234888294,
+            0.07292704822060847
+          ]
+        },
+        {
+          "step": 87,
+          "tcp_xyz_m": [
+            0.36012294030875747,
+            -0.047975893655459366,
+            0.11862981787488999
+          ],
+          "cube_xyz_m": [
+            0.3609666519039581,
+            -0.04795238798127496,
+            0.12150135043308069
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.8437115952006358,
+            -0.023505674184402803
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.8383132153409476,
+            -0.17094809365731517,
+            -12.292649006683225
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.100824344127984,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        3.0357660829594124e-18,
+        0.013346137106418611
+      ]
+    },
+    {
+      "episode_one_based": 2,
+      "position": {
+        "episode_index": 1,
+        "x": 0.36,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "first_descent_step": 45,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.35754346905386764,
+            0.00053322823169829,
+            0.07789027579327593
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.4565309461323515,
+            -36.96677176830171
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.19646478821971902,
+            -0.07024805144219054,
+            -0.1402583119023415
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.35736085888075547,
+            0.04219499132994682,
+            0.0758457739169904
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.6391411192445147,
+            4.694991329946823
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.015788855662945966,
+            -0.05758691442312586,
+            0.11500700892190518
+          ]
+        },
+        {
+          "step": 86,
+          "tcp_xyz_m": [
+            0.35897411217834685,
+            0.042906757675710366,
+            0.12872793202328006
+          ],
+          "cube_xyz_m": [
+            0.358787617857653,
+            0.042874832497190304,
+            0.13205445765515705
+          ],
+          "tcp_minus_cube_xy_mm": [
+            0.18649432069384186,
+            0.031925178520061936
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.852858217224973,
+            0.21172395009735195,
+            -12.249482736527206
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.1114219595714936,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.233456475320139e-17,
+        3.469446951953614e-18,
+        0.013333509862422944
+      ]
+    },
+    {
+      "episode_one_based": 3,
+      "position": {
+        "episode_index": 2,
+        "x": 0.44,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "first_descent_step": null,
+      "first_close_step": null,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.4261963131503062,
+            0.0006405383671031141,
+            0.07666338639249698
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.803686849693797,
+            38.14053836710311
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.02772179707172251,
+            -0.025124795259647698,
+            -0.030654974926117018
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.42619328184087085,
+            -0.0021296771059609006,
+            0.07707771955265769
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.80671815912915,
+            35.3703228940391
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.010979238005970338,
+            1.2446621660161779,
+            -0.05988884769120295
+          ]
+        },
+        {
+          "step": 150,
+          "tcp_xyz_m": [
+            0.4271279136949465,
+            -0.021465587407599185,
+            0.06846379850096238
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -12.872086305053488,
+            16.034412592400813
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.005624091770684014,
+            3.143456381351474,
+            -0.13146492410125166
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": -0.00010775542021618581,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        1.734723475976807e-18,
+        5.55653613398821e-18
+      ]
+    },
+    {
+      "episode_one_based": 4,
+      "position": {
+        "episode_index": 3,
+        "x": 0.44,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 83,
+      "first_descent_step": 49,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.44297440440110153,
+            0.0007099363550354631,
+            0.07587026569546942
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.974404401101527,
+            -36.79006364496454
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.0004097728011354107,
+            -0.15340164632798198,
+            0.07575405289385329
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.4428168484119219,
+            0.05174065343282333,
+            0.07165990912712669
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.816848411921924,
+            14.240653432823331
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.034826801283194264,
+            -0.06291676862250906,
+            0.2463242537778937
+          ]
+        },
+        {
+          "step": 83,
+          "tcp_xyz_m": [
+            0.4436591798672784,
+            0.05243515279692053,
+            0.0893006041393685
+          ],
+          "cube_xyz_m": [
+            0.43945852807096547,
+            0.051582920459868,
+            0.12251153279159653
+          ],
+          "tcp_minus_cube_xy_mm": [
+            4.200651796312904,
+            0.8522323370525262
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.0386883119615775,
+            0.14302815218373427,
+            -9.036300907928993
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.09410962988631873,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2212592008796772e-17,
+        2.778268066994105e-18,
+        0.013028725981712341
+      ]
+    },
+    {
+      "episode_one_based": 5,
+      "position": {
+        "episode_index": 4,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 87,
+      "first_descent_step": 47,
+      "first_close_step": 63,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.3590206490158403,
+            0.0004699730147266315,
+            0.07646606063389469
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.9793509841596881,
+            37.96997301472663
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.4497532452685804,
+            -0.0513278318677543,
+            -0.17745873067125106
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.3584841613083816,
+            -0.048193120627652394,
+            0.07698047918657905
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -1.5158386916183653,
+            -10.693120627652396
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.009295560545852233,
+            0.037804924690867936,
+            0.07292708978345885
+          ]
+        },
+        {
+          "step": 87,
+          "tcp_xyz_m": [
+            0.36013964428196416,
+            -0.047986002454189346,
+            0.11852792361241807
+          ],
+          "cube_xyz_m": [
+            0.36097871339146115,
+            -0.04796538997590616,
+            0.12138636239194295
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.8390691094969926,
+            -0.020612478283187075
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.8335969177610267,
+            -0.17041946272806918,
+            -12.277579212067236
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.10074058570770278,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        3.469446951953614e-18,
+        0.01334613561630249
+      ]
+    },
+    {
+      "episode_one_based": 6,
+      "position": {
+        "episode_index": 5,
+        "x": 0.36,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "first_descent_step": 45,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.35754346954961,
+            0.0005332289592002242,
+            0.07789027540218776
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.45653045038996,
+            -36.96677104079978
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.19646443413035009,
+            -0.07024803552891105,
+            -0.1402576436110997
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.3573608588478297,
+            0.04219499356485124,
+            0.07584577181084529
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.639141152170288,
+            4.694993564851243
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.015788815829143044,
+            -0.05758714170275847,
+            0.11500744063076829
+          ]
+        },
+        {
+          "step": 86,
+          "tcp_xyz_m": [
+            0.3589742329837384,
+            0.042906847581286704,
+            0.12873091085371638
+          ],
+          "cube_xyz_m": [
+            0.35878771349839805,
+            0.04287492988949571,
+            0.1320593906432786
+          ],
+          "tcp_minus_cube_xy_mm": [
+            0.1865194853403196,
+            0.03191769179099191
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.8529081111333667,
+            0.21177264756013642,
+            -12.250030778114846
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.11142773170658651,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        2.778268066994105e-18,
+        0.013333511352539063
+      ]
+    },
+    {
+      "episode_one_based": 7,
+      "position": {
+        "episode_index": 6,
+        "x": 0.44,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "first_descent_step": null,
+      "first_close_step": null,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.42619632068976276,
+            0.000640538027595544,
+            0.07666338898204961
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.803679310237237,
+            38.14053802759555
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.027721737518193734,
+            -0.025124814625082734,
+            -0.030654760246079382
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.42619321579529484,
+            -0.0021307023214159043,
+            0.077077488592344
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.806784204705158,
+            35.36929767858409
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.01098407771943366,
+            1.2448957246978323,
+            -0.05986982938434304
+          ]
+        },
+        {
+          "step": 150,
+          "tcp_xyz_m": [
+            0.4271279819515153,
+            -0.018578013432687338,
+            0.06779853951600714
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -12.872018048484701,
+            18.92198656731266
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.0134199814159075,
+            0.5139031885678866,
+            -0.07727884998050272
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": -0.00010775542021618581,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2205815745218738e-17,
+        1.734723475976807e-18,
+        5.583641188300348e-18
+      ]
+    },
+    {
+      "episode_one_based": 8,
+      "position": {
+        "episode_index": 7,
+        "x": 0.44,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 83,
+      "first_descent_step": 49,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.4429744081001229,
+            0.000709936415779497,
+            0.0758702712715418
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.974408100122894,
+            -36.790063584220505
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.00040988332006275385,
+            -0.15340179222114442,
+            0.07575425057834706
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.44281685216511557,
+            0.05174065687903947,
+            0.07165991225968263
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.8168521651155687,
+            14.24065687903947
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.03482683158767541,
+            -0.06291668680916823,
+            0.24632431296932322
+          ]
+        },
+        {
+          "step": 83,
+          "tcp_xyz_m": [
+            0.44365635700095757,
+            0.05244901146070317,
+            0.08926301030473527
+          ],
+          "cube_xyz_m": [
+            0.4394585522408494,
+            0.05166961628525793,
+            0.12248314807948266
+          ],
+          "tcp_minus_cube_xy_mm": [
+            4.19780476010817,
+            0.7793951754452368
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.0382713254267206,
+            0.13877791425313812,
+            -9.03440107746306
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.09408434386052184,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        3.469446951953614e-18,
+        0.013028725981712341
+      ]
+    },
+    {
+      "episode_one_based": 9,
+      "position": {
+        "episode_index": 8,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 87,
+      "first_descent_step": 47,
+      "first_close_step": 63,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.3590206497123842,
+            0.0004699734817179488,
+            0.07646606311191839
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.97935028761581,
+            37.96997348171795
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.4497530832496266,
+            -0.05132780725465992,
+            -0.17745962869186727
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.35848416153928797,
+            -0.048193121864846276,
+            0.07698048176762176
+          ],
+          "cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -1.5158384607120157,
+            -10.693121864846278
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.009295646871076979,
+            0.03780505828739761,
+            0.07292662074470657
+          ]
+        },
+        {
+          "step": 87,
+          "tcp_xyz_m": [
+            0.3601229171512038,
+            -0.047975938329820327,
+            0.11863030903433755
+          ],
+          "cube_xyz_m": [
+            0.3609666240355228,
+            -0.04795243411420508,
+            0.12150179831543434
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -0.8437068843190065,
+            -0.023504215615248458
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.838332556655775,
+            -0.17094470668027606,
+            -12.292714405606226
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.10082479015362628,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2212592008796772e-17,
+        2.778268066994105e-18,
+        0.013346137106418611
+      ]
+    },
+    {
+      "episode_one_based": 10,
+      "position": {
+        "episode_index": 9,
+        "x": 0.36,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "first_descent_step": 45,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.35754346369003775,
+            0.0005332283914168977,
+            0.07789027688324074
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.4565363099622317,
+            -36.9667716085831
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.19646443024884386,
+            -0.07024800813890456,
+            -0.14025788550489637
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.35736085315485877,
+            0.042194995006461795,
+            0.07584577560133429
+          ],
+          "cube_xyz_m": [
+            0.36,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -2.639146845141216,
+            4.694995006461797
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.015788853925891022,
+            -0.057586985026329696,
+            0.11500720314962243
+          ]
+        },
+        {
+          "step": 86,
+          "tcp_xyz_m": [
+            0.35897410757670223,
+            0.042906761993597595,
+            0.12872793297988316
+          ],
+          "cube_xyz_m": [
+            0.35878762152765825,
+            0.042874837116083794,
+            0.1320544478558665
+          ],
+          "tcp_minus_cube_xy_mm": [
+            0.1864860490439768,
+            0.031924877513800354
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.852858515209832,
+            0.21172394024496916,
+            -12.249483549437029
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.11142194703989078,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.222614453595284e-17,
+        3.469446951953614e-18,
+        0.013333509862422944
+      ]
+    },
+    {
+      "episode_one_based": 11,
+      "position": {
+        "episode_index": 10,
+        "x": 0.44,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "first_descent_step": null,
+      "first_close_step": null,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.4261963174053093,
+            0.0006405380222106332,
+            0.076663388096504
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.803682594690725,
+            38.14053802221063
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.027721948434755728,
+            -0.02512481709961048,
+            -0.03065456312917325
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.42619321213355577,
+            -0.002130702341919699,
+            0.07707748756348248
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -13.806787866444237,
+            35.3692976580803
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.01098404377281037,
+            1.244895304016369,
+            -0.05986951946963803
+          ]
+        },
+        {
+          "step": 150,
+          "tcp_xyz_m": [
+            0.42715991257876573,
+            -0.006564947132850383,
+            0.06868409209533535
+          ],
+          "cube_xyz_m": [
+            0.44,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            -12.84008742123427,
+            30.935052867149615
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.04080274817847007,
+            0.13942654449810524,
+            0.054482285344090164
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": -0.00010775542021618581,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.2551405187698492e-17,
+        3.7947076036992655e-19,
+        5.55653613398821e-18
+      ]
+    },
+    {
+      "episode_one_based": 12,
+      "position": {
+        "episode_index": 11,
+        "x": 0.44,
+        "y": 0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 83,
+      "first_descent_step": 49,
+      "first_close_step": 62,
+      "samples": [
+        {
+          "step": 20,
+          "tcp_xyz_m": [
+            0.44297440538686017,
+            0.0007099346497118788,
+            0.07587026796824928
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.9744053868601683,
+            -36.790065350288124
+          ],
+          "tcp_minus_target_xyz_mm": [
+            0.0004098068643876296,
+            -0.1534014613577781,
+            0.07575402065033987
+          ]
+        },
+        {
+          "step": 40,
+          "tcp_xyz_m": [
+            0.44281684912286634,
+            0.05174065459312866,
+            0.07165990891173721
+          ],
+          "cube_xyz_m": [
+            0.44,
+            0.0375,
+            0.019892244579783815
+          ],
+          "tcp_minus_cube_xy_mm": [
+            2.8168491228663384,
+            14.240654593128662
+          ],
+          "tcp_minus_target_xyz_mm": [
+            -0.03482691397732607,
+            -0.06291671571791863,
+            0.24632417808681528
+          ]
+        },
+        {
+          "step": 83,
+          "tcp_xyz_m": [
+            0.4436591802213952,
+            0.0524351533759894,
+            0.08930060795088451
+          ],
+          "cube_xyz_m": [
+            0.4394585266971429,
+            0.05158292505762838,
+            0.12251153782336355
+          ],
+          "tcp_minus_cube_xy_mm": [
+            4.200653524252306,
+            0.8522283183610146
+          ],
+          "tcp_minus_target_xyz_mm": [
+            1.0386882819079513,
+            0.1430280938787415,
+            -9.03630100796779
+          ]
+        }
+      ],
+      "final_cube_bottom_clearance_m": 0.09410964300956168,
+      "max_target_delta_minus_scaled_action_abs_m": [
+        2.222614453595284e-17,
+        2.8189256484623115e-18,
+        0.013028725981712341
+      ]
+    }
+  ],
+  "matched_added_training_suite_comparison": {
+    "initial10_then20": {
+      "successes": 12,
+      "episodes": 12
+    },
+    "initial5_then20": {
+      "successes": 9,
+      "episodes": 12,
+      "failed_position": {
+        "x": 0.44,
+        "y": 0.0375
+      }
+    },
+    "initial7_capped_then20": {
+      "successes": 9,
+      "episodes": 12,
+      "failed_position": {
+        "x": 0.44,
+        "y": -0.0375
+      }
+    }
+  },
+  "failure": {
+    "position": {
+      "x": 0.44,
+      "y": -0.0375
+    },
+    "successes": 0,
+    "episodes": 3,
+    "stage": "Early X undertravel followed by weak Y progression; no meaningful descent or close within150 steps.",
+    "step20_x_error_mm": [
+      -13.803686849693797,
+      -13.803679310237237,
+      -13.803682594690725
+    ],
+    "deferred_descent_in_all21_later_replans": true,
+    "late_positive_x_correction_present_in_full_chunks": false
+  },
+  "claim": "Capped initial-seven retains the prior positive-Y diagnostic recovery but fails the mirrored negative-Y training configuration; it is not selected as a replacement.",
+  "next_recommendation": "Stop broad initial-seven validation and diagnose recovery behavior before choosing another inference or data intervention.",
+  "replacement_selected": false,
+  "historical_reserved_9_of12_unchanged": true,
+  "future_reserved_set_unrun": "configs/day19_xy_reserved_test_positions_v2.json",
+  "input_sha256": {
+    "results/day19_initial7_added_seen_recipe_v1.json": "03ad64598a34cd2c9d5ec35f72f12554b16a2a12aa7d23e4b5415f94ce65cd9e",
+    "results/day19_added_seen_initial7_capped_then20_step21_v1_summary.json": "e3ea425eac6ea158823ca689fe63c8371f86cb1bbb54b30c0b1d3a84ab59592b",
+    "results/day19_added_seen_initial7_capped_then20_step21_v1_eval.log": "f8ac1245aede62bd267de940570f06016fae41171b6b62e125df98fa5bf3b445",
+    "results/day19_added_seen_initial7_capped_then20_step21_v1_grasp_trace_v1.jsonl": "9719d21693f8504ef8a7e48c96b93925bef45c0148cece8e269e5a33133274ce",
+    "results/day19_initial7_failure_recovery_analysis_v1.json": "de8f11e5b51c64378b259c4d5046967e2fb4abd61a468a590922a2e5640bc0ab",
+    "results/day19_added_seen_scheduled_summary.json": "5cd1d4f2c5e7fe82fa3da759be16e9f7b278b799d80d08e9e32ff768e13f4a57",
+    "results/day19_added_seen_early5_summary.json": "bf6691421242705b2281f819c89bbc65cbef0a9522422618bb8d045bd060c095"
+  }
+}

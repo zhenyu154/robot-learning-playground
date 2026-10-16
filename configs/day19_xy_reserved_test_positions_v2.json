@@ -1,0 +1,18 @@
+{
+  "split": "reserved_test_v2",
+  "description": "Fresh future test for a post-v1-test candidate, declared after the local 5-to-20 diagnostic and before broader validation/selection. X=0.38/0.42 samples the central gap between trained X values; Y=+-0.04375 is a new intermediate magnitude. Run only after a separate candidate freeze. Preserve the earlier 10-to-20 candidate's final 9/12 on its different test.",
+  "positions": [
+    {"x": 0.38, "y": -0.04375},
+    {"x": 0.38, "y": 0.04375},
+    {"x": 0.42, "y": -0.04375},
+    {"x": 0.42, "y": 0.04375},
+    {"x": 0.38, "y": -0.04375},
+    {"x": 0.38, "y": 0.04375},
+    {"x": 0.42, "y": -0.04375},
+    {"x": 0.42, "y": 0.04375},
+    {"x": 0.38, "y": -0.04375},
+    {"x": 0.38, "y": 0.04375},
+    {"x": 0.42, "y": -0.04375},
+    {"x": 0.42, "y": 0.04375}
+  ]
+}

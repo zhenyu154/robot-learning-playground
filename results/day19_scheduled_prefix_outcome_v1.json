@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-15",
+  "status": "scheduled_prefix_two_position_diagnostic_complete",
+  "pre_run_recipe": "results/day19_scheduled_prefix_recipe_v1.json",
+  "summary": "results/day19_prefix_10_then_20_step21_v1_summary.json",
+  "log": "results/day19_prefix_10_then_20_step21_v1_eval.log",
+  "trace": "results/day19_prefix_10_then_20_step21_v1_grasp_trace_v1.jsonl",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time",
+    "initial_n_action_steps": 10,
+    "later_n_action_steps": 20,
+    "switch_step": 21
+  },
+  "event_counts": {
+    "metadata": 1,
+    "reset": 6,
+    "prediction": 36,
+    "step": 507,
+    "end": 6
+  },
+  "switch_at_21_verified_all_episodes": true,
+  "successes": 6,
+  "episodes": 6,
+  "by_position": [
+    {
+      "position": {
+        "x": 0.36,
+        "y": -0.075
+      },
+      "successes": 3,
+      "episodes": 3,
+      "completion_steps": [
+        86,
+        86,
+        86
+      ],
+      "fixed_n10_reference": {
+        "successes": 3,
+        "episodes": 3,
+        "evidence": "results/day18_summary.json"
+      },
+      "fixed_n20_reference": {
+        "successes": 0,
+        "episodes": 3,
+        "evidence": "results/day19_original_seen_n20_summary.json"
+      }
+    },
+    {
+      "position": {
+        "x": 0.36,
+        "y": -0.0375
+      },
+      "successes": 3,
+      "episodes": 3,
+      "completion_steps": [
+        84,
+        82,
+        83
+      ],
+      "fixed_n10_reference": {
+        "successes": 0,
+        "episodes": 3,
+        "evidence": "results/day19_approach_n10_v1_summary.json"
+      },
+      "fixed_n20_reference": {
+        "successes": 3,
+        "episodes": 3,
+        "evidence": "results/day19_approach_n20_v1_summary.json"
+      }
+    }
+  ],
+  "episode_results": [
+    {
+      "episode_index": 0,
+      "position": {
+        "episode_index": 0,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 86,
+      "first_descent_step": 42,
+      "first_close_step": 62,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        -22.469703184313904,
+        3.9733488431886457
+      ],
+      "step40_tcp_m": [
+        0.3375690207531265,
+        -0.07074134884095985,
+        0.07548329354693323
+      ],
+      "final_cube_xyz_m": [
+        0.3590193811647106,
+        -0.07154997844928838,
+        0.12242510836992347
+      ],
+      "final_cube_bottom_clearance_m": 0.10209819331459821
+    },
+    {
+      "episode_index": 1,
+      "position": {
+        "episode_index": 1,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 84,
+      "first_descent_step": 43,
+      "first_close_step": 61,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        4.1236561849878335,
+        -3.5636087674695283
+      ],
+      "step40_tcp_m": [
+        0.3641348875869777,
+        -0.04103374240000656,
+        0.07838560193299937
+      ],
+      "final_cube_xyz_m": [
+        0.35785420321579575,
+        -0.04089190047793113,
+        0.13103500546150476
+      ],
+      "final_cube_bottom_clearance_m": 0.11073670151760409
+    },
+    {
+      "episode_index": 2,
+      "position": {
+        "episode_index": 2,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 86,
+      "first_descent_step": 42,
+      "first_close_step": 61,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        -22.46969017490147,
+        3.973353465539689
+      ],
+      "step40_tcp_m": [
+        0.3375690273080038,
+        -0.07074134363770218,
+        0.07548328853186909
+      ],
+      "final_cube_xyz_m": [
+        0.35902378599556095,
+        -0.0720617848900238,
+        0.12296933933308045
+      ],
+      "final_cube_bottom_clearance_m": 0.10259928458693718
+    },
+    {
+      "episode_index": 3,
+      "position": {
+        "episode_index": 3,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 82,
+      "first_descent_step": 43,
+      "first_close_step": 59,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        4.086350851864983,
+        -3.465362976845347
+      ],
+      "step40_tcp_m": [
+        0.36413902807736254,
+        -0.04094247259223069,
+        0.07848847872187553
+      ],
+      "final_cube_xyz_m": [
+        0.36054388381616065,
+        -0.040913760993910225,
+        0.13217381647468232
+      ],
+      "final_cube_bottom_clearance_m": 0.11130148289576114
+    },
+    {
+      "episode_index": 4,
+      "position": {
+        "episode_index": 4,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 86,
+      "first_descent_step": 42,
+      "first_close_step": 61,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        -22.46969051124925,
+        3.9733513106673253
+      ],
+      "step40_tcp_m": [
+        0.33756902697974,
+        -0.07074134585776486,
+        0.07548329048356547
+      ],
+      "final_cube_xyz_m": [
+        0.3590236699440978,
+        -0.07206181231514605,
+        0.12296531401691299
+      ],
+      "final_cube_bottom_clearance_m": 0.10259520964821471
+    },
+    {
+      "episode_index": 5,
+      "position": {
+        "episode_index": 5,
+        "x": 0.36,
+        "y": -0.0375,
+        "z": 0.02
+      },
+      "success": true,
+      "completion_steps": 83,
+      "first_descent_step": 43,
+      "first_close_step": 61,
+      "tcp_minus_cube_xy_mm_at_first_descent": [
+        4.122251374444163,
+        -3.5632519919356342
+      ],
+      "step40_tcp_m": [
+        0.3641348820902539,
+        -0.041033745677679825,
+        0.07838560296701069
+      ],
+      "final_cube_xyz_m": [
+        0.3578325485199844,
+        -0.04098594154759281,
+        0.12353193657712978
+      ],
+      "final_cube_bottom_clearance_m": 0.10315647230222993
+    }
+  ],
+  "claim": "The predefined 10-then-20 schedule retained the longer-Y grasp and recovered the shorter-Y approach in three trials each at two training positions.",
+  "candidate_selected": false,
+  "frozen_day18_baseline_unchanged": true,
+  "limitations": [
+    "Two training positions with three repeats each; not a held-out generalization result.",
+    "Scheduled run and shorter-Y references are traced diagnostics; original-seen fixed references are untraced benchmark episodes.",
+    "First thresholded descent means raw Z <= -0.1, not first tiny negative Z action.",
+    "Longer-Y X offset remains about 22.5 mm at thresholded descent; not perfect centering.",
+    "The switch is clock-based and does not infer completion of the approach stage."
+  ],
+  "input_sha256": {
+    "results/day19_prefix_10_then_20_step21_v1_summary.json": "4a55187a3dc9384d5e808efcc7dbe094ad11163708a328afd06c6f2aafff5502",
+    "results/day19_prefix_10_then_20_step21_v1_grasp_trace_v1.jsonl": "8ed5175358b5f9e09c69084c5657bdea76a94b11d7c35d831cc1b16abffe9f27",
+    "results/day19_prefix_10_then_20_step21_v1_eval.log": "f38a8bacbed0735e596445a05fb31aa5887325a006922d2617c65d64de90d34c",
+    "results/day19_scheduled_prefix_recipe_v1.json": "d3e644d4bb74a4cf6b64020bdfeab879822646226858410e32bd3e87a04358c3",
+    "results/day18_summary.json": "192198f9d3303ede64c579c35b19bee4079773abfbe9824c432b57b6b92dcf9a",
+    "results/day19_original_seen_n20_summary.json": "66160468c229985699fd1eb6364f7a94d2d22b00f36497bd95409af1bcc2a744",
+    "results/day19_approach_n10_v1_summary.json": "406fd2d9561ea78b5ae2e929fd504d1a868aa9a445499ebfce3819b7b424f4ce",
+    "results/day19_approach_n20_v1_summary.json": "19f0bf8008eb735d90b59f3c349259347cbe56bf89a14c0181660bc29c7d5eec"
+  }
+}

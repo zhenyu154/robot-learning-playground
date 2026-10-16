@@ -1,14 +1,16 @@
-# ACT for Panda Pick-and-Place
+# ACT for Panda Pick-and-Lift
 
 A hands-on robot-learning project built with **LeRobot, ACT, MuJoCo, and Gym-HIL**. The project studies teleoperated demonstrations, gripper-action learning, and spatial generalization for a simulated Franka Panda.
 
-> **Current result:** Day18 achieved **12/12 policy-only successes at four predeclared, untrained 2D cube positions** using a frozen checkpoint and ten-action execution prefix. All finished in **76–87 steps** within 150-step rollouts. This supports local 2D positional interpolation in MuJoCo; it is not broad robustness or real-robot transfer.
+> **Latest experiment — Day19:** reusing the Day18 checkpoint, a fixed-time execution schedule (ten actions per prediction through step 20, then twenty) achieved **24/24 original-training, 12/12 added-training, and 12/12 development successes**, followed by **9/12 on four fresh reserved configurations**. Shorter initial prefixes recovered the observed overshoot case but introduced training-position stalls. No new training or demonstrations were used.
+
+> **Preserved Day18 result:** the frozen ten-action policy achieved **12/12 at four different predeclared, untrained 2D cube positions**, all in **76–87 steps**. Both experiments support only local positional evidence in MuJoCo; their different reserved schedules do not provide a matched success-rate comparison.
 
 > **Day9 diagnosis:** externally freezing Y near the target and supplying close/lift actions produced **2/2 successful diagnostic lifts** at `y=±0.05`. This localizes the positive-side policy-only failure primarily to lateral stopping/calibration, but the intervention is not a policy-only benchmark.
 
 > **Day12:** sequential 2D X/Y training achieved **9/12 policy-only successes** on four seen corner positions.
 
-> **Known limitation:** the added training position `(0.36,-0.0375)` remains **0/3**. Longer execution helps postponed lifts but can narrow lateral alignment margins. Development and seen results are reported separately from the reserved final test.
+> **Known limitation:** fixed ten-action execution fails **0/3** at training position `(0.36,-0.0375)`. Day19's 10→20 schedule recovers that position but fails **0/3** at reserved position `(0.45,+0.0625)`. Execution timing trades approach precision against stage progression, and later lateral correction remains weak. Training, development, reserved tests, and post-test diagnostics remain separate.
 
 ## Policy demo — fixed-position task
 
@@ -42,6 +44,10 @@ This GIF comes from a real policy-only MuJoCo rollout of the Day5 XPU checkpoint
 | Day18 shorter-Y expansion, five-action execution | All 60 Day17 episodes + 20 new shorter-Y demonstrations; same weights; 14,000 updates; 150-step horizon | Original seen **20/24**; added seen **6/12**; development **11/12** | More shorter-Y supervision improved development control, but approach stalls and delayed lifts remained. Frozen Day17 baseline was 7/12 on the same new development schedule. |
 | Day18 ten-action execution | Same checkpoint; ten-action prefix selected from passive diagnostics and seen/development evaluation; 150-step horizon | Original seen **23/24**; added seen **9/12**; development **12/12** | Longer commitment reaches predicted lifts previously left beyond the executed prefix. All original-seen successes finished by step 100; six added-seen successes required more time. |
 | Day18 reserved final evaluation | Four predeclared untrained X/Y combinations, three repeats each; checkpoint/settings frozen before test; policy-only | **12/12**, all within **76–87 steps** | Evidence of local 2D interpolation. Single trained seed, fixed object/cameras/home/dynamics; known seen-position failures remain. |
+| Day19 fixed twenty-action execution | Same Day18 checkpoint; longer commitment throughout the rollout | Diagnostic **6/6**; original training **12/24** | Recovered the shorter-Y stall but introduced severe approach overshoot; rejected as a replacement. |
+| Day19 ten then twenty actions | Same checkpoint; fixed-time switch at step 21; 150-step cap | Original training **24/24**; added training **12/12**; development **12/12** | All successes finish by step 100; execution timing improves these measured suites without retraining. |
+| Day19 reserved final evaluation | Frozen 10→20 schedule; four newly reserved configurations, three repeats each | **9/12** | `(0.45,+0.0625)` fails 0/3 after initial X overshoot. Different positions from Day18's test. |
+| Day19 post-test initial-prefix diagnostics | Five-action prefixes, or capped 7+7+6 through step 20; twenty thereafter | Each diagnostic **6/6**; added training **9/12** for each | Initial-5 fails `(0.44,+0.0375)`; capped initial-7 fails its negative-Y mirror. Diagnostic recovery does not replace the historical final result. |
 
 On the Day5 fixed-position data, the offline gripper audit reached **56.1% close-frame hit rate** with **0% hold-frame false-close rate**. Day8 improved active-Y offline sign-and-magnitude hits from **70.5% to 91.5%**, but gripper close hits decreased from **66.7% to 44.2%**. The successful rollouts reinforce that an offline action threshold is not a physical grasp-success criterion. Day7 data-quality caveats and the controlled Day8 results are documented in [`notes/day7.md`](notes/day7.md) and [`notes/day8.md`](notes/day8.md).
 Day10 v1 with intermediate positions but inconsistent close-to-lift timing achieved only **3/12** policy-only seen successes. Timing-v2 reduced the close-to-lift gap to approximately 2--8 frames and achieved **12/12** seen and **6/6** held-out policy-only successes. Because timing-v2 also has fewer frames and therefore more effective dataset passes at 2,000 updates, timing consistency is strongly implicated but not isolated as the only causal factor. Full details are in [`notes/day10.md`](notes/day10.md).
@@ -57,6 +63,7 @@ Day10 v1 with intermediate positions but inconsistent close-to-lift timing achie
 - Project-local axis-specific X/Y/Z loss weighting, independent close-command and positive-Z lift weighting, plus numerical/gradient tests.
 - Explicit evaluator interventions for fixed close/lift/descent and lateral freezing, kept separate from policy-only metrics.
 - Passive grasp tracing of normal ACT chunks, executed actions, actual finger joints, and table/finger contacts, with no extra predictions or oracle policy inputs.
+- Opt-in, fixed-time ACT execution-prefix schedules, empty-queue boundary checks, and full-chunk versus executed-action validation.
 - Intel XPU training/inference validation and CPU/XPU inference comparison.
 - Scheduled cube-position recording, explicit seen/development/reserved-test splits, and horizon-aware policy evaluation.
 - Non-destructive LeRobot dataset selection/merging with episode provenance, phase-aware QA, source integrity hashes, and sampled camera-frame alignment checks.
@@ -342,6 +349,44 @@ Datasets, model weights, and high-volume raw grasp traces remain local; their
 builders, provenance, compact diagnostic summaries, and terminal logs are in the
 repository. The GIF above remains the Day5 fixed-position demo.
 
+## Day19: Execution timing, overshoot, and missing recovery
+
+Day19 keeps the Day18 model, processors, data, loss, cameras, home pose and
+simulator settings fixed. It tests how much of each 50-action ACT prediction
+to execute before replanning. This is an inference ablation, with learned action
+values and no forced motion or oracle cube/contact inputs.
+
+| Execution rule, 150-step cap | Original training | Added training | Development | Fresh reserved v1 |
+|---|---:|---:|---:|---:|
+| Fixed 10, preserved Day18 reference | 23/24 | 9/12 | 12/12 | Not run |
+| Fixed 20 | 12/24 | Not run | Not run | Not run |
+| 10 through step 20, then 20 | **24/24** | **12/12** | **12/12** | **9/12** |
+| 5 through step 20, then 20 | 24/24 | 9/12 | Not run | Not run |
+| 7+7+6 through step 20, then 20 | Not run | 9/12 | Not run | Not run |
+
+The fixed-10 row uses the earlier measured training/development suites. Day19's
+reserved v1 positions are `(0.35,±0.0625)` and `(0.45,±0.0625)`. All failures
+occur at `(0.45,+0.0625)`, where X overtravel is already about 19.3 mm at step 20.
+Successful final-test episodes finish in steps 74–87. The candidate and settings
+were frozen before that test; subsequent tuning is labeled post-test diagnosis.
+
+Capped initial-seven reduces that observed position's step 20 X error to about
+0.54 mm and succeeds 3/3 there. Its broader training check exposes a different
+failure at `(0.44,-0.0375)`: X stops about 13.8 mm short, later full predictions
+provide almost no X correction, and all 21 later failed replans put descent
+beyond the executed 20 actions. Queue/action validation shows the selected
+actions were executed; changing cadence also changes the trajectory.
+
+The next investigation is targeted lateral recovery and phase progression,
+with a new protocol agreed before data collection or training. No replacement
+was selected from the initial-5/initial-7 follow-ups. A second reserved schedule
+was declared and remains unused; freeze any future candidate before testing it.
+The historical Day19 final result remains 9/12.
+
+See [`notes/day19.md`](notes/day19.md) for the daily write-up, explicit local
+commands and limitations, and [`results/day19_summary.json`](results/day19_summary.json)
+for the evidence index. Models, datasets and raw per-step traces remain local.
+
 ## Project layout
 
 ```text
@@ -359,12 +404,12 @@ tests/      CPU correctness tests for loss, dataset QA/merging, and passive trac
 
 - The Day5 `5/5` result is for a **fixed cube position** in a deterministic simulator; it is not a broad manipulation success-rate claim.
 - Day10 demonstrates local Y interpolation at fixed X, but X, object appearance, home configuration, and simulator remain fixed; this is not broad 2D spatial generalization.
-- Day18 demonstrates local 2D interpolation at four reserved simulator configurations (`12/12`); it does not establish arbitrary-position, object/appearance, camera/home, dynamics, multi-seed, or real-world robustness. The trained shorter-Y position `(0.36,-0.0375)` remains `0/3`.
+- Day18 demonstrates local 2D interpolation at four reserved simulator configurations (`12/12`); Day19's frozen inference schedule scores `9/12` at a different reserved set. Neither establishes arbitrary-position, object/appearance, camera/home, dynamics, multi-seed, or real-world robustness. Fixed-10 still fails the shorter-Y training position; later inference variants have their own failures.
 - The controlled training comparisons, including Day18, use one seed. Repeated resets at a small set of positions primarily demonstrate repeatability, not wide test-distribution coverage.
 - Day10 timing-v2 has fewer frames than Day10 v1, so the same 2,000 updates produce more dataset passes. A matched-pass replication is needed to isolate timing consistency from training exposure.
 - Offline action prediction is diagnostic and does not guarantee closed-loop task success.
 - Horizon and execution-prefix changes affect both timing and alignment. Do not compare different horizons/settings as identical benchmarks or claim that closed fingers/maximum actuator target alone establish a secure grasp.
-- The next investigation can address the known approach stall and alignment margins while preserving the Day18 candidate. The historical reserved test is now evaluated; choose fresh reserved configurations before selecting a future candidate.
+- Day19's prefix changes move failures between positions. Next work should address lateral recovery and approach-to-descent progression while preserving existing checkpoints and final-test evidence. The declared v2 reserved schedule remains unrun; select and freeze any future candidate before using it.
 
 ## Hardware
 

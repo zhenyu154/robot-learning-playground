@@ -1,0 +1,149 @@
+{
+  "status": "candidate_frozen_before_day19_reserved_evaluation",
+  "selected_date": "2026-10-15",
+  "candidate": "day19_act_panda_scheduled_prefix_v1",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "checkpoint_file_sha256": {
+    "config.json": "5d4592ff988dfbaab991854e72d858f67f9fb9f5e5619e9100cd9a39607278a0",
+    "model.safetensors": "383e2a1a195bf6f8d47cecdd78a8023c382b345d8ef8e7168080314455f87bcf",
+    "policy_postprocessor.json": "0e1790afcabc4ab149c95f833f8068f8470f6fa923e87734284e63d4d5eb0ee5",
+    "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "60e97f06bfecb5c83b1e5ddb9e56699d8aa919cc1ce465f6d443093cc79c2479",
+    "policy_preprocessor.json": "1f5457c9ddf58c9b7eb675fa0a68996c8723aee9cb529c77a451d7522eeec88f",
+    "policy_preprocessor_step_3_normalizer_processor.safetensors": "5428aaa78381006a8c4f80168644883f31195d7aadfc51d952d9581de4a84857"
+  },
+  "saved_checkpoint_config_n_action_steps": 10,
+  "training_changed": false,
+  "baseline_day18_manifest": "results/day18_frozen_candidate.json",
+  "baseline_day18_manifest_sha256": "85ccd3111b4c8289c8855fd3c73286dff0859279b2e4c32b0a6946cdbbdc9497",
+  "diagnostic_recipe": "results/day19_scheduled_prefix_recipe_v1.json",
+  "diagnostic_recipe_sha256": "d3e644d4bb74a4cf6b64020bdfeab879822646226858410e32bd3e87a04358c3",
+  "inference": {
+    "execution_prefix_schedule": {
+      "kind": "fixed_time",
+      "initial_n_action_steps": 10,
+      "later_n_action_steps": 20,
+      "switch_step": 21
+    },
+    "chunk_size": 50,
+    "n_obs_steps": 1,
+    "temporal_ensemble_coeff": null,
+    "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+    "max_steps": 150,
+    "fps": 10,
+    "device": "xpu",
+    "home_pose": "configs/day11_home_x_centered.json",
+    "home_pose_sha256": "96ea23c9105346bedb920390dfc45caa8db10496cf362fbbee0ed133156af074",
+    "min_tcp_z": 0.008,
+    "gripper_mode": "policy",
+    "forced_actions": false,
+    "oracle_inputs": false,
+    "trace_enabled": false
+  },
+  "selection_evidence": {
+    "original_seen": {
+      "summary": "results/day19_original_seen_scheduled_summary.json",
+      "summary_sha256": "a1921e5e7ae4f60aac8fcd27dc498abb43003790f17569d8c782180d01faaf7c",
+      "log": "results/day19_original_seen_10_then_20_step21_v1_eval.log",
+      "successes": 24,
+      "episodes": 24,
+      "successes_by_step_100": 24,
+      "completion_step_range": [
+        73,
+        86
+      ]
+    },
+    "added_seen": {
+      "summary": "results/day19_added_seen_scheduled_summary.json",
+      "summary_sha256": "5cd1d4f2c5e7fe82fa3da759be16e9f7b278b799d80d08e9e32ff768e13f4a57",
+      "log": "results/day19_added_seen_10_then_20_step21_v1_eval.log",
+      "successes": 12,
+      "episodes": 12,
+      "successes_by_step_100": 12,
+      "completion_step_range": [
+        70,
+        98
+      ]
+    },
+    "development": {
+      "summary": "results/day19_development_scheduled_summary.json",
+      "summary_sha256": "547cefa0b8b56606e043c31b022be597f2fd98f4077e7dd1fc755a128af0f867",
+      "log": "results/day19_development_10_then_20_step21_v1_eval.log",
+      "successes": 12,
+      "episodes": 12,
+      "successes_by_step_100": 12,
+      "completion_step_range": [
+        81,
+        88
+      ]
+    }
+  },
+  "source_sha256": {
+    "scripts/evaluate_panda_act.py": "c9c6eb375093a70074fe353142e54b669f133c04289354c63aebcedca7112988",
+    "scripts/panda_action_prefix.py": "92a9fb8f8575147714a6528919ccfaabd04a29b5130e91ebc4f66399b357fec4",
+    "scripts/panda_grasp_trace.py": "68f0fea7998be5bdbad1e56eb94046e5216e49628ad730895bf1c5111cc0ebc8",
+    "scripts/summarize_approach_trace.py": "39c536bca1fbe9a531532365b4d7a2890e9127d59358ad78accc71274963ae0a",
+    "tests/test_day19_action_prefix.py": "138749b6d1874b274a09453848b027fbac9b3d63c5d93b15a7bd5017fe461ba3",
+    "tests/test_panda_grasp_trace.py": "298aa2c7eb007a1d7ecb4a6d1decc4dd376137b4b647638c39ac685a6aafd1a6",
+    "configs/day19_prefix_tradeoff_diagnostic_positions.json": "adec8daa2c98a6cb43d7c7c21ff2638e06be965bec26589777ff90827e469a1f",
+    "scripts/panda_home_pose.py": "56dc224cebfa9561756013f18f7d89b077f1f5a166ee43634998d1b6431c5f29",
+    "configs/day11_home_x_centered.json": "96ea23c9105346bedb920390dfc45caa8db10496cf362fbbee0ed133156af074",
+    "ENVIRONMENT.md": "c1bf322dea8b1447bdb4fe9d694823c34c9f5a0fe6eb2a0d98be37f4345f0dc2",
+    "../lerobot/src/lerobot/policies/act/modeling_act.py": "8d622935319af7d03f1efd95d51e726af2921010f7e4f5ec3742f62280493111",
+    "../lerobot/src/lerobot/rl/gym_manipulator.py": "2b358052842fa1b5aa396df221462b502bd8829586e5b60adae929502b5f555c"
+  },
+  "runtime_snapshot": {
+    "python_executable": "/home/wusanggg/Downloads/ENTER/envs/lerobot-xpu/bin/python",
+    "python_version": "3.12.14",
+    "packages": {
+      "torch": "2.10.0+xpu",
+      "lerobot": "0.6.2",
+      "gym-hil": "0.1.14",
+      "gymnasium": "1.3.0",
+      "mujoco": "3.8.1",
+      "av": "15.1.0"
+    },
+    "project_git_head": "3db367f9a2f21fb4f6d64070b6ec866d6045dc27",
+    "day19_implementation_uncommitted_at_freeze": true,
+    "lerobot_git_head": "d4d94b8e9ceefae20235a9bb5a1f61fab207ddaa",
+    "scope": "Inspected workstation snapshot, not a complete environment lock. Exact Day19 source bytes are frozen above."
+  },
+  "reserved_test": {
+    "schedule": "configs/day19_xy_reserved_test_positions.json",
+    "schedule_sha256": "27478a1567242af5811b59684cd6afe8c850bce0a456814221b8e26571e4ac38",
+    "declaration": "results/day19_reserved_test_declaration.json",
+    "declaration_sha256": "9033252445216d1c84f21e97074f505b2ef6f72f0295b13368ba63caf75dd6fc",
+    "episodes": 12,
+    "evaluated": false,
+    "positions": [
+      [
+        0.35,
+        -0.0625
+      ],
+      [
+        0.35,
+        0.0625
+      ],
+      [
+        0.45,
+        -0.0625
+      ],
+      [
+        0.45,
+        0.0625
+      ]
+    ],
+    "coordinate_values_absent_from_training_and_development": true,
+    "no_exact_reserved_positions_in_retained_scheduled_reset_lines": true,
+    "scheduled_reset_lines_checked_at_freeze": 563,
+    "planned_terminal_log": "results/day19_reserved_test_10_then_20_step21_v1_eval.log",
+    "pretest_output_path_absent": true
+  },
+  "limitations": [
+    "One trained seed, three repeats per reserved configuration, fixed cube/appearance/cameras/home/dynamics.",
+    "Clock-based switch at step 21 is specific to the tested protocol and is not an adaptive stage detector.",
+    "Successful seen lifts retain nonzero XY offsets; no universal alignment or grasp-tolerance claim.",
+    "Development results informed selection and are not the fresh final test.",
+    "Historical Day18 reserved results belong to the fixed-n10 candidate, not this new inference test."
+  ],
+  "discipline": "Keep this historical pre-test manifest unchanged. Test these four reserved configurations with the frozen settings, record successes and failures separately, and do not tune from the result while claiming an untouched test. Any later tuning requires fresh reserved configurations."
+}

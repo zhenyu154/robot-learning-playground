@@ -1,0 +1,626 @@
+{
+  "date": "2026-10-15",
+  "status": "original_seen_n20_regression_verified",
+  "log": "results/day19_original_seen_n20_150step_v1_eval.log",
+  "schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "n_action_steps": 20,
+  "chunk_size": 50,
+  "max_steps": 150,
+  "policy_only": true,
+  "traced": false,
+  "episodes": 24,
+  "successes": 12,
+  "n10_reference": {
+    "summary": "results/day18_summary.json",
+    "log": "results/day18_original_seen_n10_150step_eval.log",
+    "episodes": 24,
+    "successes": 23
+  },
+  "position_groups": [
+    {
+      "x": 0.32,
+      "y": -0.075,
+      "n20_successes": 3,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        85,
+        85,
+        85
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          -4.5999999999999925,
+          6.3
+        ],
+        [
+          -4.5999999999999925,
+          6.3
+        ],
+        [
+          -4.5999999999999925,
+          6.3
+        ]
+      ]
+    },
+    {
+      "x": 0.32,
+      "y": 0.075,
+      "n20_successes": 3,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        76,
+        76,
+        76
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          -3.9000000000000146,
+          1.600000000000004
+        ],
+        [
+          -3.9000000000000146,
+          1.600000000000004
+        ],
+        [
+          -3.9000000000000146,
+          1.600000000000004
+        ]
+      ]
+    },
+    {
+      "x": 0.36,
+      "y": -0.075,
+      "n20_successes": 0,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        150,
+        150,
+        150
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          -47.69999999999997,
+          10.300000000000004
+        ],
+        [
+          -47.69999999999997,
+          10.300000000000004
+        ],
+        [
+          -47.69999999999997,
+          10.300000000000004
+        ]
+      ]
+    },
+    {
+      "x": 0.36,
+      "y": 0.075,
+      "n20_successes": 0,
+      "episodes": 3,
+      "n10_reference_successes": 2,
+      "steps": [
+        150,
+        150,
+        150
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          -36.099999999999966,
+          -7.599999999999996
+        ],
+        [
+          -36.099999999999966,
+          -7.599999999999996
+        ],
+        [
+          -36.099999999999966,
+          -7.599999999999996
+        ]
+      ]
+    },
+    {
+      "x": 0.44,
+      "y": -0.075,
+      "n20_successes": 0,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        150,
+        150,
+        150
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          35.399999999999984,
+          13.899999999999995
+        ],
+        [
+          35.399999999999984,
+          13.899999999999995
+        ],
+        [
+          35.399999999999984,
+          13.899999999999995
+        ]
+      ]
+    },
+    {
+      "x": 0.44,
+      "y": 0.075,
+      "n20_successes": 0,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        150,
+        150,
+        150
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          31.600000000000016,
+          -2.699999999999994
+        ],
+        [
+          31.600000000000016,
+          -2.699999999999994
+        ],
+        [
+          31.600000000000016,
+          -2.699999999999994
+        ]
+      ]
+    },
+    {
+      "x": 0.48,
+      "y": -0.075,
+      "n20_successes": 3,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        78,
+        78,
+        78
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          4.300000000000026,
+          -4.900000000000001
+        ],
+        [
+          4.300000000000026,
+          -4.900000000000001
+        ],
+        [
+          4.300000000000026,
+          -4.900000000000001
+        ]
+      ]
+    },
+    {
+      "x": 0.48,
+      "y": 0.075,
+      "n20_successes": 3,
+      "episodes": 3,
+      "n10_reference_successes": 3,
+      "steps": [
+        78,
+        78,
+        78
+      ],
+      "step40_measured_tcp_minus_cube_xy_mm": [
+        [
+          2.9000000000000137,
+          5.199999999999997
+        ],
+        [
+          2.9000000000000137,
+          5.199999999999997
+        ],
+        [
+          2.9000000000000137,
+          5.199999999999997
+        ]
+      ]
+    }
+  ],
+  "episode_results": [
+    {
+      "episode_one_based": 1,
+      "position": {
+        "episode_index": 0,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.527,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 2,
+      "position": {
+        "episode_index": 1,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.047,
+      "min_z": -0.537,
+      "max_z": 0.518
+    },
+    {
+      "episode_one_based": 3,
+      "position": {
+        "episode_index": 2,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.039,
+      "min_z": -0.531,
+      "max_z": 0.449
+    },
+    {
+      "episode_one_based": 4,
+      "position": {
+        "episode_index": 3,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 1.994,
+      "min_z": -0.533,
+      "max_z": 0.514
+    },
+    {
+      "episode_one_based": 5,
+      "position": {
+        "episode_index": 4,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.048,
+      "min_z": -0.523,
+      "max_z": 0.519
+    },
+    {
+      "episode_one_based": 6,
+      "position": {
+        "episode_index": 5,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.046,
+      "min_z": -0.507,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 7,
+      "position": {
+        "episode_index": 6,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.049,
+      "min_z": -0.531,
+      "max_z": 0.52
+    },
+    {
+      "episode_one_based": 8,
+      "position": {
+        "episode_index": 7,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.05,
+      "min_z": -0.538,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 9,
+      "position": {
+        "episode_index": 8,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.527,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 10,
+      "position": {
+        "episode_index": 9,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.047,
+      "min_z": -0.537,
+      "max_z": 0.518
+    },
+    {
+      "episode_one_based": 11,
+      "position": {
+        "episode_index": 10,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.038,
+      "min_z": -0.528,
+      "max_z": 0.456
+    },
+    {
+      "episode_one_based": 12,
+      "position": {
+        "episode_index": 11,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 1.994,
+      "min_z": -0.533,
+      "max_z": 0.516
+    },
+    {
+      "episode_one_based": 13,
+      "position": {
+        "episode_index": 12,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.047,
+      "min_z": -0.523,
+      "max_z": 0.519
+    },
+    {
+      "episode_one_based": 14,
+      "position": {
+        "episode_index": 13,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.046,
+      "min_z": -0.508,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 15,
+      "position": {
+        "episode_index": 14,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.049,
+      "min_z": -0.531,
+      "max_z": 0.52
+    },
+    {
+      "episode_one_based": 16,
+      "position": {
+        "episode_index": 15,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.05,
+      "min_z": -0.538,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 17,
+      "position": {
+        "episode_index": 16,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.526,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 18,
+      "position": {
+        "episode_index": 17,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.047,
+      "min_z": -0.537,
+      "max_z": 0.518
+    },
+    {
+      "episode_one_based": 19,
+      "position": {
+        "episode_index": 18,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.038,
+      "min_z": -0.528,
+      "max_z": 0.453
+    },
+    {
+      "episode_one_based": 20,
+      "position": {
+        "episode_index": 19,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.034,
+      "min_z": -0.533,
+      "max_z": 0.518
+    },
+    {
+      "episode_one_based": 21,
+      "position": {
+        "episode_index": 20,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.048,
+      "min_z": -0.523,
+      "max_z": 0.518
+    },
+    {
+      "episode_one_based": 22,
+      "position": {
+        "episode_index": 21,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": false,
+      "steps": 150,
+      "reward": 0.0,
+      "max_gripper": 2.046,
+      "min_z": -0.507,
+      "max_z": 0.521
+    },
+    {
+      "episode_one_based": 23,
+      "position": {
+        "episode_index": 22,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.049,
+      "min_z": -0.531,
+      "max_z": 0.52
+    },
+    {
+      "episode_one_based": 24,
+      "position": {
+        "episode_index": 23,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.051,
+      "min_z": -0.538,
+      "max_z": 0.521
+    }
+  ],
+  "grouped_comparison": {
+    "inner_x_0p36_0p44": {
+      "n10": {
+        "successes": 11,
+        "episodes": 12
+      },
+      "n20": {
+        "successes": 0,
+        "episodes": 12
+      }
+    },
+    "outer_x_0p32_0p48": {
+      "n10": {
+        "successes": 12,
+        "episodes": 12
+      },
+      "n20": {
+        "successes": 12,
+        "episodes": 12
+      }
+    }
+  },
+  "decision": "Keep frozen Day18 n10 baseline; fixed n20 is not a replacement despite shorter-Y local recovery.",
+  "limitations": [
+    "Step-40 geometry is sparse and rounded; it is not a contact trace or exact descent-onset measurement.",
+    "User observed overshoot at all nearer cube positions; logs support systematic X overshoot on the four inner combinations.",
+    "These are training-position repeats, not a held-out generalization rate.",
+    "Different prefixes produce different trajectories; per-episode repeats are not identical-state interventions."
+  ],
+  "input_sha256": {
+    "results/day19_original_seen_n20_150step_v1_eval.log": "1ba6e13ef66245db283f4e2ef7db9b0c454733b0243b5cf9b1609d5be6e76faf",
+    "configs/day16_xy_intermediate_seen_eval_positions.json": "5b8b445e4b5b0647a0970777e7f29ab48d3899e4c99d8b3c0754feb3e64fd21d",
+    "results/day18_summary.json": "192198f9d3303ede64c579c35b19bee4079773abfbe9824c432b57b6b92dcf9a"
+  }
+}

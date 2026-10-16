@@ -1,0 +1,236 @@
+{
+  "date": "2026-10-15",
+  "status": "observed_position_early_feedback_ablation_complete",
+  "recipe": "results/day19_early_feedback_recipe_v1.json",
+  "summary": "results/day19_early5_then20_step21_v1_summary.json",
+  "log": "results/day19_early5_then20_step21_v1_eval.log",
+  "trace": "results/day19_early5_then20_step21_v1_grasp_trace_v1.jsonl",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time",
+    "initial_n_action_steps": 5,
+    "later_n_action_steps": 20,
+    "switch_step": 21
+  },
+  "successes": 6,
+  "episodes": 6,
+  "event_counts": {
+    "metadata": 1,
+    "reset": 6,
+    "prediction": 42,
+    "step": 448,
+    "end": 6
+  },
+  "switch_and_queue_validation_passed": true,
+  "per_position": [
+    {
+      "x": 0.45,
+      "y": 0.0625,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        76,
+        76,
+        77
+      ],
+      "step20_x_error_mm": [
+        6.368033362664005,
+        6.368035827249374,
+        6.368031640843541
+      ]
+    },
+    {
+      "x": 0.45,
+      "y": -0.0625,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        73,
+        73,
+        73
+      ],
+      "step20_x_error_mm": [
+        -2.522858808624906,
+        -2.5228600660661127,
+        -2.5228588517460238
+      ]
+    }
+  ],
+  "episode_results": [
+    {
+      "episode_index": 0,
+      "position": {
+        "episode_index": 0,
+        "x": 0.45,
+        "y": 0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "step20_x_error_mm": 6.368033362664005,
+      "step20_tcp_target_x_m": 0.45634827917838244,
+      "first_descent_step": 41,
+      "first_close_step": 58,
+      "descent_tcp_minus_cube_xy_mm": [
+        6.043733959999686,
+        7.695655892186487
+      ],
+      "final_cube_xyz_m": [
+        0.4472275870823407,
+        0.07073462996706582,
+        0.12310016236740697
+      ],
+      "final_cube_bottom_clearance_m": 0.10223710220378432
+    },
+    {
+      "episode_index": 1,
+      "position": {
+        "episode_index": 1,
+        "x": 0.45,
+        "y": -0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "step20_x_error_mm": -2.522858808624906,
+      "step20_tcp_target_x_m": 0.4474738055361738,
+      "first_descent_step": 42,
+      "first_close_step": 59,
+      "descent_tcp_minus_cube_xy_mm": [
+        -2.7563606626686,
+        1.1083925302909428
+      ],
+      "final_cube_xyz_m": [
+        0.4483743986980946,
+        -0.0611470685190082,
+        0.1281577954648099
+      ],
+      "final_cube_bottom_clearance_m": 0.10794341557685572
+    },
+    {
+      "episode_index": 2,
+      "position": {
+        "episode_index": 2,
+        "x": 0.45,
+        "y": 0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "step20_x_error_mm": 6.368035827249374,
+      "step20_tcp_target_x_m": 0.4563482816260145,
+      "first_descent_step": 41,
+      "first_close_step": 58,
+      "descent_tcp_minus_cube_xy_mm": [
+        6.043737689557238,
+        7.695660765587947
+      ],
+      "final_cube_xyz_m": [
+        0.4472276000391185,
+        0.07073459521207102,
+        0.12311005849357595
+      ],
+      "final_cube_bottom_clearance_m": 0.10224699176147313
+    },
+    {
+      "episode_index": 3,
+      "position": {
+        "episode_index": 3,
+        "x": 0.45,
+        "y": -0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "step20_x_error_mm": -2.5228600660661127,
+      "step20_tcp_target_x_m": 0.44747380460194075,
+      "first_descent_step": 42,
+      "first_close_step": 59,
+      "descent_tcp_minus_cube_xy_mm": [
+        -2.7530150904924167,
+        1.1135646170867888
+      ],
+      "final_cube_xyz_m": [
+        0.448510814400676,
+        -0.06114001653517197,
+        0.1292967761604798
+      ],
+      "final_cube_bottom_clearance_m": 0.10906764561553425
+    },
+    {
+      "episode_index": 4,
+      "position": {
+        "episode_index": 4,
+        "x": 0.45,
+        "y": 0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 77,
+      "step20_x_error_mm": 6.368031640843541,
+      "step20_tcp_target_x_m": 0.45634827742342143,
+      "first_descent_step": 41,
+      "first_close_step": 58,
+      "descent_tcp_minus_cube_xy_mm": [
+        6.043733761309844,
+        7.695669794916024
+      ],
+      "final_cube_xyz_m": [
+        0.446583898286888,
+        0.07073428101143195,
+        0.13067526844924343
+      ],
+      "final_cube_bottom_clearance_m": 0.10940743786999166
+    },
+    {
+      "episode_index": 5,
+      "position": {
+        "episode_index": 5,
+        "x": 0.45,
+        "y": -0.0625,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "step20_x_error_mm": -2.5228588517460238,
+      "step20_tcp_target_x_m": 0.4474738056554995,
+      "first_descent_step": 42,
+      "first_close_step": 59,
+      "descent_tcp_minus_cube_xy_mm": [
+        -2.7563613516481955,
+        1.1083953735466778
+      ],
+      "final_cube_xyz_m": [
+        0.44837438893868853,
+        -0.06114704186944927,
+        0.1281639791903009
+      ],
+      "final_cube_bottom_clearance_m": 0.10794959914117852
+    }
+  ],
+  "positive_y_step20_x_error_comparison_mm": {
+    "initial_n10_approx": 19.271,
+    "initial_n5_approx": 6.368
+  },
+  "claim": "More frequent initial replanning reduced X overtravel and recovered the observed failing position in three repeats, while preserving three mirrored-control successes.",
+  "limitations": [
+    "Post-final-test tuning on observed positions; not a new independent final-test success rate.",
+    "The full original/added training and development suites have not yet been evaluated with this 5-then-20 variant.",
+    "New replanning changes the whole early trajectory, not only the step16 action from an identical state.",
+    "Residual X and Y offsets remain; three repeats do not establish broad robustness."
+  ],
+  "new_replacement_selected": false,
+  "historical_final_result_preserved": {
+    "successes": 9,
+    "episodes": 12,
+    "summary": "results/day19_reserved_test_summary.json"
+  },
+  "input_sha256": {
+    "results/day19_early_feedback_recipe_v1.json": "bad75fa0ebf5c5ba6eb069ecf7c8e9e53d292909adfcfc35c4e9b1375fbab25e",
+    "results/day19_early5_then20_step21_v1_summary.json": "a8e01c90bb3d3394aaa4b0bacf719edb73b914f82a255bad23472fd30febe918",
+    "results/day19_early5_then20_step21_v1_grasp_trace_v1.jsonl": "6542c58369480f7bc2089ca7734e1565d338451b0b0f72339c7909bcaf57cf08",
+    "results/day19_early5_then20_step21_v1_eval.log": "9968e9add2632309edfba6ed40e5ba083f64d6e7268cb4cfc1a0df3d82fe2cf6",
+    "configs/day19_early_feedback_diagnostic_positions.json": "7522cc5e2e1d305538c84b14c38bd7ca807624ff36fbe9e8f1bcf08e3b43eb19",
+    "results/day19_observed_failure_fixed_n10_outcome.json": "4cdb2243cec26f85f3c248888e0c1a58a9c45f390ba0685dbca99707d29edad9",
+    "results/day19_reserved_test_summary.json": "e28266f61b35d5cf302d3fcec8825187cfccb258298e32804890cfd3b0f755bc"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "status": "reserved_before_day19_development_and_candidate_selection",
+  "schedule": "configs/day19_xy_reserved_test_positions.json",
+  "schedule_sha256": "27478a1567242af5811b59684cd6afe8c850bce0a456814221b8e26571e4ac38",
+  "episodes": 12,
+  "unique_positions": [
+    [
+      0.35,
+      -0.0625
+    ],
+    [
+      0.35,
+      0.0625
+    ],
+    [
+      0.45,
+      -0.0625
+    ],
+    [
+      0.45,
+      0.0625
+    ]
+  ],
+  "evaluated": false,
+  "candidate_frozen": false,
+  "intended_inference_recipe": "results/day19_scheduled_prefix_recipe_v1.json",
+  "phase": "Seen checks passed; development evaluation has not been requested/run with the prepared command.",
+  "overlap_audit": {
+    "existing_configs_checked": 43,
+    "dataset_histories_checked": 37,
+    "retained_logs_checked": 82,
+    "parsed_scheduled_reset_lines": 551,
+    "unparsed_scheduled_reset_lines": 0,
+    "exact_pair_matches": [],
+    "training_coordinate_overlap": false,
+    "development_coordinate_overlap": false,
+    "scope": "Existing position lists/histories and parsed scheduled reset lines; not every random rollout pose or unpublished experiment."
+  },
+  "discipline": "Freeze checkpoint/processors, source and inference settings before running this schedule. Do not tune from its outcome while claiming an untouched final test. Preserve this historical declaration after evaluation.",
+  "historical_day18_reserved_schedule": "configs/day16_xy_reserved_test_positions.json",
+  "historical_day18_test_already_evaluated": true,
+  "evidence_sha256": {
+    "/home/wusanggg/robotics/data/panda_pick_cube_day18_xy_expanded_v1/position_history.json": "2188d595e46ea5099e02f830c0cfbe369296c65638b4a1f8afe8cb4039f138ae",
+    "configs/day18_xy_development_positions.json": "d897a5e5b9327c06224bab12f6a64b4098582ba9f6a1e59a81fd8bf6b96b1f92"
+  }
+}

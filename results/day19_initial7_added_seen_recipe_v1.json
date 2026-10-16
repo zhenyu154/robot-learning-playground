@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-15",
+  "status": "prepared_before_user_run",
+  "kind": "capped_initial7_added_training_validation",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "checkpoint_file_sha256": {
+    "config.json": "5d4592ff988dfbaab991854e72d858f67f9fb9f5e5619e9100cd9a39607278a0",
+    "model.safetensors": "383e2a1a195bf6f8d47cecdd78a8023c382b345d8ef8e7168080314455f87bcf",
+    "policy_postprocessor.json": "0e1790afcabc4ab149c95f833f8068f8470f6fa923e87734284e63d4d5eb0ee5",
+    "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "60e97f06bfecb5c83b1e5ddb9e56699d8aa919cc1ce465f6d443093cc79c2479",
+    "policy_preprocessor.json": "1f5457c9ddf58c9b7eb675fa0a68996c8723aee9cb529c77a451d7522eeec88f",
+    "policy_preprocessor_step_3_normalizer_processor.safetensors": "5428aaa78381006a8c4f80168644883f31195d7aadfc51d952d9581de4a84857"
+  },
+  "execution_prefix_schedule": {
+    "kind": "fixed_time_capped_initial",
+    "initial_n_action_steps": 7,
+    "later_n_action_steps": 20,
+    "switch_step": 21,
+    "initial_boundary": "shorten_last_prefix_before_switch"
+  },
+  "actual_initial_prefixes": [
+    7,
+    7,
+    6
+  ],
+  "episodes": 12,
+  "max_steps": 150,
+  "fps": 10,
+  "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+  "device": "xpu",
+  "chunk_size": 50,
+  "temporal_ensemble_coeff": null,
+  "gripper_mode": "policy",
+  "forced_actions": false,
+  "oracle_inputs": false,
+  "home_pose": "configs/day11_home_x_centered.json",
+  "min_tcp_z": 0.008,
+  "traced": true,
+  "position_schedule": "configs/day18_y_intermediate_seen_eval_positions.json",
+  "position_schedule_sha256": "f0081325f994eef7c2235b8e20dc4f0dbf201530c482fd934396be75950b266c",
+  "split": "Four added training positions, three repeats each; training-position regression validation.",
+  "question": "Does the capped initial-seven schedule preserve all four added training configurations, beyond the recovered upper-left point?",
+  "launcher": "scripts/run_day19_initial7_validation.sh",
+  "launcher_suite": "added-seen",
+  "launcher_sha256": "45b2226cc1ec63892234b62d949e85b7af02d8e15a4fd8325e793f7203f6c4db",
+  "source_sha256": {
+    "scripts/evaluate_panda_act.py": "c9c6eb375093a70074fe353142e54b669f133c04289354c63aebcedca7112988",
+    "scripts/panda_action_prefix.py": "92a9fb8f8575147714a6528919ccfaabd04a29b5130e91ebc4f66399b357fec4",
+    "scripts/panda_grasp_trace.py": "68f0fea7998be5bdbad1e56eb94046e5216e49628ad730895bf1c5111cc0ebc8",
+    "scripts/summarize_approach_trace.py": "39c536bca1fbe9a531532365b4d7a2890e9127d59358ad78accc71274963ae0a",
+    "tests/test_day19_action_prefix.py": "138749b6d1874b274a09453848b027fbac9b3d63c5d93b15a7bd5017fe461ba3",
+    "tests/test_panda_grasp_trace.py": "298aa2c7eb007a1d7ecb4a6d1decc4dd376137b4b647638c39ac685a6aafd1a6",
+    "configs/day19_prefix_tradeoff_diagnostic_positions.json": "adec8daa2c98a6cb43d7c7c21ff2638e06be965bec26589777ff90827e469a1f",
+    "scripts/panda_home_pose.py": "56dc224cebfa9561756013f18f7d89b077f1f5a166ee43634998d1b6431c5f29",
+    "configs/day11_home_x_centered.json": "96ea23c9105346bedb920390dfc45caa8db10496cf362fbbee0ed133156af074",
+    "ENVIRONMENT.md": "c1bf322dea8b1447bdb4fe9d694823c34c9f5a0fe6eb2a0d98be37f4345f0dc2",
+    "../lerobot/src/lerobot/policies/act/modeling_act.py": "8d622935319af7d03f1efd95d51e726af2921010f7e4f5ec3742f62280493111",
+    "../lerobot/src/lerobot/rl/gym_manipulator.py": "2b358052842fa1b5aa396df221462b502bd8829586e5b60adae929502b5f555c",
+    "scripts/panda_capped_action_prefix.py": "f362114ccef25563fc16a25e7e8a09d6413797c0f976b2e229423c8eb0eedd0b",
+    "scripts/evaluate_panda_capped_prefix.py": "4bf3b6e8cc92bda52a4b583cdd7b8d880a360678a493cca2897b3c671bab90f7",
+    "scripts/summarize_capped_approach_trace.py": "2623f208e6cc52ece017be00b2afbe06f01c649ee8615e8229e5255ff9feb2ad",
+    "tests/test_day19_capped_prefix.py": "b9b1706f03d93276dacaae2dfcf198b9686a31409521f816c1391e944c2fa57d",
+    "configs/day19_intermediate_prefix_diagnostic_positions.json": "3dd5d302dc7fefa7e4da3339a6b8841b45f4f61896f5f00f523d9ab175da28fa",
+    "scripts/run_day19_intermediate_prefix_diagnostic.sh": "196caf3215c9f180edada4d32b1ee22bd72bae713b073faa69c9327ea82f9a88"
+  },
+  "diagnostic_outcome": "results/day19_intermediate_prefix_outcome_v1.json",
+  "diagnostic_outcome_sha256": "3b68a4de29d9729dd82ef656104089a5fe9d3ba7a35d47c227bc151846e4e823",
+  "comparison_references": {
+    "initial10_then20": {
+      "summary": "results/day19_added_seen_scheduled_summary.json",
+      "successes": 12,
+      "episodes": 12
+    },
+    "initial5_then20": {
+      "summary": "results/day19_added_seen_early5_summary.json",
+      "successes": 9,
+      "episodes": 12
+    }
+  },
+  "planned_outputs": {
+    "log": "results/day19_added_seen_initial7_capped_then20_step21_v1_eval.log",
+    "trace": "results/day19_added_seen_initial7_capped_then20_step21_v1_grasp_trace_v1.jsonl"
+  },
+  "primary_measurements": [
+    "per-position task success by step150",
+    "completion/descent/close timing",
+    "XY alignment and full predicted chunks for any failure"
+  ],
+  "next_steps_if_successful": [
+    "Original training suite: 24 episodes",
+    "Development interpolation: 12 episodes",
+    "Select and freeze candidate before any fresh reserved evaluation"
+  ],
+  "replacement_selected": false,
+  "future_reserved_set_unrun": "configs/day19_xy_reserved_test_positions_v2.json",
+  "cpu_unit_tests_previously_passed": 80
+}

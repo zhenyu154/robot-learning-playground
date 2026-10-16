@@ -1,0 +1,81 @@
+{
+  "trace": "results/day19_observed_failure_fixed_n10_v1_grasp_trace_v1.jsonl",
+  "checkpoint": "/home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "n_action_steps": 10,
+  "max_steps": 150,
+  "positive_z_action_threshold": 0.1,
+  "cube_bottom_clearance_threshold_m": 0.001,
+  "episodes": [
+    {
+      "episode_index": 0,
+      "complete": true,
+      "success": false,
+      "steps": 150,
+      "first_close_command_step": 73,
+      "first_post_close_positive_z_command_step": 90,
+      "first_post_close_clearance_without_table_contact_step": 122,
+      "maximum_cube_bottom_clearance_m": 0.00624584366766083,
+      "maximum_post_close_z_command": 0.19173911213874817,
+      "post_close_steps_with_active_table_contact": 47,
+      "post_close_steps_with_both_finger_contacts": 78,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 121,
+          "chunk_id": 13,
+          "first_positive_z_offset_zero_based": 10,
+          "executed_prefix_max_z": 0.050577882677316666,
+          "full_chunk_max_z": 0.5217353701591492
+        },
+        {
+          "step": 141,
+          "chunk_id": 15,
+          "first_positive_z_offset_zero_based": 10,
+          "executed_prefix_max_z": 0.09477800130844116,
+          "full_chunk_max_z": 0.5211005210876465
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "complete": true,
+      "success": false,
+      "steps": 150,
+      "first_close_command_step": 73,
+      "first_post_close_positive_z_command_step": 90,
+      "first_post_close_clearance_without_table_contact_step": 150,
+      "maximum_cube_bottom_clearance_m": 0.0025269745798335713,
+      "maximum_post_close_z_command": 0.2690790593624115,
+      "post_close_steps_with_active_table_contact": 68,
+      "post_close_steps_with_both_finger_contacts": 78,
+      "chunks_with_positive_z_only_beyond_executed_prefix": [
+        {
+          "step": 101,
+          "chunk_id": 11,
+          "first_positive_z_offset_zero_based": 10,
+          "executed_prefix_max_z": 0.09388770163059235,
+          "full_chunk_max_z": 0.520200788974762
+        }
+      ]
+    },
+    {
+      "episode_index": 2,
+      "complete": true,
+      "success": true,
+      "steps": 98,
+      "first_close_command_step": 72,
+      "first_post_close_positive_z_command_step": 87,
+      "first_post_close_clearance_without_table_contact_step": 89,
+      "maximum_cube_bottom_clearance_m": 0.10906047064847604,
+      "maximum_post_close_z_command": 0.51555335521698,
+      "post_close_steps_with_active_table_contact": 17,
+      "post_close_steps_with_both_finger_contacts": 27,
+      "chunks_with_positive_z_only_beyond_executed_prefix": []
+    }
+  ],
+  "scope": "passive association/queue/contact diagnostic, not evidence of causal dependence on sway",
+  "notes": [
+    "first/late lift is an ACTION threshold, not a measure of physical cube motion",
+    "contact counts and actuator target are not proof of a stable grasp",
+    "existing final benchmark is not replaced by these repeated-position traced trials"
+  ]
+}

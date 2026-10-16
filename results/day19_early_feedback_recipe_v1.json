@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-15",
+  "status": "prepared_before_user_run",
+  "kind": "observed_position_early_feedback_ablation",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "position_schedule": "configs/day19_early_feedback_diagnostic_positions.json",
+  "position_schedule_sha256": "7522cc5e2e1d305538c84b14c38bd7ca807624ff36fbe9e8f1bcf08e3b43eb19",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time",
+    "initial_n_action_steps": 5,
+    "later_n_action_steps": 20,
+    "switch_step": 21
+  },
+  "single_changed_inference_factor": "initial execution prefix 10 to 5; later prefix 20 and switch step 21 unchanged",
+  "episodes": 6,
+  "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+  "max_steps": 150,
+  "fps": 10,
+  "device": "xpu",
+  "chunk_size": 50,
+  "temporal_ensemble_coeff": null,
+  "home_pose": "configs/day11_home_x_centered.json",
+  "min_tcp_z": 0.008,
+  "gripper_mode": "policy",
+  "forced_actions": false,
+  "oracle_inputs": false,
+  "traced": true,
+  "expected_prediction_steps_until_cap": [
+    1,
+    6,
+    11,
+    16,
+    21,
+    41,
+    61,
+    81,
+    101,
+    121,
+    141
+  ],
+  "primary_measurements": [
+    "step20 TCP and target X error",
+    "pre-descent XY offset",
+    "descent/close/lift progression",
+    "actual cube elevation and per-position success"
+  ],
+  "rationale": "The saved n10 trace reaches target X near .45 by step15 but queued commands from the step11 prediction drive the target to .4702 by step20. A step16 replan tests whether new feedback brakes that motion.",
+  "interpretation": "Reduced X overshoot would support more frequent early feedback as useful here. Persistent overshoot would suggest that this change alone does not correct the learned stopping behavior. No success is assumed.",
+  "cpu_validation": {
+    "existing_unit_suite_passed": 75,
+    "additional_5_to_20_real_act_queue_trace_summary_and_two_episode_reset_check_passed": true
+  },
+  "implementation_changed": false,
+  "frozen_day19_source_sha256": {
+    "scripts/evaluate_panda_act.py": "c9c6eb375093a70074fe353142e54b669f133c04289354c63aebcedca7112988",
+    "scripts/panda_action_prefix.py": "92a9fb8f8575147714a6528919ccfaabd04a29b5130e91ebc4f66399b357fec4",
+    "scripts/panda_grasp_trace.py": "68f0fea7998be5bdbad1e56eb94046e5216e49628ad730895bf1c5111cc0ebc8",
+    "scripts/summarize_approach_trace.py": "39c536bca1fbe9a531532365b4d7a2890e9127d59358ad78accc71274963ae0a",
+    "tests/test_day19_action_prefix.py": "138749b6d1874b274a09453848b027fbac9b3d63c5d93b15a7bd5017fe461ba3",
+    "tests/test_panda_grasp_trace.py": "298aa2c7eb007a1d7ecb4a6d1decc4dd376137b4b647638c39ac685a6aafd1a6",
+    "configs/day19_prefix_tradeoff_diagnostic_positions.json": "adec8daa2c98a6cb43d7c7c21ff2638e06be965bec26589777ff90827e469a1f",
+    "scripts/panda_home_pose.py": "56dc224cebfa9561756013f18f7d89b077f1f5a166ee43634998d1b6431c5f29",
+    "configs/day11_home_x_centered.json": "96ea23c9105346bedb920390dfc45caa8db10496cf362fbbee0ed133156af074",
+    "ENVIRONMENT.md": "c1bf322dea8b1447bdb4fe9d694823c34c9f5a0fe6eb2a0d98be37f4345f0dc2",
+    "../lerobot/src/lerobot/policies/act/modeling_act.py": "8d622935319af7d03f1efd95d51e726af2921010f7e4f5ec3742f62280493111",
+    "../lerobot/src/lerobot/rl/gym_manipulator.py": "2b358052842fa1b5aa396df221462b502bd8829586e5b60adae929502b5f555c"
+  },
+  "historical_final_manifest_sha256": "4fe30b2529189969ef2d002459cfd71668b641552ddb5d1c8c18efd0e0ac2a57",
+  "historical_final_result": {
+    "successes": 9,
+    "episodes": 12,
+    "summary": "results/day19_reserved_test_summary.json"
+  },
+  "split": "diagnostics at two observed former test configurations, not fresh reserved evaluation",
+  "planned_outputs": {
+    "log": "results/day19_early5_then20_step21_v1_eval.log",
+    "trace": "results/day19_early5_then20_step21_v1_grasp_trace_v1.jsonl"
+  },
+  "discipline": "Preserve the historical frozen candidate and 9/12 final result. This ablation is not a selected replacement. Future candidate selection requires broader checks and a fresh independent reserved test."
+}

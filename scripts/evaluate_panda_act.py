@@ -19,6 +19,7 @@ from lerobot.rl.gym_manipulator import (
     step_env_and_process_transition,
 )
 from lerobot.utils.robot_utils import precise_sleep
+from panda_action_prefix import ActionPrefixSchedule
 from panda_home_pose import configure_min_tcp_z, configure_panda_home_pose, load_home_pose
 
 
@@ -148,6 +149,15 @@ def parse_args():
             "Optional evaluation-only override for ACT's action queue length. "
             "Use 1 or 5 to test tighter closed-loop feedback without retraining."
         ),
+    )
+
+    parser.add_argument(
+        "--later-n-action-steps", type=int, default=None,
+        help="Explicit fixed-time inference diagnostic: switch to this prefix at --prefix-switch-step.",
+    )
+    parser.add_argument(
+        "--prefix-switch-step", type=int, default=None,
+        help="One-based episode control step for --later-n-action-steps; must be an empty-queue boundary.",
     )
 
     parser.add_argument(
@@ -312,6 +322,8 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if (args.later_n_action_steps is None) != (args.prefix_switch_step is None):
+        raise ValueError("--later-n-action-steps and --prefix-switch-step must be provided together")
     if args.episodes <= 0:
         raise ValueError("--episodes must be a positive integer")
     if args.fps <= 0:
@@ -364,6 +376,15 @@ def main():
             raise ValueError("--n-action-steps must be positive")
         policy.config.n_action_steps = args.n_action_steps
         print("Evaluation-only n_action_steps override:", args.n_action_steps)
+
+    prefix_schedule = None
+    if args.later_n_action_steps is not None:
+        prefix_schedule = ActionPrefixSchedule(
+            policy.config.n_action_steps, args.later_n_action_steps, args.prefix_switch_step,
+        )
+        prefix_schedule.validate_policy(policy)
+        print("Execution prefix schedule (fixed-time inference diagnostic):",
+              json.dumps(prefix_schedule.to_metadata(), sort_keys=True))
 
     if requested_device == "auto":
         # Prefer the checkpoint's configured device, but safely fall back to CPU
@@ -470,6 +491,8 @@ def main():
                 "position_schedule": str(args.position_schedule) if args.position_schedule else None,
                 "home_pose": str(args.home_pose) if args.home_pose else None,
                 "min_tcp_z": args.min_tcp_z, "policy_only_cli_settings": policy_only,
+                **({"execution_prefix_schedule": prefix_schedule.to_metadata()}
+                   if prefix_schedule is not None else {}),
             })
             print("Passive grasp trace:", args.trace_output)
         for episode in range(args.episodes):
@@ -480,7 +503,10 @@ def main():
             # VERY IMPORTANT:
             # ACT caches an action chunk internally.
             # Clear it whenever a new episode starts.
-            policy.reset()
+            if prefix_schedule is None:
+                policy.reset()
+            else:
+                prefix_schedule.reset_episode(policy)
 
             transition = reset_and_build_transition(
                 env,
@@ -519,6 +545,10 @@ def main():
 
             while True:
                 step_start = time.perf_counter()
+
+                if prefix_schedule is not None and prefix_schedule.before_step(policy, step + 1):
+                    print(f"Execution prefix switch: step={step + 1}, "
+                          f"n_action_steps={policy.config.n_action_steps}")
 
                 # Keep only the observation features expected by ACT.
                 observation = {

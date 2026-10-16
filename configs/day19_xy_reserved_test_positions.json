@@ -1,0 +1,18 @@
+{
+  "split": "reserved_test",
+  "description": "Predeclared after Day19 seen-position validation, before Day19 development-based candidate selection. New X=0.35/0.45 and Y=+-0.0625 coordinate values are absent from Day18 training and development. Run only after freezing the candidate; keep Day18's historical reserved test separate.",
+  "positions": [
+    {"x": 0.35, "y": -0.0625},
+    {"x": 0.35, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.35, "y": -0.0625},
+    {"x": 0.35, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.35, "y": -0.0625},
+    {"x": 0.35, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625},
+    {"x": 0.45, "y": 0.0625}
+  ]
+}

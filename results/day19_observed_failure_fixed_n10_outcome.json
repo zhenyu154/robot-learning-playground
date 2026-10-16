@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-15",
+  "status": "fixed_n10_observed_failure_diagnostic_complete",
+  "position": {
+    "x": 0.45,
+    "y": 0.0625
+  },
+  "split": "observed_former_reserved_position_diagnostic",
+  "successes": 1,
+  "episodes": 3,
+  "n_action_steps": 10,
+  "max_steps": 150,
+  "traced": true,
+  "queue_and_completion_validation_passed": true,
+  "event_counts": {
+    "metadata": 1,
+    "reset": 3,
+    "prediction": 40,
+    "step": 398,
+    "end": 3
+  },
+  "episode_results": [
+    {
+      "episode_index": 0,
+      "success": false,
+      "steps": 150,
+      "step15_tcp_target_x_m": 0.4496214148924989,
+      "step20_tcp_x_m": 0.46927096100810556,
+      "step20_tcp_target_x_m": 0.4702075650204276,
+      "step20_x_error_mm": 19.270961008105548,
+      "first_descent_step": 51,
+      "first_close_step": 73,
+      "descent_tcp_minus_cube_xy_mm": [
+        20.02357547509881,
+        -0.9543684321463088
+      ],
+      "final_cube_xyz_m": [
+        0.44616674024525843,
+        0.062311064386251676,
+        0.02729160904841145
+      ],
+      "final_cube_clearance_m": 0.00624584366766083,
+      "maximum_postclose_cube_z_m": 0.02729160904841145,
+      "maximum_postclose_executed_z": 0.19173911213874817,
+      "preclose_x_correction_after_step20_min_action": -0.001722119515761733
+    },
+    {
+      "episode_index": 1,
+      "success": false,
+      "steps": 150,
+      "step15_tcp_target_x_m": 0.44962141643209147,
+      "step20_tcp_x_m": 0.4692709630817084,
+      "step20_tcp_target_x_m": 0.4702075671013514,
+      "step20_x_error_mm": 19.27096308170839,
+      "first_descent_step": 51,
+      "first_close_step": 73,
+      "descent_tcp_minus_cube_xy_mm": [
+        20.023577645115697,
+        -0.9543650613080059
+      ],
+      "final_cube_xyz_m": [
+        0.446177054655642,
+        0.06259475704303286,
+        0.023587236851590018
+      ],
+      "final_cube_clearance_m": 0.0025269745798335713,
+      "maximum_postclose_cube_z_m": 0.023587236851590018,
+      "maximum_postclose_executed_z": 0.2690790593624115,
+      "preclose_x_correction_after_step20_min_action": -0.0017221274320036173
+    },
+    {
+      "episode_index": 2,
+      "success": true,
+      "steps": 98,
+      "step15_tcp_target_x_m": 0.4496214192202384,
+      "step20_tcp_x_m": 0.469270967042189,
+      "step20_tcp_target_x_m": 0.47020757107111394,
+      "step20_x_error_mm": 19.270967042189003,
+      "first_descent_step": 51,
+      "first_close_step": 72,
+      "descent_tcp_minus_cube_xy_mm": [
+        20.007096909028242,
+        -0.9503901845781051
+      ],
+      "final_cube_xyz_m": [
+        0.4502820618292864,
+        0.06248499216128336,
+        0.1303834240000497
+      ],
+      "final_cube_clearance_m": 0.10906047064847604,
+      "maximum_postclose_cube_z_m": 0.1303834240000497,
+      "maximum_postclose_executed_z": 0.51555335521698,
+      "preclose_x_correction_after_step20_min_action": -0.001722373766824603
+    }
+  ],
+  "trace_summary": "results/day19_observed_failure_fixed_n10_v1_summary.json",
+  "grasp_summary": "results/day19_observed_failure_fixed_n10_v1_grasp_summary.json",
+  "initial_x_sequence_first_episode": [
+    {
+      "step": 10,
+      "chunk_id": 1,
+      "chunk_offset": 9,
+      "x_action": 0.2628712058067322,
+      "tcp_x_m": 0.4119804343419762,
+      "tcp_target_x_m": 0.41753488978010833
+    },
+    {
+      "step": 11,
+      "chunk_id": 2,
+      "chunk_offset": 0,
+      "x_action": 0.2234923541545868,
+      "tcp_x_m": 0.4177892248632214,
+      "tcp_target_x_m": 0.423122198633973
+    },
+    {
+      "step": 12,
+      "chunk_id": 2,
+      "chunk_offset": 1,
+      "x_action": 0.2610885202884674,
+      "tcp_x_m": 0.42389092376740917,
+      "tcp_target_x_m": 0.4296494116411847
+    },
+    {
+      "step": 13,
+      "chunk_id": 2,
+      "chunk_offset": 2,
+      "x_action": 0.2656514048576355,
+      "tcp_x_m": 0.4303048057700768,
+      "tcp_target_x_m": 0.4362906967626256
+    },
+    {
+      "step": 14,
+      "chunk_id": 2,
+      "chunk_offset": 3,
+      "x_action": 0.26548850536346436,
+      "tcp_x_m": 0.43686740199485447,
+      "tcp_target_x_m": 0.4429279093967122
+    },
+    {
+      "step": 15,
+      "chunk_id": 2,
+      "chunk_offset": 4,
+      "x_action": 0.2677402198314667,
+      "tcp_x_m": 0.4435083063570302,
+      "tcp_target_x_m": 0.4496214148924989
+    },
+    {
+      "step": 16,
+      "chunk_id": 2,
+      "chunk_offset": 5,
+      "x_action": 0.26609736680984497,
+      "tcp_x_m": 0.45017390017883485,
+      "tcp_target_x_m": 0.45627384906274504
+    },
+    {
+      "step": 17,
+      "chunk_id": 2,
+      "chunk_offset": 6,
+      "x_action": 0.26934921741485596,
+      "tcp_x_m": 0.45687384427784283,
+      "tcp_target_x_m": 0.46300757949811644
+    },
+    {
+      "step": 18,
+      "chunk_id": 2,
+      "chunk_offset": 7,
+      "x_action": 0.22364535927772522,
+      "tcp_x_m": 0.46312886608137244,
+      "tcp_target_x_m": 0.46859871348005955
+    },
+    {
+      "step": 19,
+      "chunk_id": 2,
+      "chunk_offset": 8,
+      "x_action": 0.062360554933547974,
+      "tcp_x_m": 0.46732249186233665,
+      "tcp_target_x_m": 0.4701577273533982
+    },
+    {
+      "step": 20,
+      "chunk_id": 2,
+      "chunk_offset": 9,
+      "x_action": 0.00199350668117404,
+      "tcp_x_m": 0.46927096100810556,
+      "tcp_target_x_m": 0.4702075650204276
+    },
+    {
+      "step": 21,
+      "chunk_id": 3,
+      "chunk_offset": 0,
+      "x_action": 0.00047384342178702354,
+      "tcp_x_m": 0.4699783601855495,
+      "tcp_target_x_m": 0.47021941110597226
+    },
+    {
+      "step": 22,
+      "chunk_id": 3,
+      "chunk_offset": 1,
+      "x_action": -0.0005580204306170344,
+      "tcp_x_m": 0.47018338213581884,
+      "tcp_target_x_m": 0.47020546059520685
+    }
+  ],
+  "interpretation": "Fixed n10 improves Y alignment relative to the scheduled failure but does not correct the common approximately 20 mm X offset. The single success occurs despite that offset; two failures obtain only small cube elevation and have weak/deferred lift execution.",
+  "next_question": "Does reducing only the initial prefix to five actions prevent the queued X overtravel while retaining later twenty-action execution?",
+  "historical_scheduled_final_result_unchanged": {
+    "successes": 9,
+    "episodes": 12,
+    "summary": "results/day19_reserved_test_summary.json"
+  },
+  "limitations": [
+    "Three repeats on an observed position; not a fresh final test or a population success-rate estimate.",
+    "The successful trial does not establish robust recovery, exact centering or secure grasps in all trials.",
+    "Contacts and small table clearance are not a stable-grasp certificate.",
+    "Fixed baseline is traced while the scheduled final run was untraced; comparisons are separate trajectories."
+  ],
+  "input_sha256": {
+    "results/day19_observed_failure_fixed_n10_v1_grasp_trace_v1.jsonl": "a25b1d57af0609980e24a0b78230029ac92b759aeec5b5e2f06b5007a4217f51",
+    "results/day19_observed_failure_fixed_n10_v1_summary.json": "d8101285699052f5c9a1589a9084c6633a7b655d1698174f8051ea5045dcee4a",
+    "results/day19_observed_failure_fixed_n10_v1_grasp_summary.json": "ec170102a0ac43c0f8b18d3b9821fd94ddcf3feab5cde226c536c68f5314d66e",
+    "results/day19_observed_failure_fixed_n10_v1_eval.log": "6ac0e5b8f40693f2c89c3f7e0fe53f3489a7fcb2fdadb3e38f9f769a43a4470c",
+    "results/day19_reserved_test_summary.json": "e28266f61b35d5cf302d3fcec8825187cfccb258298e32804890cfd3b0f755bc"
+  }
+}

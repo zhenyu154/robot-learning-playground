@@ -137,6 +137,7 @@ class GraspTrace:
         self.pending = None
         self.chunk_id = 0
         self.offset = 0
+        self.current_prefix_length = None
         self.episode = None
         self.step = None
         self.before = None
@@ -144,7 +145,8 @@ class GraspTrace:
         path.parent.mkdir(parents=True, exist_ok=True)
         self.file = path.open('x', buffering=1)
         try:
-            self.write({'event': 'metadata', 'schema_version': 1, **metadata,
+            self.write({'event': 'metadata',
+                        'schema_version': 2 if 'execution_prefix_schedule' in metadata else 1, **metadata,
                         'chunk_size': policy.config.chunk_size,
                         'n_action_steps': policy.config.n_action_steps,
                         'units': {'actions': 'unnormalized policy action units, before environment scaling/clipping',
@@ -178,6 +180,7 @@ class GraspTrace:
         self.pending = None
         self.chunk_id = 0
         self.offset = 0
+        self.current_prefix_length = None
         self.episode = episode
         self.write({'event': 'reset', 'episode_index': episode,
                     'scheduled_position': scheduled_position, 'state': self.probe.snapshot()})
@@ -190,10 +193,13 @@ class GraspTrace:
 
     def after_prediction(self, policy_action):
         if self.pending is not None:
+            if self.chunk_id and self.offset != self.current_prefix_length:
+                raise RuntimeError('new prediction discarded unexecuted traced actions')
             normalized = self.pending
             self.pending = None
             self.chunk_id += 1
             self.offset = 0
+            self.current_prefix_length = self.policy.config.n_action_steps
             # The saved postprocessor is an unnormalizer + device step. A clone
             # ensures processing a full diagnostic chunk never alters the queue.
             with torch.inference_mode():
@@ -202,10 +208,11 @@ class GraspTrace:
             self.chunk_actions = actions
             self.write({'event': 'prediction', 'episode_index': self.episode,
                         'step': self.step, 'chunk_id': self.chunk_id,
-                        'queue_executed_prefix_length': self.policy.config.n_action_steps,
+                        'queue_executed_prefix_length': self.current_prefix_length,
                         'actions': actions.tolist(), 'state_before_prediction': self.before,
                         'raw_observation_robot_state': self.observation_state})
-        if not self.chunk_id or self.offset >= self.policy.config.n_action_steps:
+        if (not self.chunk_id or self.offset >= self.current_prefix_length
+                or self.policy.config.n_action_steps != self.current_prefix_length):
             raise RuntimeError('trace queue accounting differs from ACT execution')
         actual = policy_action.detach().cpu().float().reshape(-1)
         if not torch.allclose(actual, self.chunk_actions[self.offset], rtol=1e-5, atol=1e-6):

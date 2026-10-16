@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-15",
+  "status": "reserved_after_v1_test_diagnostic_before_broader_early5_validation_selection",
+  "schedule": "configs/day19_xy_reserved_test_positions_v2.json",
+  "schedule_sha256": "7f5c6ad4aa6800c10c776b293f078c4da31ab8abd9518cd3251e631369cc348c",
+  "episodes": 12,
+  "positions": [
+    [
+      0.38,
+      -0.04375
+    ],
+    [
+      0.38,
+      0.04375
+    ],
+    [
+      0.42,
+      -0.04375
+    ],
+    [
+      0.42,
+      0.04375
+    ]
+  ],
+  "evaluated": false,
+  "candidate_frozen": false,
+  "provisional_inference_recipe": "results/day19_early_feedback_recipe_v1.json",
+  "coverage": "New X values in the central training gap and a new intermediate Y magnitude, within the existing positional range.",
+  "overlap_audit": {
+    "existing_configs_checked": 46,
+    "dataset_histories_checked": 37,
+    "retained_logs_checked": 86,
+    "scheduled_reset_lines_checked": 584,
+    "exact_pair_matches": [],
+    "current_training_coordinate_overlap": false,
+    "current_development_coordinate_overlap": false,
+    "scope": "Recorded position lists/histories and scheduled reset lines, not all unlogged or random poses."
+  },
+  "previous_final_result_preserved": {
+    "successes": 9,
+    "episodes": 12,
+    "summary": "results/day19_reserved_test_summary.json"
+  },
+  "discipline": "This is not a rerun or replacement of the historical v1 final test. Freeze the new candidate after broader validation, then evaluate these untouched configurations. Preserve all earlier outcomes and do not claim a matched 9/12-to-new-rate comparison across different schedules.",
+  "evidence_sha256": {
+    "/home/wusanggg/robotics/data/panda_pick_cube_day18_xy_expanded_v1/position_history.json": "2188d595e46ea5099e02f830c0cfbe369296c65638b4a1f8afe8cb4039f138ae",
+    "configs/day18_xy_development_positions.json": "d897a5e5b9327c06224bab12f6a64b4098582ba9f6a1e59a81fd8bf6b96b1f92",
+    "results/day19_early_feedback_outcome_v1.json": "b79e88dec2a9f7511467060179ba0965bdce32013ce7d5f3ea51c10052a98696"
+  }
+}

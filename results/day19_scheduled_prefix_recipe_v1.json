@@ -1,0 +1,65 @@
+{
+  "kind": "fixed_time_execution_prefix_diagnostic_recipe",
+  "date": "2026-10-15",
+  "status": "prepared_before_user_run",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "checkpoint_file_sha256": {
+    "config.json": "5d4592ff988dfbaab991854e72d858f67f9fb9f5e5619e9100cd9a39607278a0",
+    "model.safetensors": "383e2a1a195bf6f8d47cecdd78a8023c382b345d8ef8e7168080314455f87bcf",
+    "policy_postprocessor.json": "0e1790afcabc4ab149c95f833f8068f8470f6fa923e87734284e63d4d5eb0ee5",
+    "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "60e97f06bfecb5c83b1e5ddb9e56699d8aa919cc1ce465f6d443093cc79c2479",
+    "policy_preprocessor.json": "1f5457c9ddf58c9b7eb675fa0a68996c8723aee9cb529c77a451d7522eeec88f",
+    "policy_preprocessor_step_3_normalizer_processor.safetensors": "5428aaa78381006a8c4f80168644883f31195d7aadfc51d952d9581de4a84857"
+  },
+  "frozen_day18_manifest_sha256": "85ccd3111b4c8289c8855fd3c73286dff0859279b2e4c32b0a6946cdbbdc9497",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time",
+    "initial_n_action_steps": 10,
+    "later_n_action_steps": 20,
+    "switch_step": 21
+  },
+  "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+  "device": "xpu",
+  "episodes": 6,
+  "max_steps": 150,
+  "fps": 10,
+  "chunk_size": 50,
+  "temporal_ensemble_coeff": null,
+  "gripper_mode": "policy",
+  "forced_actions": false,
+  "home_pose": "configs/day11_home_x_centered.json",
+  "min_tcp_z": 0.008,
+  "position_schedule": "configs/day19_prefix_tradeoff_diagnostic_positions.json",
+  "split": "two_training_positions_for_diagnosis_not_reserved_test",
+  "expected_prediction_steps_until_cap": [
+    1,
+    11,
+    21,
+    41,
+    61,
+    81,
+    101,
+    121,
+    141
+  ],
+  "source_sha256": {
+    "scripts/evaluate_panda_act.py": "c9c6eb375093a70074fe353142e54b669f133c04289354c63aebcedca7112988",
+    "scripts/panda_action_prefix.py": "92a9fb8f8575147714a6528919ccfaabd04a29b5130e91ebc4f66399b357fec4",
+    "scripts/panda_grasp_trace.py": "68f0fea7998be5bdbad1e56eb94046e5216e49628ad730895bf1c5111cc0ebc8",
+    "scripts/summarize_approach_trace.py": "39c536bca1fbe9a531532365b4d7a2890e9127d59358ad78accc71274963ae0a",
+    "tests/test_day19_action_prefix.py": "138749b6d1874b274a09453848b027fbac9b3d63c5d93b15a7bd5017fe461ba3",
+    "tests/test_panda_grasp_trace.py": "298aa2c7eb007a1d7ecb4a6d1decc4dd376137b4b647638c39ac685a6aafd1a6",
+    "configs/day19_prefix_tradeoff_diagnostic_positions.json": "adec8daa2c98a6cb43d7c7c21ff2638e06be965bec26589777ff90827e469a1f"
+  },
+  "planned_outputs": {
+    "terminal_log": "results/day19_prefix_10_then_20_step21_v1_eval.log",
+    "local_raw_trace": "results/day19_prefix_10_then_20_step21_v1_grasp_trace_v1.jsonl"
+  },
+  "validation": {
+    "cpu_unittests_passed": 75,
+    "historical_fixed_prefix_episode_metrics_unchanged": true,
+    "queue_action_indices_checked_across_step21": true,
+    "initial_prefix_restored_each_episode": true
+  },
+  "claim": "New inference diagnostic, no candidate selected. Clock-based switch; no oracle cube/contact trigger or extra model forwards."
+}

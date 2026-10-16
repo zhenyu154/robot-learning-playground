@@ -1,0 +1,9 @@
+{
+  "split": "observed_reserved_failure_diagnostic",
+  "description": "Three repeats at the now-observed Day19 reserved failure (0.45,+0.0625), for a fixed-n10 baseline diagnostic. This is an untrained but observed position, not a fresh final test. Preserve the frozen scheduled candidate's historical 9/12 result.",
+  "positions": [
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.45, "y": 0.0625}
+  ]
+}

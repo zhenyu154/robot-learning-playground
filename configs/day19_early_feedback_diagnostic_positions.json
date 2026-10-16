@@ -1,0 +1,12 @@
+{
+  "split": "observed_test_early_feedback_diagnostic",
+  "description": "Post-final-test diagnostic: change only the initial prefix from ten to five, keeping twenty-action execution from step 21. Three repeats each at the observed failure (0.45,+0.0625) and its successful mirrored control (0.45,-0.0625). These observed configurations are development diagnostics, not a fresh final test.",
+  "positions": [
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625},
+    {"x": 0.45, "y": 0.0625},
+    {"x": 0.45, "y": -0.0625}
+  ]
+}

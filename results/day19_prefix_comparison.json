@@ -1,0 +1,417 @@
+{
+  "date": "2026-10-15",
+  "status": "two_position_seen_prefix_ablation_complete",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "frozen_day18_candidate_changed": false,
+  "new_default_selected": false,
+  "runs": {
+    "n10": {
+      "summary": "results/day19_approach_n10_v1_summary.json",
+      "log": "results/day19_approach_n10_v1_eval.log",
+      "trace": "results/day19_approach_n10_v1_grasp_trace_v1.jsonl",
+      "successes": 3,
+      "episodes": 6,
+      "by_position": [
+        {
+          "position": {
+            "x": 0.36,
+            "y": -0.0375
+          },
+          "successes": 0,
+          "episodes": 3,
+          "completion_or_timeout_steps": [
+            150,
+            150,
+            150
+          ]
+        },
+        {
+          "position": {
+            "x": 0.36,
+            "y": 0.0375
+          },
+          "successes": 3,
+          "episodes": 3,
+          "completion_or_timeout_steps": [
+            104,
+            71,
+            70
+          ]
+        }
+      ],
+      "episode_results": [
+        {
+          "episode_index": 0,
+          "position": {
+            "episode_index": 0,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": false,
+          "completion_or_timeout_steps": 150,
+          "first_descent_step": null,
+          "first_close_step": null,
+          "tcp_minus_cube_xy_mm_at_descent": null,
+          "final_cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "final_cube_clearance_m": -0.00010775542021618581
+        },
+        {
+          "episode_index": 1,
+          "position": {
+            "episode_index": 1,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 104,
+          "first_descent_step": 37,
+          "first_close_step": 53,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -5.679559318009342,
+            11.923006300915397
+          ],
+          "final_cube_xyz_m": [
+            0.3617033862960842,
+            0.04886132117776114,
+            0.12277420867482101
+          ],
+          "final_cube_clearance_m": 0.09435111800234082
+        },
+        {
+          "episode_index": 2,
+          "position": {
+            "episode_index": 2,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": false,
+          "completion_or_timeout_steps": 150,
+          "first_descent_step": null,
+          "first_close_step": null,
+          "tcp_minus_cube_xy_mm_at_descent": null,
+          "final_cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "final_cube_clearance_m": -0.00010775542021618581
+        },
+        {
+          "episode_index": 3,
+          "position": {
+            "episode_index": 3,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 71,
+          "first_descent_step": 37,
+          "first_close_step": 55,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -5.680799108623402,
+            11.935746910841031
+          ],
+          "final_cube_xyz_m": [
+            0.359771078031455,
+            0.049737455171524766,
+            0.127853426272123
+          ],
+          "final_cube_clearance_m": 0.10757063561566704
+        },
+        {
+          "episode_index": 4,
+          "position": {
+            "episode_index": 4,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": false,
+          "completion_or_timeout_steps": 150,
+          "first_descent_step": null,
+          "first_close_step": null,
+          "tcp_minus_cube_xy_mm_at_descent": null,
+          "final_cube_xyz_m": [
+            0.36,
+            -0.0375,
+            0.019892244579783815
+          ],
+          "final_cube_clearance_m": -0.00010775542021618581
+        },
+        {
+          "episode_index": 5,
+          "position": {
+            "episode_index": 5,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 70,
+          "first_descent_step": 37,
+          "first_close_step": 53,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -5.719657680401391,
+            12.439664562228357
+          ],
+          "final_cube_xyz_m": [
+            0.3618769810790216,
+            0.050277502639504645,
+            0.12120738799964718
+          ],
+          "final_cube_clearance_m": 0.1006018097194584
+        }
+      ],
+      "event_counts": {
+        "metadata": 1,
+        "reset": 6,
+        "prediction": 71,
+        "step": 695,
+        "end": 6
+      },
+      "glfw_assertion_in_retained_log": true,
+      "process_exit_code_saved": false
+    },
+    "n20": {
+      "summary": "results/day19_approach_n20_v1_summary.json",
+      "log": "results/day19_approach_n20_v1_eval.log",
+      "trace": "results/day19_approach_n20_v1_grasp_trace_v1.jsonl",
+      "successes": 6,
+      "episodes": 6,
+      "by_position": [
+        {
+          "position": {
+            "x": 0.36,
+            "y": -0.0375
+          },
+          "successes": 3,
+          "episodes": 3,
+          "completion_or_timeout_steps": [
+            94,
+            94,
+            94
+          ]
+        },
+        {
+          "position": {
+            "x": 0.36,
+            "y": 0.0375
+          },
+          "successes": 3,
+          "episodes": 3,
+          "completion_or_timeout_steps": [
+            99,
+            98,
+            98
+          ]
+        }
+      ],
+      "episode_results": [
+        {
+          "episode_index": 0,
+          "position": {
+            "episode_index": 0,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 94,
+          "first_descent_step": 50,
+          "first_close_step": 67,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -10.642381344221574,
+            6.101628663476945
+          ],
+          "final_cube_xyz_m": [
+            0.35899604155580955,
+            -0.030913706902463818,
+            0.130364270806809
+          ],
+          "final_cube_clearance_m": 0.10971389281048069
+        },
+        {
+          "episode_index": 1,
+          "position": {
+            "episode_index": 1,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 99,
+          "first_descent_step": 46,
+          "first_close_step": 70,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -17.124753455230067,
+            8.135476834242503
+          ],
+          "final_cube_xyz_m": [
+            0.36026021463157015,
+            0.04658286303101952,
+            0.13236269819111102
+          ],
+          "final_cube_clearance_m": 0.11012466252264955
+        },
+        {
+          "episode_index": 2,
+          "position": {
+            "episode_index": 2,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 94,
+          "first_descent_step": 50,
+          "first_close_step": 67,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -10.64237972814064,
+            6.10163054381134
+          ],
+          "final_cube_xyz_m": [
+            0.3589960462872734,
+            -0.03091370520366167,
+            0.13036426034390075
+          ],
+          "final_cube_clearance_m": 0.10971387763843214
+        },
+        {
+          "episode_index": 3,
+          "position": {
+            "episode_index": 3,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 98,
+          "first_descent_step": 45,
+          "first_close_step": 70,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -17.12151330110334,
+            8.076741079923378
+          ],
+          "final_cube_xyz_m": [
+            0.36051193011780047,
+            0.0465705805276129,
+            0.12846156779992624
+          ],
+          "final_cube_clearance_m": 0.10679842854578037
+        },
+        {
+          "episode_index": 4,
+          "position": {
+            "episode_index": 4,
+            "x": 0.36,
+            "y": -0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 94,
+          "first_descent_step": 50,
+          "first_close_step": 67,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -10.642379934882928,
+            6.101628343177873
+          ],
+          "final_cube_xyz_m": [
+            0.35899440480381695,
+            -0.030914290995199618,
+            0.1305250712365177
+          ],
+          "final_cube_clearance_m": 0.10987468602198883
+        },
+        {
+          "episode_index": 5,
+          "position": {
+            "episode_index": 5,
+            "x": 0.36,
+            "y": 0.0375,
+            "z": 0.02
+          },
+          "success": true,
+          "completion_or_timeout_steps": 98,
+          "first_descent_step": 45,
+          "first_close_step": 70,
+          "tcp_minus_cube_xy_mm_at_descent": [
+            -17.12173265736733,
+            8.076700595773833
+          ],
+          "final_cube_xyz_m": [
+            0.3615034699181923,
+            0.046421394094033466,
+            0.12004549927978762
+          ],
+          "final_cube_clearance_m": 0.09661213188095877
+        }
+      ],
+      "event_counts": {
+        "metadata": 1,
+        "reset": 6,
+        "prediction": 30,
+        "step": 577,
+        "end": 6
+      },
+      "glfw_assertion_in_retained_log": false,
+      "process_exit_code_saved": false
+    }
+  },
+  "input_sha256": {
+    "results/day19_approach_n10_v1_grasp_trace_v1.jsonl": "9735e233992ae2b350b6f9d78c0f90618a8a63025e3a728f68e649953e70d2ac",
+    "results/day19_approach_n10_v1_summary.json": "406fd2d9561ea78b5ae2e929fd504d1a868aa9a445499ebfce3819b7b424f4ce",
+    "results/day19_approach_n10_v1_eval.log": "d84be2ba14c9f8a34475da5060d6f8139ae947f969a74c5ecfd72a853b61b801",
+    "results/day19_approach_n20_v1_grasp_trace_v1.jsonl": "bae6dc6436c8a110e557defd0f65bcaefe3ee1dac2f38aeca99864ca047ac766",
+    "results/day19_approach_n20_v1_summary.json": "19f0bf8008eb735d90b59f3c349259347cbe56bf89a14c0181660bc29c7d5eec",
+    "results/day19_approach_n20_v1_eval.log": "bb1fd8e5a432e0d70986e7cf123cc65e5cdf5bddc139ba46714f63ffdbcfcdaa",
+    "configs/day19_approach_diagnostic_positions.json": "1cd8e0f654329549d88bd28539c547b1ee7b19570c511f206d59439a52539590"
+  },
+  "definitions": {
+    "first_descent": "first executed raw Z <= -0.1; not the first tiny negative Z command",
+    "descent_tcp_minus_cube_xy_mm": "1000 * (before-step measured TCP XY - before-step measured cube XY) at first thresholded descent",
+    "success": "saved terminal success/reward plus inspected actual final cube height and clearance",
+    "comparison": "separate reset trajectories; changing prefix also changes approach observations"
+  },
+  "limitations": [
+    "Only two training positions, three repeats each, one trained seed; not a held-out generalization benchmark.",
+    "n20 changes the whole approach and does not isolate descent-tail execution from identical simulator states.",
+    "n20 X offsets are larger; success here does not establish acceptable alignment at other positions.",
+    "No fixed/adaptive prefix candidate was selected or tested on a new reserved split."
+  ],
+  "all_trace_metadata_except_execution_prefix_identical": true,
+  "shared_trace_metadata": {
+    "event": "metadata",
+    "schema_version": 1,
+    "checkpoint": "/home/wusanggg/robotics/robot-learning-playground/outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+    "task": "PandaPickCubeKeyboardRandomViewerLong-v0",
+    "fps": 10,
+    "max_steps": 150,
+    "device": "xpu",
+    "position_schedule": "configs/day19_approach_diagnostic_positions.json",
+    "home_pose": "configs/day11_home_x_centered.json",
+    "min_tcp_z": 0.008,
+    "policy_only_cli_settings": true,
+    "chunk_size": 50,
+    "units": {
+      "actions": "unnormalized policy action units, before environment scaling/clipping",
+      "positions": "meters",
+      "hinge_positions": "radians",
+      "contact_forces": "MuJoCo solver estimate in contact frame"
+    },
+    "notes": [
+      "no extra ACT predictions; full chunks captured from original forwards",
+      "gripper target is not finger position or grip force",
+      "contact flags are constraint-active contacts, not binary grasp success",
+      "cube/contact measurements are diagnostic only, never policy inputs",
+      "the traced run has logging overhead; simulation stepping is unchanged"
+    ]
+  }
+}

@@ -1,0 +1,1508 @@
+{
+  "date": "2026-10-15",
+  "status": "scheduled_original_seen_regression_passed",
+  "log": "results/day19_original_seen_10_then_20_step21_v1_eval.log",
+  "position_schedule": "configs/day16_xy_intermediate_seen_eval_positions.json",
+  "checkpoint": "outputs/act_panda_day18_xy_expanded_xy2_z2_liftz4_closew4_xpu_14000/checkpoints/014000/pretrained_model",
+  "execution_prefix_schedule": {
+    "kind": "fixed_time",
+    "initial_n_action_steps": 10,
+    "later_n_action_steps": 20,
+    "switch_step": 21
+  },
+  "chunk_size": 50,
+  "max_steps": 150,
+  "episodes": 24,
+  "successes": 24,
+  "successes_by_step_100": 24,
+  "minimum_completion_steps": 73,
+  "maximum_completion_steps": 86,
+  "policy_only_configuration": true,
+  "traced": false,
+  "switch_verified_all_episodes": true,
+  "source_hashes_match_pre_run_recipe": true,
+  "per_position": [
+    {
+      "x": 0.32,
+      "y": -0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        85,
+        85,
+        85
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 3
+    },
+    {
+      "x": 0.32,
+      "y": 0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        73,
+        73,
+        73
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 3
+    },
+    {
+      "x": 0.36,
+      "y": -0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        86,
+        86,
+        86
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 0
+    },
+    {
+      "x": 0.36,
+      "y": 0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        78,
+        78,
+        78
+      ],
+      "fixed_n10_successes": 2,
+      "fixed_n20_successes": 0
+    },
+    {
+      "x": 0.44,
+      "y": -0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        82,
+        82,
+        82
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 0
+    },
+    {
+      "x": 0.44,
+      "y": 0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        76,
+        76,
+        77
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 0
+    },
+    {
+      "x": 0.48,
+      "y": -0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        79,
+        79,
+        79
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 3
+    },
+    {
+      "x": 0.48,
+      "y": 0.075,
+      "successes": 3,
+      "episodes": 3,
+      "steps": [
+        79,
+        79,
+        76
+      ],
+      "fixed_n10_successes": 3,
+      "fixed_n20_successes": 3
+    }
+  ],
+  "episode_results": [
+    {
+      "episode_one_based": 1,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 0,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.536,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 85,
+        "action": [
+          0.0,
+          0.0,
+          0.514,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3197,
+          -0.0649,
+          0.1257
+        ],
+        "tcp_xyz_m": [
+          0.32,
+          -0.0649,
+          0.1233
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.002,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.32,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.318,
+          -0.0646,
+          0.0747
+        ]
+      }
+    },
+    {
+      "episode_one_based": 2,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 1,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.538,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 73,
+        "action": [
+          -0.0,
+          0.0,
+          0.513,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3185,
+          0.0774,
+          0.121
+        ],
+        "tcp_xyz_m": [
+          0.3181,
+          0.0774,
+          0.1183
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.002,
+          0.002,
+          0.003,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.32,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3163,
+          0.0767,
+          0.0751
+        ]
+      }
+    },
+    {
+      "episode_one_based": 3,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 2,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.528,
+      "max_z": 0.515,
+      "final_geometry_rounded": {
+        "step": 86,
+        "action": [
+          0.0,
+          0.0,
+          0.511,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.359,
+          -0.0715,
+          0.1224
+        ],
+        "tcp_xyz_m": [
+          0.3389,
+          -0.0712,
+          0.1195
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.003,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.36,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3376,
+          -0.0707,
+          0.0755
+        ]
+      }
+    },
+    {
+      "episode_one_based": 4,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 3,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.05,
+      "min_z": -0.53,
+      "max_z": 0.518,
+      "final_geometry_rounded": {
+        "step": 78,
+        "action": [
+          0.001,
+          0.0,
+          0.515,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.3598,
+          0.0777,
+          0.1296
+        ],
+        "tcp_xyz_m": [
+          0.3502,
+          0.0777,
+          0.1268
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.002,
+          -0.001,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.36,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3488,
+          0.077,
+          0.0772
+        ]
+      }
+    },
+    {
+      "episode_one_based": 5,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 4,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 82,
+      "reward": 1.0,
+      "max_gripper": 2.045,
+      "min_z": -0.532,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 82,
+        "action": [
+          0.001,
+          0.0,
+          0.49,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.4392,
+          -0.0742,
+          0.1208
+        ],
+        "tcp_xyz_m": [
+          0.4574,
+          -0.0743,
+          0.1183
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.0,
+          -0.006,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.44,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4566,
+          -0.0743,
+          0.0734
+        ]
+      }
+    },
+    {
+      "episode_one_based": 6,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 5,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.534,
+      "max_z": 0.519,
+      "final_geometry_rounded": {
+        "step": 76,
+        "action": [
+          -0.0,
+          0.0,
+          0.51,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.4374,
+          0.0797,
+          0.1254
+        ],
+        "tcp_xyz_m": [
+          0.4522,
+          0.0797,
+          0.1225
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.001,
+          -0.005,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.44,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4509,
+          0.0793,
+          0.0778
+        ]
+      }
+    },
+    {
+      "episode_one_based": 7,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 6,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 79,
+      "reward": 1.0,
+      "max_gripper": 2.051,
+      "min_z": -0.537,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 79,
+        "action": [
+          -0.0,
+          -0.0,
+          0.511,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4793,
+          -0.078,
+          0.1314
+        ],
+        "tcp_xyz_m": [
+          0.4835,
+          -0.078,
+          0.1284
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.0,
+          0.004,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.48,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4824,
+          -0.0773,
+          0.0771
+        ]
+      }
+    },
+    {
+      "episode_one_based": 8,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 7,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 79,
+      "reward": 1.0,
+      "max_gripper": 2.049,
+      "min_z": -0.54,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 79,
+        "action": [
+          0.0,
+          0.0,
+          0.509,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4795,
+          0.0744,
+          0.1316
+        ],
+        "tcp_xyz_m": [
+          0.4835,
+          0.0744,
+          0.1292
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.001,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.48,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4823,
+          0.0739,
+          0.0723
+        ]
+      }
+    },
+    {
+      "episode_one_based": 9,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 8,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.536,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 85,
+        "action": [
+          0.001,
+          0.0,
+          0.514,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3207,
+          -0.0649,
+          0.1256
+        ],
+        "tcp_xyz_m": [
+          0.32,
+          -0.0649,
+          0.1232
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.002,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.32,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.318,
+          -0.0646,
+          0.0747
+        ]
+      }
+    },
+    {
+      "episode_one_based": 10,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 9,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.538,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 73,
+        "action": [
+          -0.0,
+          0.0,
+          0.513,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3185,
+          0.0774,
+          0.1212
+        ],
+        "tcp_xyz_m": [
+          0.3181,
+          0.0774,
+          0.1185
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.002,
+          0.002,
+          0.003,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.32,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3163,
+          0.0767,
+          0.0751
+        ]
+      }
+    },
+    {
+      "episode_one_based": 11,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 10,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.528,
+      "max_z": 0.515,
+      "final_geometry_rounded": {
+        "step": 86,
+        "action": [
+          0.0,
+          0.0,
+          0.512,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.3588,
+          -0.0716,
+          0.1231
+        ],
+        "tcp_xyz_m": [
+          0.3389,
+          -0.0712,
+          0.12
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.003,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.36,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3376,
+          -0.0707,
+          0.0755
+        ]
+      }
+    },
+    {
+      "episode_one_based": 12,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 11,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.05,
+      "min_z": -0.53,
+      "max_z": 0.518,
+      "final_geometry_rounded": {
+        "step": 78,
+        "action": [
+          0.001,
+          0.0,
+          0.515,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.3598,
+          0.0777,
+          0.1296
+        ],
+        "tcp_xyz_m": [
+          0.3502,
+          0.0777,
+          0.1268
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.002,
+          -0.001,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.36,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3488,
+          0.077,
+          0.0772
+        ]
+      }
+    },
+    {
+      "episode_one_based": 13,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 12,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 82,
+      "reward": 1.0,
+      "max_gripper": 2.047,
+      "min_z": -0.532,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 82,
+        "action": [
+          0.001,
+          0.001,
+          0.5,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.4393,
+          -0.0742,
+          0.1225
+        ],
+        "tcp_xyz_m": [
+          0.4576,
+          -0.0742,
+          0.12
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.0,
+          -0.006,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.44,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4566,
+          -0.0743,
+          0.0734
+        ]
+      }
+    },
+    {
+      "episode_one_based": 14,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 13,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.534,
+      "max_z": 0.519,
+      "final_geometry_rounded": {
+        "step": 76,
+        "action": [
+          -0.0,
+          0.0,
+          0.51,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.4374,
+          0.0797,
+          0.1254
+        ],
+        "tcp_xyz_m": [
+          0.4522,
+          0.0797,
+          0.1225
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.001,
+          -0.005,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.44,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4509,
+          0.0793,
+          0.0778
+        ]
+      }
+    },
+    {
+      "episode_one_based": 15,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 14,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 79,
+      "reward": 1.0,
+      "max_gripper": 2.051,
+      "min_z": -0.537,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 79,
+        "action": [
+          -0.0,
+          -0.0,
+          0.511,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4793,
+          -0.078,
+          0.1315
+        ],
+        "tcp_xyz_m": [
+          0.4835,
+          -0.078,
+          0.1284
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.0,
+          0.004,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.48,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4824,
+          -0.0773,
+          0.0771
+        ]
+      }
+    },
+    {
+      "episode_one_based": 16,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 15,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 79,
+      "reward": 1.0,
+      "max_gripper": 2.049,
+      "min_z": -0.54,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 79,
+        "action": [
+          0.0,
+          0.0,
+          0.509,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4795,
+          0.0744,
+          0.1316
+        ],
+        "tcp_xyz_m": [
+          0.4835,
+          0.0744,
+          0.1292
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.001,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.48,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4823,
+          0.0739,
+          0.0723
+        ]
+      }
+    },
+    {
+      "episode_one_based": 17,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 16,
+        "x": 0.32,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 85,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.536,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 85,
+        "action": [
+          0.0,
+          0.0,
+          0.514,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3197,
+          -0.0649,
+          0.1256
+        ],
+        "tcp_xyz_m": [
+          0.32,
+          -0.0649,
+          0.1233
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.002,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.32,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.318,
+          -0.0646,
+          0.0747
+        ]
+      }
+    },
+    {
+      "episode_one_based": 18,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 17,
+        "x": 0.32,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 73,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.538,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 73,
+        "action": [
+          -0.0,
+          0.0,
+          0.513,
+          1.001
+        ],
+        "cube_xyz_m": [
+          0.3185,
+          0.0774,
+          0.1212
+        ],
+        "tcp_xyz_m": [
+          0.3181,
+          0.0774,
+          0.1185
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.002,
+          0.002,
+          0.003,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.32,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3163,
+          0.0767,
+          0.0751
+        ]
+      }
+    },
+    {
+      "episode_one_based": 19,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 18,
+        "x": 0.36,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 86,
+      "reward": 1.0,
+      "max_gripper": 2.044,
+      "min_z": -0.528,
+      "max_z": 0.515,
+      "final_geometry_rounded": {
+        "step": 86,
+        "action": [
+          0.0,
+          0.0,
+          0.51,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.359,
+          -0.0715,
+          0.1223
+        ],
+        "tcp_xyz_m": [
+          0.3389,
+          -0.0712,
+          0.1194
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.003,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.36,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3376,
+          -0.0707,
+          0.0755
+        ]
+      }
+    },
+    {
+      "episode_one_based": 20,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 19,
+        "x": 0.36,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 78,
+      "reward": 1.0,
+      "max_gripper": 2.05,
+      "min_z": -0.53,
+      "max_z": 0.518,
+      "final_geometry_rounded": {
+        "step": 78,
+        "action": [
+          0.001,
+          0.0,
+          0.515,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.3598,
+          0.0777,
+          0.1296
+        ],
+        "tcp_xyz_m": [
+          0.3502,
+          0.0777,
+          0.1269
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.002,
+          -0.001,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.36,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.3488,
+          0.077,
+          0.0772
+        ]
+      }
+    },
+    {
+      "episode_one_based": 21,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 20,
+        "x": 0.44,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 82,
+      "reward": 1.0,
+      "max_gripper": 2.047,
+      "min_z": -0.532,
+      "max_z": 0.52,
+      "final_geometry_rounded": {
+        "step": 82,
+        "action": [
+          0.001,
+          0.001,
+          0.5,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.4393,
+          -0.0742,
+          0.1225
+        ],
+        "tcp_xyz_m": [
+          0.4576,
+          -0.0742,
+          0.12
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.0,
+          -0.006,
+          0.997
+        ],
+        "cube_xyz_m": [
+          0.44,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4566,
+          -0.0743,
+          0.0734
+        ]
+      }
+    },
+    {
+      "episode_one_based": 22,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 21,
+        "x": 0.44,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 77,
+      "reward": 1.0,
+      "max_gripper": 2.043,
+      "min_z": -0.534,
+      "max_z": 0.519,
+      "final_geometry_rounded": {
+        "step": 77,
+        "action": [
+          -0.0,
+          0.0,
+          0.505,
+          1.009
+        ],
+        "cube_xyz_m": [
+          0.4373,
+          0.0797,
+          0.1305
+        ],
+        "tcp_xyz_m": [
+          0.4522,
+          0.0798,
+          0.1276
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.001,
+          0.001,
+          -0.005,
+          0.999
+        ],
+        "cube_xyz_m": [
+          0.44,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4509,
+          0.0793,
+          0.0778
+        ]
+      }
+    },
+    {
+      "episode_one_based": 23,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 22,
+        "x": 0.48,
+        "y": -0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 79,
+      "reward": 1.0,
+      "max_gripper": 2.051,
+      "min_z": -0.537,
+      "max_z": 0.522,
+      "final_geometry_rounded": {
+        "step": 79,
+        "action": [
+          -0.0,
+          -0.0,
+          0.511,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4793,
+          -0.078,
+          0.1315
+        ],
+        "tcp_xyz_m": [
+          0.4835,
+          -0.078,
+          0.1284
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.0,
+          0.004,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.48,
+          -0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4824,
+          -0.0773,
+          0.0771
+        ]
+      }
+    },
+    {
+      "episode_one_based": 24,
+      "switches": [
+        "Execution prefix switch: step=21, n_action_steps=20"
+      ],
+      "position": {
+        "episode_index": 23,
+        "x": 0.48,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "success": true,
+      "steps": 76,
+      "reward": 1.0,
+      "max_gripper": 2.046,
+      "min_z": -0.533,
+      "max_z": 0.519,
+      "final_geometry_rounded": {
+        "step": 76,
+        "action": [
+          0.0,
+          -0.0,
+          0.512,
+          0.998
+        ],
+        "cube_xyz_m": [
+          0.4791,
+          0.0743,
+          0.1224
+        ],
+        "tcp_xyz_m": [
+          0.4834,
+          0.0743,
+          0.1202
+        ]
+      },
+      "step40_geometry_rounded": {
+        "step": 40,
+        "action": [
+          -0.0,
+          0.001,
+          -0.002,
+          1.0
+        ],
+        "cube_xyz_m": [
+          0.48,
+          0.075,
+          0.0199
+        ],
+        "tcp_xyz_m": [
+          0.4822,
+          0.0737,
+          0.0722
+        ]
+      }
+    }
+  ],
+  "comparison": {
+    "fixed_n10": {
+      "successes": 23,
+      "episodes": 24,
+      "evidence": "results/day18_summary.json"
+    },
+    "fixed_n20": {
+      "successes": 12,
+      "episodes": 24,
+      "evidence": "results/day19_original_seen_n20_summary.json"
+    },
+    "scheduled": {
+      "successes": 24,
+      "episodes": 24
+    }
+  },
+  "claim": "Three successes at each of eight original training combinations with the unchanged time-scheduled prefix.",
+  "limitations": [
+    "Training-position benchmark with three repeats each, one trained seed and fixed simulator; not a held-out result.",
+    "Geometry is rounded and sparsely printed, not a full trace or a contact/stability certificate.",
+    "Completions by 100 are extracted from 150-step runs, not separately rerun 100-step benchmarks.",
+    "Remaining shorter-Y training combinations and development interpolation still require this same schedule before broader selection."
+  ],
+  "frozen_day18_candidate_changed": false,
+  "replacement_candidate_selected": false,
+  "input_sha256": {
+    "results/day19_original_seen_10_then_20_step21_v1_eval.log": "de7d7d0ef2a1db14f552dd844077207f09afb77ae566aa425fb2e4c00acb5cb0",
+    "configs/day16_xy_intermediate_seen_eval_positions.json": "5b8b445e4b5b0647a0970777e7f29ab48d3899e4c99d8b3c0754feb3e64fd21d",
+    "results/day19_scheduled_prefix_recipe_v1.json": "d3e644d4bb74a4cf6b64020bdfeab879822646226858410e32bd3e87a04358c3",
+    "results/day18_summary.json": "192198f9d3303ede64c579c35b19bee4079773abfbe9824c432b57b6b92dcf9a",
+    "results/day19_original_seen_n20_summary.json": "66160468c229985699fd1eb6364f7a94d2d22b00f36497bd95409af1bcc2a744"
+  }
+}
